@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ASFront.Models.MatchingClientViewModel>
+
+<p>
+    Հայտնաբերված համընկնումներ
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.clientId)
+        </th>
+        <th>
+            Հաճախորդ
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.socN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sefLoanSum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.matchingMode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.clientId)
+        </td>
+        <td>
+            @Html.ActionLink("" + @Html.DisplayFor(modelItem => item.firstName) + " " + @Html.DisplayFor(modelItem => item.lastName), "Edit", "Clients", new { clientId = item.clientId }, htmlAttributes: new { target = "_blank" })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.socN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sefLoanSum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.matchingMode)
+        </td>
+        <td>
+            @Html.ActionLink("Կապակցել", "ClientInputToGroup", "groups", new { clientId = item.clientId, groupId = item.mClientGroupId, mclientId = item.mClientId }, htmlAttributes: new { id= "grAdd", @class = "btn btn-success", target = "_blank" })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+<script type="text/javascript">
+        $("#grAdd").click(function () { this.window.close(); });
+</script>

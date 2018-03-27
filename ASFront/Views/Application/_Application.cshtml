@@ -1,0 +1,85 @@
+﻿
+@model ASFront.ModelsView.ApplicationViewModel
+
+
+
+
+<div>
+    <br />
+    <h3>Հայտի Ամփոփ Տվյալ</h3>
+    <hr />
+    <table class="table">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.appDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.appDate)
+            </td>
+        </tr>
+
+
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.userName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.userName)
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.clientName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.clientName)
+            </td>
+
+        </tr>
+
+
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.SupplierName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.SupplierName)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.branchName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.branchName)
+            </td>
+        </tr>
+
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.SellerId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SellerId)
+            </dd>*@
+
+
+
+    </table>
+</div>

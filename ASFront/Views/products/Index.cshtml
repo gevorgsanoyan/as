@@ -1,0 +1,199 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.Models.Products>
+
+@{
+    ViewBag.Title = "Պրոդուկտներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Պրոդուկտ</h2>
+
+<p>
+    @Html.ActionLink(Resources.Page.CreateNew, "Create")
+</p>
+<br/>
+<hr />
+@using (Html.BeginForm())
+{
+    <div>
+        <div>
+            <table class="table tab-pane">
+                <tr>
+                    <td colspan="3">
+                        @Html.Label("Ֆիլտրել ըստ", htmlAttributes: new { @class = "control-label" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Պրոդուկտի խմբ</td>
+                    <td>Ստատուս</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Html.DropDownList("prGroupName", (SelectList)ViewBag.prGroup, "---Ընտրել---", new { @class = "form-control" })</td>                
+                    <td>@Html.DropDownList("prStatus", (SelectList)ViewBag.grStatus, "---Ընտրել---", new { @class = "form-control" })</td>
+                    <td><input type="submit" name="submit" value="Փնտրել" id="execFilter" class="btn btn-success" /> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().productGroups.prodGroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().productShortName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().agrType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().minMaturtity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().maxMaturity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().prodStatus)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.appFee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.upfronFee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mothFee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mothFeeFlat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.anualRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.asNote1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.asNote2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.asSector)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productCurrency)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.prodOpenDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prodLastModifDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userId)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.productGroups.prodGroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productShortName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.agrType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minMaturtity)
+        </td>
+       <td>
+            @Html.DisplayFor(modelItem => item.maxMaturity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prodStatus)
+        </td>
+      @*  <td>
+        @Html.DisplayFor(modelItem => item.appFee)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.upfronFee)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.mothFee)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.mothFeeFlat)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.anualRate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.asNote1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.asNote2)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.asSector)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.productCurrency)
+    </td>    
+    <td>
+        @Html.DisplayFor(modelItem => item.prodOpenDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.prodLastModifDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.note1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.note2)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.note3)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.note4)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.userId)
+    </td>*@
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id = item.productId }) @*|
+            @Html.ActionLink("Դիտել", "Details", new { id = item.productId })*@
+            
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+
+
+@Html.Partial("_Paging", Model)

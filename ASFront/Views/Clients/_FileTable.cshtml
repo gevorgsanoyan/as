@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ASFront.Models.DocsApllications>
+
+
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+    @Html.DisplayNameFor(model => model.DocType.Name)
+</th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+       
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+    @Html.DisplayFor(modelItem => item.DocType.Name)
+</td><td>
+    @Html.DisplayFor(modelItem => item.ApplicationId)
+</td>
+        <td>
+            
+            <a target="_blank" href="@Url.Content("~/UploadDir/" +@Html.DisplayFor(modelItem => item.FileName) )">@Html.DisplayFor(modelItem => item.FileName)</a>
+
+
+        </td>
+        
+       
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+         
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+        </td>
+    </tr>
+}
+
+</table>

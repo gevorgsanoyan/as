@@ -1,0 +1,40 @@
+﻿@model ASFront.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Օգտվողների դերերի սահմանում</h2>
+
+@using (Html.BeginForm("RegisterRole", "Account", FormMethod.Post, new { @class = "from-horizontal", role = "from" }))
+{
+    <div class="form-horizontal">
+        @Html.AntiForgeryToken()
+        @*<h4>Ընտրել դերն ու համապատասխան օգտատիրոջը</h4>*@
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Ընտրել դերը", new { @class = "col-md-2 control-lable" })
+            <div class="col-md-10">
+                @Html.DropDownList("Name", null,  "---Ընտրել---", new { @class = "form-control" } )
+            </div>
+        </div>
+
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Ընտրել օգտատիրոջ անվանումը", new { @class = "col-md-2 control-lable" })
+            <div class="col-md-10">
+                @Html.DropDownList("UserName", null, "---Ընտրել---", new { @class = "form-control" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+               <input type="submit" value=@Resources.Page.Save   name="Save"  class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,22 @@
+﻿@model ASFront.ModelsView.AppErrorView
+
+@{
+    ViewBag.Title = "Հաստատման սխալ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Հաստատման սխալ</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.appErrorDescr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appErrorDescr)
+        </dd>
+
+    </dl>
+</div>

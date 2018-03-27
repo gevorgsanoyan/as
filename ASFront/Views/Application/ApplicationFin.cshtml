@@ -1,0 +1,54 @@
+﻿@model ASFront.ModelsView.ApplicationFinViewModel
+@{
+    ViewBag.Title = "Հայտի ամփոփ վիճակ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@Html.Partial("_ClientInfo")*@
+
+<div class="fixedDivAppFin">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">@Html.ActionLink("Հաճախորդի տվյալներ", "Edit", "Clients", new { clientId = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-3">@Html.ActionLink("ԱՔՐԱ Հարցում", "GetACRA", "acra", new { ClientID = @Model.clientId, appId = Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-3">@Html.ActionLink("ԱՔՐԱ Պրոֆիլ", "ACRAProfile", "acra", new { ClientID = @Model.clientId, appId = Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-3">@Html.ActionLink("Հաճախորդի հայտեր", "Index", "Application", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-3">@Html.ActionLink("Հաշվարկել սքոր", "CalculateScores", "Application", new { ClientID = @Model.clientId, ApplicationID = Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            @*<div class="col-sm-3"   >@Html.ActionLink("Նոր հայտ", "Create", "Application", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+            @*<div class="col-sm-4">@Html.ActionLink("Հաճախորդի աշխատանքային տվյալներ", "ClientWorkEdit", "Clients", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+
+        </div>
+        <div style="height:10px;"></div>
+        <div class="row">
+
+            @*<div class="col-sm-3">@Html.ActionLink("Հաշվարկել սքորը", "CalculateScores", "ScoringApplicationScores", new { ApplicationID = @Model.applicationId, clientId = Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+
+                <div class="col-sm-2">@Html.ActionLink("Հայտի խմբագրում", "Edit", "Application", new { ID = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+                          <div class="col-sm-4">@Html.ActionLink("Վարկի նպատակի խմբագրում", "", "Items", new { ApplicationID = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+        </div>
+    </div>
+           
+    <h2 class="arrangeCenter" > <span style="color:darkgray">    
+        Հայտի ամփոփ վիճակ՝
+        </span>
+  @Model.Application.appDate.ToLongDateString() </h2>
+    <h2 class="arrangeCenter">
+        <a   href="@Url.Action("Edit", "Clients", new { clientId = @Model.clientId })">@ViewBag.Client &nbsp; (@ViewBag.socNumb) </a>
+  
+    </h2>
+</div>
+
+@*<h2 class="UnderFixedDivAppFin">Հայտի ամփոփ վիճակ</h2>*@
+
+ <div style="height:200px;"></div>
+
+@Html.Partial("_Application", @Model.Application)
+
+
+@Html.Partial("_Items", @Model.Items)
+
+
+
+@*<h4 style="text-align:right;">@Html.ActionLink("ԱՔՐԱ Հարցում", "GetACRA", "acra", new { clientId =Model.clientId}, null) </h4>
+
+    <h4 style="text-align:right;">@Html.ActionLink("Calculate Scores", "CalculateScores", "ScoringApplicationScores", new { ApplicationID = @Model.applicationId }, null)  </h4>*@   

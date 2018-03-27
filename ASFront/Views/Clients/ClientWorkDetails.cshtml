@@ -1,0 +1,179 @@
+﻿@model ASFront.Models.clientWorkDatas
+
+@{
+    ViewBag.Title = "Client Work Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Հաճախորդի աշխատանքային տվյալներ</h2>
+
+<div>
+    <h4>Ընթացիկ աշխատատեղ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.clientId)
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.clientId, (SelectList)ViewBag.cfname, "---Հաճախորդ---", htmlAttributes: new { @class = "form-control",  @disabled = "disabled" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.companyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.companyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.taxNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taxNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyTel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.companyAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.companyAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employmentTypeId)
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.employmentTypeId, (SelectList)ViewBag.em, "---Ընտրել ոլորտը---", htmlAttributes: new { @class = "form-control",  @disabled = "disabled" }) 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.companyTypeId)
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.companyTypeId, (SelectList)ViewBag.ctyp, "---Ընտրել կազմ. տեսակը---", htmlAttributes: new { @class = "form-control",  @disabled = "disabled" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empRegDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empRegDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherIncome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherIncome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherIncomeDescr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherIncomeDescr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note5)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note5)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.userId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModifDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastModifDate)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Խմբագրել", "ClientWorkEdit", new { clientId = Model.clientId }) |
+    @Html.ActionLink(Resources.Page.BackToList, "Edit", new { clientId = Model.clientId })
+</p>

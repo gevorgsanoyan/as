@@ -1,0 +1,71 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.Models.ProductSupplierViewModel>
+
+@{
+    ViewBag.Title = "Ապրանք-Մատակարար";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ապրանք-Մատակարար</h2>
+
+<p>
+    @Html.ActionLink(Resources.Page.CreateNew, "Create")
+</p>
+
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div>
+            <table class="table tab-pane">
+                <tr>
+                    <td colspan="3">
+                        @Html.Label("Ֆիլտրել ըստ", htmlAttributes: new { @class = "control-label" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Պրոդուկտի</td>
+                    <td>Մատակարարի</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Html.DropDownList("product", (SelectList)ViewBag.prod, "---Ընտրել---", new { onchange = "this.form.submit();", @class = "form-control" })</td>
+                    <td>@Html.DropDownList("supplier", (SelectList)ViewBag.supp, "---Ընտրել---", new { @class = "form-control" })</td>
+                    <td><input type="submit" name="btnsubmit" value="Փնտրել" id="execFilter" class="btn btn-success" /> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SupplierName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierName)
+        </td>
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+
+
+@Html.Partial("_Paging", Model)

@@ -1,0 +1,170 @@
+﻿@model ASFront.ModelsView.ApplicationAppruvesViewModels
+
+<div>
+    
+    <hr />
+    <table class="table table-striped table-advance table-hover">
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.appUser)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.appUser)
+                @*@ViewBag.appuserFullName*@
+            </td>
+
+
+        </tr>
+        <tr>
+
+
+
+            <td>
+                @Html.DisplayNameFor(model => model.appDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.appDate)
+            </td>
+
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.aprStatus)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.aprStatus)
+            </td>
+
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.appCurrency)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.appCurrency)
+            </td>
+
+        </tr>
+        <tr>
+
+
+            <td>
+                <span style=" border:solid; border-color:red; border-style:solid; font-weight:bold;border-width: 2px; padding:5px;">
+                    @Html.DisplayNameFor(model => model.appSum)
+                </span>
+                  
+           
+               
+            </td>
+
+            <td>
+                <span style=" border:solid; border-color:green; border-style:solid; font-weight:bold;border-width: 2px; padding:5px;">
+                    @Html.DisplayFor(model => model.appSum)
+                    </span>
+                </td>
+
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.creditSum)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.creditSum)
+            </td>
+
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.clientInvest)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.clientInvest)
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.credDur)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.credDur)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.grPeriod)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.grPeriod)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.preCondit)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.preCondit)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.insurance)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.insurance)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.collateral)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.collateral)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.note1)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.note1)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.note2)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.note2)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.note3)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.note3)
+            </td>
+        </tr>
+
+    </table>
+</div>

@@ -1,0 +1,43 @@
+﻿@model ASFront.Models.releationType
+
+@{
+    ViewBag.Title = "Փոխկապակցվածությունների տեսակներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Դիտել</h2>
+
+<div>
+    <h4>Փոխկապակցվածության տեսակը</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.relType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.relType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note2)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Խմբագրել", "Edit", new { id = Model.releationTypeId }) |
+    @Html.ActionLink("Վերադառնալ", "Index")
+</p>

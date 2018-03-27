@@ -1,0 +1,447 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - SEF Intranet</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+
+    <link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/materialdesignicons.min.css")" rel="stylesheet" type="text/css" />
+
+    @*<link href="@Url.Content("~/Content/material-icons.css")" rel="stylesheet" type="text/css" />*@
+
+    @Styles.Render("~/Content/icons")
+
+
+    <link href="@Url.Content("~/Content/kendo/2017.3.1026/kendo.common.core.min.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/kendo/2017.3.1026/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/kendo/2017.3.1026/kendo.common-bootstrap.core.min.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/kendo/2017.3.1026/kendo.bootstrap.min.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/kendo/2017.3.1026/kendo.bootstrap.mobile.min.css")" rel="stylesheet" type="text/css" />
+
+
+    @*@Styles.Render("~/Content/kendocss")*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/dropdownhover")
+
+    @*<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>*@
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/json2.min.js")"></script>
+
+
+
+    @*<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" type="text/css" />*@
+
+    @Styles.Render("~/Content/gridmvc")
+
+    <script src="@Url.Content("~/Scripts/gridmvc.min.js")" type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+    @* <script src="@Url.Content("~/Scripts/jquery-3.2.1.min.js")" type="text/javascript"> </script>*@
+    @*<script src="@Url.Content("~/Scripts/kendo/2017.3.1026/jquery.min.js")" type="text/javascript"> </script>*@
+
+    <script src="@Url.Content("~/Scripts/kendo/2017.3.1026/kendo.core.min.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/kendo/2017.3.1026/kendo.ui.core.min.js")" type="text/javascript"></script>
+
+
+
+
+
+    @*<link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" type="text/css" />*@
+
+    @*<script src="@Url.Content("~/Scripts/globalize.js")"></script>
+        @{
+            var culture = System.Globalization.CultureInfo.CurrentCulture.ToString();
+        }
+        <script src="@Url.Content("~/Scripts/globalize.0.1.3/cultures/globalize.culture." + culture + ".js")"></script>*@
+
+
+
+    @{
+        var culture = System.Globalization.CultureInfo.CurrentCulture.ToString();
+    }
+
+
+    <script src="@Url.Content("~/Scripts/kendo/2017.3.1026/cultures/kendo.culture." + culture + ".min.js")"></script>
+
+
+    <script>
+        kendo.culture("@culture");
+
+    </script>
+    
+    
+    
+    
+
+
+    @*<script src="@Url.Content("~/Scripts/globalize.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/globalize-cultures/globalize.culture.hy-AM.js")"></script>*@
+
+    <script src="@Url.Content("~/Scripts/globalize.0.1.3/globalize.js")"></script>
+    <script src="@Url.Content("~/Scripts/globalize.0.1.3/cultures/globalize.culture.hy-AM.js")"></script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+              
+                <a href='@Url.Action("", "Home")'>
+                    <img src='@Url.Content("~/img/logoS.png")'  style="width:50px;
+		        height:50px; margin-left:10px;" />
+                </a>
+
+                @Html.ActionLink("SEF Intranet", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Սկիզբ", "Index", "Home")</li>*@                    
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        @*<li>@Html.ActionLink("Օգտագերեր", "ShowAllUsers", "Account")</li>
+                        <li>@Html.ActionLink("Դերեր", "Index", "Roles")</li>
+                        <li>@Html.ActionLink("Մասնաճյուղեր", "Branches", "RB")</li>*@
+
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                               aria-expanded="false">
+                                All Menu
+                                <span class="caret"></span>
+                            </a>
+
+                            @*<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                    Modules <span class="caret"></span>
+                                </button>*@
+                            <ul class="dropdown-menu">
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                                       aria-expanded="false">
+                                        Պրոդուկտ
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right ">
+                                        <li>@Html.ActionLink("Պրոդուկտների խմբեր", "", "productGroup", null, null)</li>
+                                        <li>@Html.ActionLink("Պրոդուկտ-Նպատակ", "", "ProductPurpose", null, null)</li>
+                                        <li>@Html.ActionLink("Պրոդուկտ", "", "products", null, null)</li>
+                                        <li>@Html.ActionLink("Նպատակ", "", "Purpose", null, null)</li>
+                                        <li>@Html.ActionLink("Պրոդուկտների սահմանաչափեր", "Index", "ProductLimits")</li>
+                                        <li>@Html.ActionLink("Պրոդուկտ-Մատակարար", "", "ProductSupplier", null, null)</li>
+
+                                    </ul>
+                                </li>
+
+
+
+
+
+
+
+
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                                       aria-expanded="false">
+                                        Վարկանիշ
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right ">
+
+                                        <li>@Html.ActionLink("Հայտ-գնահատականներ", "", "ScoringApplicationScores", null, null)</li>
+                                        <li>@Html.ActionLink("Որոշում", "", "ScoringDecisions", null, null)</li>
+                                        <li>@Html.ActionLink("Վարկանիշային Ֆորմուլա", "", "ScoringFormula", null, null)</li>
+                                        <li>@Html.ActionLink("Ցուցիչներ", "", "ScoringIndicators", null, null)</li>
+                                        <li>@Html.ActionLink("Ցուցիչներ-Պարամետրեր", "", "ScoringIndicatorsParameters", null, null)</li>
+                                        <li>@Html.ActionLink("Ցուցիչների տեսակներ", "", "ScoringIndicatorsTypes", null, null)</li>
+                                        <li>@Html.ActionLink("Պարամետրեր", "", "ScoringParameters", null, null)</li>
+                                        <li>@Html.ActionLink("Պրոդուկտ-Ցուցիչ", "", "ScoringProductIndicators", null, null)</li>
+                                        <li>@Html.ActionLink("Պրոդուկտի գնահատման որոշումներ", "", "ScoringScoreDecisions", null, null)</li>
+
+
+
+                                        <li>@Html.ActionLink("Պրոդուկտի գնահատման միավորներ", "", "ScoringScores", null, null)</li>
+
+
+                                    </ul>
+                                </li>
+
+
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                                       aria-expanded="false">
+                                        Մատակարար և վաճառող
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right ">
+                                        <li>@Html.ActionLink("Մատակարարներ", "", "Supplier", null, null)</li>
+                                        <li>@Html.ActionLink("Մատակարարողի մասնաճյուղեր", "", "SupplierBranches", null, null)</li>
+                                        <li>@Html.ActionLink("Վաճառողներ", "", "Sellers", null, null)</li>
+
+                                    </ul>
+                                </li>
+
+
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                                       aria-expanded="false">
+                                        Օգտատերեր և մասնաճյուղեր
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right ">
+
+                                        <li>@Html.ActionLink("Օգտատերեր", "ShowAllUsers", "Account")</li>
+                                        <li>@Html.ActionLink("Օգտատերերի դերեր", "", "Roles", null, null)</li>
+                                        <li>@Html.ActionLink("Դերեր", "Index", "Roles")</li>
+                                        <li>@Html.ActionLink("Մասնաճյուղեր", "Branches", "RB")</li>
+                                        <li>@Html.ActionLink("Տարածաշրջաններ և Մասնաճյուղեր", "", "RB", null, null)</li>
+
+                                    </ul>
+                                </li>
+
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                                       aria-expanded="false">
+                                        Հաստատում
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right ">
+                                        <li>@Html.ActionLink("Ստեղծել հաստատման սահմանափակում", "Create", "UserAppTables")</li>
+                                        <li>@Html.ActionLink("Հաստատման տեսակ", "", "AppTypes")</li>
+                                        <li>@Html.ActionLink("Սահմանափակման աղյուսակ", "IndexEx", "UserAppTables")</li>                                        
+
+                                    </ul>
+                                </li>
+
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                                       aria-expanded="false">
+                                        Վարկի ապահովվածություն
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right ">
+                                        <li>@Html.ActionLink("Ոսկու Հարգ", "", "GoldAssayes", null, null)</li>
+                                        <li>@Html.ActionLink("Ոսկու գին", "", "GoldPrices", null, null)</li>
+                                        @*<li>@Html.ActionLink("Ոսկու գրավ", "", "GoldCollateral", null, null)</li>*@
+
+                                        <li>@Html.ActionLink("Ոսկու տեսակ", "", "GoldTypes", null, null)</li>
+                                        <li>@Html.ActionLink("Շարժական գույքի տեսակ", "", "MovableEstateTypes", null, null)</li>
+                                        <li>@Html.ActionLink("Անշարժ գույքի տեսակ", "", "RealtyTypes")</li>
+
+
+
+
+                                    </ul>
+                                </li>
+
+
+
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                                       aria-expanded="false">
+                                        Նորմատիվներ
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right ">
+                                        <li>@Html.ActionLink("Գյուղատնտեսական ակտիվների տեսակներ", "", "AgroAssetTypes")</li>
+                                        <li>@Html.ActionLink("Գյուղատնտեսական Ե/Ծ նորմատիվներ", "", "AgroAssetIncomeNormatives")</li>
+                                        <li>@Html.ActionLink("Ընտանեկան ծախսերի նորմատիվ", "", "FamilyCostNormatives")</li>
+                                        <li>@Html.ActionLink("Չափի միավոր", "", "MeasurementUnits")</li>
+
+                                    </ul>
+                                </li>
+
+
+
+
+
+
+
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                                       aria-expanded="false">
+                                        Բիզնես կարգավորումներ
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right ">
+
+
+                                        <li>@Html.ActionLink("Բիզնես ոլորտներ", "Index", "BusinessSectors")</li>
+                                        <li>@Html.ActionLink("Բիզնեի տեսակներ", "Index", "BusinessTypes")</li>
+                                        <li>@Html.ActionLink("Բիզնեի սպասարկող բանկեր", "Index", "NameofBanks")</li>
+                                        <li>@Html.ActionLink("Բիզնեի սեփականության ձևեր", "Index", "OwnershipTypes")</li>
+
+                                    </ul>
+                                </li>
+
+
+
+
+
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                                       aria-expanded="false">
+                                        Այլ
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right ">
+
+
+                                        <li>@Html.ActionLink("Կարգավորումներ", "", "Settings")</li>
+                                        <li>@Html.ActionLink("Փողոց", "", "Streets")</li>
+                                        <li>@Html.ActionLink("Փաստաթղթի տեսակը", "", "DocTypes")</li>
+
+
+                                    </ul>
+                                </li>
+                               
+
+
+
+
+
+
+
+
+                                
+
+
+
+
+
+
+                                @*<li>@Html.ActionLink("Փոխկապակցվածություն", "Index", "releationTypes")</li>
+                                <li>@Html.ActionLink("Խմբեր", "Index", "groups")</li>
+
+                                <li>@Html.ActionLink("ԱՔՌԱ", "GetACRA", "acra", null, null)</li>*@
+                             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </ul>
+                                </li>
+                    }
+                 @if (Request.IsAuthenticated )
+                 {
+
+
+                                <li>@Html.ActionLink("Նոր հաճախորդ", "NewClient", "Clients")</li>
+                                @*<li>@Html.ActionLink("Նոր հայտ", "Create", "Application")</li>*@
+                                <li>@Html.ActionLink("Հաճախորդի որոնում", "", "Clients")</li>
+                                <li class="dropdown dropdown-notifications">
+                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       data-hover="dropdown" data-animations="fadeInDown fadeInLeft fadeInUp fadeInRight"
+                                       aria-expanded="false">
+                                        Հայտեր                                                                                                                       
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    @*<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                            Modules <span class="caret"></span>
+                                        </button>*@
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Բոլոր Հայտերը", "", "Application")</li>
+                                        <li>@Html.ActionLink("Ընթացիկ", "","Application", new { StatusID = 1 }, null)</li>
+                                        <li class="notification-container">
+                                            <a href='@Url.Action("GetApplicationsForAppruve","Application")'>
+                                                Հաստատման ենթակա հայտեր
+                                                <i id="sec_notif" class="glyphicon glyphicon-envelope notification-icon" style="display:none"></i>
+                                            </a>                                                                                                                                     
+                                        </li>
+                                        <li>@Html.ActionLink("Հաստատված սքորինգով", "","Application", new { StatusID = 2 },null)</li>
+                                        <li>@Html.ActionLink("Հաստատված օղակ 1", "", "Application", new { StatusID = 3 }, null)</li>
+                                        <li>@Html.ActionLink("Հաստատված", "","Application", new { StatusID = 4 }, null)</li>
+                                        <li>@Html.ActionLink("Մերժված", "",  "Application", new { StatusID=5 }, null)</li>
+                                                               
+                                    </ul>
+                                </li>
+                    }
+                            </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - SEF Intranet</p>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+   
+       
+     
+
+</body>
+</html>
+

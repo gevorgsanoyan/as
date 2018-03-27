@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ASFront.Models.Turnovers>
+
+
+
+
+<table class="table table-striped table-advance table-hover table-Full">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeasurementUnits.Title)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.MonthlySalesQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COGS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalesPrice)
+        </th>
+        
+
+        <th>
+            @Html.DisplayNameFor(model => model.Overgrown)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proceeds)
+        </th>
+        <th>
+    @Html.DisplayNameFor(model => model.OutstandingQuantity)
+</th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoneyBalance)
+        </th>
+
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.productName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MeasurementUnits.Title)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.MonthlySalesQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COGS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesPrice)
+        </td>
+
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Overgrown)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proceeds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OutstandingQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MoneyBalance)
+        </td>
+
+        <td>
+            <a href='@Url.Action("Edit",  new { id=item.Id })'
+               data-toggle="popover" data-trigger="hover" data-content="Խմբագրել">
+                <img src='@Url.Content("~/img/edit.gif")' />
+            </a>
+
+        </td>
+        <td>
+            <a href='@Url.Action("Copy",  new { id=item.Id })'
+               data-toggle="popover" data-trigger="hover" data-content="Պատճեն">
+                <img src='@Url.Content("~/img/copy.png")' />
+            </a>
+        </td>
+    </tr>
+    }
+
+</table>
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+
+
+</script>

@@ -1,0 +1,75 @@
+﻿@model ASFront.Models.FamilyCostNormatives
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FamilyCostNormatives</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Branches.Branch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branches.Branch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maxAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maxAge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note4)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,560 @@
+﻿
+@model ASFront.ModelsView.GoldLoanCreditApplicationViewModels
+@using ASFront.Models
+@{
+    Layout = "~/Views/Shared/_LayoutPdf.cshtml";
+
+}
+
+@using ASFront.Classes
+
+<link href="@Url.Content("~/Content/bootstrap.css", true)" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/regular-checkbox.css", true)" rel="stylesheet" type="text/css" />
+
+<style>
+    li {
+        padding-bottom: 12px;
+    }
+
+    .chkTopAlight {
+        top: 16px;
+        position: relative;
+    }
+
+    .tdhiegth {
+        height: 15px;
+    }
+</style>
+
+
+
+<div style="height:7px;"></div>
+
+
+
+
+<div style="left:20px; ">
+    <img src='@Url.Content("~/img/SefLogoGold.gif")' /><br />
+
+</div>
+<div style="height:20px;"></div>
+
+<table style="width:100%;" class="pdftable">
+    <tr>
+        <td style="width:50%;">
+            <div style="top:-25px; position:relative;">
+                <p>© Հեղինակային իրավունք` "ՍԵՖ Ինտերնեյշնլ ՈւՎԿ" ՍՊԸ</p>
+                <p>Հեռախոս` @Model.Phone</p>
+                <p>Ձեռք բերման ամսաթիվը @Model.aprDateNameStr.</p>
+            </div>
+          
+        </td>
+        <td style="width:50%;">
+
+
+
+
+            <table class="table table-striped table-bordered table-advance  table-Full">
+
+                <tr>
+
+
+                    <td  >
+                        <div style="padding:5px 0 5px 0">
+                            Հաճախորդ  N   @Model.clientId
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+
+
+                    <td>
+                        <div style="padding:5px 0 5px 0">
+
+                            <p>
+                                Հայտի N` @Model.ApplicationID
+                            </p>
+                            <div style="height:20px;"></div>
+                            <p>
+                                Վարկային մասնագետ`_________________________________
+                            </p>
+                            </div>
+
+                    </td>
+                </tr>
+
+            </table>
+
+
+        </td>
+    </tr>
+  
+</table>
+
+
+
+
+<br />
+
+
+<div style="text-align:center;">
+    <h3>
+        ՎԱՐԿԱՅԻՆ ԴԻՄՈՒՄ
+    </h3>
+</div>
+
+<br />
+<p>
+    <b>
+        Հաճախորդի կողմից կազմակերպությանը ներկայացված բոլոր տեղեկությունները կոնֆիդենցիալ են և կվերանայվեն միայն այն անձանց կողմից, որոնք  մասնակցում են վարկի տրամադրման որոշմանը:
+    </b>
+</p>
+
+<ol>
+    <li>
+        <p>
+
+            Ընդհանուր տեղեկություններ
+
+        </p>
+
+        <p>
+            <table style="width:100%;" class="pdftable">
+                <tr>
+                    <td>
+                        Դիմորդի անուն ազգանունը `
+                    </td>
+                    <td> @Model.ClientName </td>
+                    <td>Հեռ. @Model.Phone</td>
+                </tr>
+                <tr>
+                    <td>Հասցե`</td>
+                    <td>@Model.Address</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Ընտանիքի անդամների քանակը`</td>
+                    <td>_______, որից` _______ կանայք, ______ երեխաներ են:</td>
+                    <td></td>
+                </tr>
+            </table>
+        </p>
+
+
+
+    </li>
+    <li>Վարկի նպատակը</li>
+    <li>Պահանջվող վարկի գումարը՝ @Model.CreditTotalAmount	 </li>
+    <li>
+        <p>
+            Ընկերության մասին տեղեկատվության աղբյուր
+        </p>
+        <div style="height:18px;"></div>
+
+        <hr class="pdfhr" />
+        <div style="text-align:center;">
+            պարտադիր լրացման դաշտ
+        </div>
+    </li>
+    <li>
+        <div>
+            <b>
+                Հանդիսանում եք
+            </b> արդյոք գործող վարկի <b>վարկառու</b>
+
+
+            <span class="chkTopAlight">
+                @Html.CheckBox("borrower", new { @class = "regular-checkbox big-checkbox" })
+                @Html.Label("checkbox-" + "borrower", " ", new { @class = "big-checkbox-label" })
+            </span>,&nbsp;
+            <b>գրավատու</b>
+
+            <span class="chkTopAlight">
+                @Html.CheckBox("pledger", new { @class = "regular-checkbox big-checkbox" })
+                @Html.Label("checkbox-" + "pledger", " ", new { @class = "big-checkbox-label" })
+            </span>,&nbsp;
+            <b>երաշխավոր</b>
+
+            <span class="chkTopAlight">
+                @Html.CheckBox("guarantor", new { @class = "regular-checkbox big-checkbox" })
+                @Html.Label("checkbox-" + "guarantor", " ", new { @class = "big-checkbox-label" })
+            </span>,&nbsp;
+            <b>փոխառու</b>
+
+            <span class="chkTopAlight">
+                @Html.CheckBox("borrower", new { @class = "regular-checkbox big-checkbox" })
+                @Html.Label("checkbox-" + "borrower", " ", new { @class = "big-checkbox-label" })
+            </span>
+
+        </div>
+
+        <div style="height:10px;"></div>
+
+
+        <table class="table table-striped table-bordered table-advance  table-Full">
+
+            <tr>
+                <td>Բանկի կամ վարկային կազմակերպության անունը</td>
+                <td style="width:57%"></td>
+
+            </tr>
+            <tr>
+                <td>Վարկի /փոխառության գումարը</td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Ժամկետանց օրերի առկայությունը</td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Ապահովվածությունը</td>
+                <td></td>
+
+            </tr>
+        </table>
+
+
+
+
+
+
+
+    </li>
+    <li>
+        <div>
+            <b>
+                Հանդիսացել եք երբևիցե վարկառու
+            </b>
+
+
+            <span class="chkTopAlight">
+                @Html.CheckBox("borrower", new { @class = "regular-checkbox big-checkbox" })
+                @Html.Label("checkbox-" + "borrower", " ", new { @class = "big-checkbox-label" })
+            </span>,&nbsp;
+            <b>գրավատու</b>
+
+            <span class="chkTopAlight">
+                @Html.CheckBox("pledger", new { @class = "regular-checkbox big-checkbox" })
+                @Html.Label("checkbox-" + "pledger", " ", new { @class = "big-checkbox-label" })
+            </span>,&nbsp;
+            <b>երաշխավոր</b>
+
+            <span class="chkTopAlight">
+                @Html.CheckBox("guarantor", new { @class = "regular-checkbox big-checkbox" })
+                @Html.Label("checkbox-" + "guarantor", " ", new { @class = "big-checkbox-label" })
+            </span>,&nbsp;
+            <b>փոխառու</b>
+
+            <span class="chkTopAlight">
+                @Html.CheckBox("borrower", new { @class = "regular-checkbox big-checkbox" })
+                @Html.Label("checkbox-" + "borrower", " ", new { @class = "big-checkbox-label" })
+            </span>
+
+        </div>
+
+
+        <div style="height:10px;"></div>
+
+
+
+        <table class="table table-striped table-bordered table-advance  table-Full">
+
+            <tr>
+                <td>Բանկի կամ վարկային կազմակերպության անունը</td>
+                <td style="width:57%"></td>
+
+            </tr>
+            <tr>
+                <td>Վարկի /փոխառության գումարը</td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Ժամկետանց օրերի առկայությունը</td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Ապահովվածությունը</td>
+                <td></td>
+
+            </tr>
+        </table>
+
+
+
+
+
+    </li>
+
+
+    <li>
+        <div>
+            Ձեր կամ ՁԵր ամուսնու/կնոջ հարազատներից որևէ մեկը աշխատո՞ւմ է <<ՍԵՖ ինտերնեյշնլ ՈՒՎԿ>
+                > ՍՊԸ-ում  `
+                <br />
+                <b>այո</b>
+
+
+                <span class="chkTopAlight">
+                    @Html.CheckBox("Yes", new { @class = "regular-checkbox big-checkbox" })
+                    @Html.Label("checkbox-" + "Yes", " ", new { @class = "big-checkbox-label" })
+                </span>,&nbsp;
+                <b>ոչ</b>
+
+                <span class="chkTopAlight">
+                    @Html.CheckBox("No", new { @class = "regular-checkbox big-checkbox" })
+                    @Html.Label("checkbox-" + "No", " ", new { @class = "big-checkbox-label" })
+                </span>
+
+        </div>
+
+        <div style="height:10px;"></div>
+
+
+
+        <table class="table table-striped table-bordered table-advance  table-Full">
+
+            <tr>
+                <td>Անուն Ազգանուն Հայրանուն</td>
+                <td>Փոխկապակցվածությունը (հայր, որդի, դուստր, մայր, քույր, եղբայր, կնոջ/ամուսնու հայր, մայր, քույր, եղբայր…)</td>
+                <td>Զբաղեցրած պաշտոնը §ՍԵՖ Ինտերնեյշնլ ՈՒՎԿ¦ ՍՊԸ-ում</td>
+
+            </tr>
+            <tr>
+                <td class="tdhiegth">                 </td>
+                <td class="tdhiegth">                 </td>
+                <td class="tdhiegth">                 </td>
+
+            </tr>
+            <tr>
+                <td class="tdhiegth">                 </td>
+                <td class="tdhiegth">                 </td>
+                <td class="tdhiegth">                 </td>
+
+            </tr>
+
+
+        </table>
+
+
+
+
+
+
+
+    </li>
+
+
+    <li>
+        <div>
+            Ձեր կամ Ձեր ամուսնու/կնոջ հարազատներից որևէ մեկը հանդիսանո՞ւմ  է <<ՍԵՖ ինտերնեյշնլ ՈՒՎԿ>
+                > ՍՊԸ-ի հաճախորդ՝
+                <br />
+                <b>այո</b>
+
+
+                <span class="chkTopAlight">
+                    @Html.CheckBox("Yes", new { @class = "regular-checkbox big-checkbox" })
+                    @Html.Label("checkbox-" + "Yes", " ", new { @class = "big-checkbox-label" })
+                </span>,&nbsp;
+                <b>ոչ</b>
+
+                <span class="chkTopAlight">
+                    @Html.CheckBox("No", new { @class = "regular-checkbox big-checkbox" })
+                    @Html.Label("checkbox-" + "No", " ", new { @class = "big-checkbox-label" })
+                </span>
+
+        </div>
+        <div style="height:10px;"></div>
+
+
+
+        <table class="table table-striped table-bordered table-advance  table-Full">
+
+            <tr>
+                <td>Հ/հ</td>
+                <td>Փոխկապակցվածությունը (հայր, մայր, որդի, դուստր, քույր, եղբայր, կնոջ կամ ամուսնու հայր, մայր, քույր, եղբայր, կամ որևէ  այլն)</td>
+                <td>
+                    Անուն Ազգանուն Հայրանուն
+                    (հնարավորության դեպքում նաև անձնագրային տվյալները)
+                </td>
+
+            </tr>
+            <tr>
+                <td class="tdhiegth">                 </td>
+                <td class="tdhiegth">                 </td>
+                <td class="tdhiegth">                 </td>
+
+            </tr>
+            <tr>
+                <td class="tdhiegth">                 </td>
+                <td class="tdhiegth">                 </td>
+                <td class="tdhiegth">                 </td>
+
+            </tr>
+
+
+        </table>
+
+
+
+        <div style="height:20px;"></div>
+
+
+        <div style="text-align:center;">
+            <h3>
+                Հ Ա Յ Տ Ա Ր Ա Ր Ա Գ Ի Ր
+            </h3>
+        </div>
+
+
+
+    </li>
+    <li>
+        Ես՝ @Model.ClientName, “ՍԵՖ Ինտերնեյշնլ ՈՒՎԿ” ՍՊԸ-ի  հետ հաստատելով գործարար հարաբերություն, հայտարարում եմ, որ գործարար հարաբերության մեջ առկա չէ իրական շահառու: Պարտավորվում եմ նաև գործարար հարաբերության ընթացքում իրական շահառուի ի հայտ գալու դեպքում տեղյակ պահել Ձեզ:
+    </li>
+    <li>
+        Սույնով ես՝ @Model.ClientName, տալիս եմ իմ համաձայնությունը վարկային պայմանագրի գործողության ընթացքում կրեդիտավորման պայմանագրից բխող սպառողի պարտավորությունների և դրանց առաջացման հիմքերի և մարումների վերաբերյալ գրավոր տեղեկատվության, այդ թվում՝ սպառողի կողմից իմ պարտավորությունները չկատարելու կամ ոչ պատշաճ կատարելու համար կրեդիտավորողի կողմից կիրառվող կամ կիրառված պատասխանատվության միջոցների (տուժանքի կամ սպառողի վիճակը վատթարացնող ցանկացած այլ միջոցների) սպառիչ ցանկի, դրանց կիրառման դեպքերն ու կարգի մասին տեղեկանալ վարկային կազմակերպության ցանկացած մասնաճյուղում կամ վարկային կազմակերպության www.report.sef.am ինտերնետային կայքի Իմ անձնական էջում:
+    </li>
+    <li>
+        Սույնով ես տալիս եմ իմ համաձայնությունը վարկային պայմանագրի գործողության ընթացքում վարկի անվանական տոկոսադրույքի, կողմերի միջև հաղորդակցման կարգի, ծառայության ընդհանուր պայմանների և այլ վճարների, կողմերի` պայմանագրից բխող իրավունքների, պարտականությունների կամ պատասխանատվության վրա ուղղակի ազդեցություն ունեցող այլ հանգամանքների փոփոխության և իրավական ակտերի այն փոփոխությունների մասին, որոնք ուղղակի ազդեցություն ունեն հաճախորդի՝ պայմանագրով սահմանված իրավունքների և պարտականությունների վրա՝ տեղեկանալ վարկային կազմակերպության ցանկացած մասնաճյուղում կամ վարկային կազմակերպության www.report.sef.am ինտերնետային կայքի Իմ անձնական էջում:
+    </li>
+    <li>
+        12.	Սույնով ես տալիս եմ իմ համաձայնությունը, որպեսզի “ՍԵՖ Ինտերնեյշնլ Ունիվերսալ Վարկային Կազմակերպություն” ՍՊԸ-ի կողմից հարցում կատարվի “ԱՔՌԱ Քրեդիտ Ռեփորթինգ” ՓԲԸ-ին և վերջինիս խնդրում եմ “ՍԵՖ Ինտերնեյշնլ Ունիվերսալ Վարկային Կազմակերպություն” ՍՊԸ-ին տրամադրել իմ ներկա և անցյալ ֆինանսական պարտավորությունների վերաբերյալ տեղեկություններ, ինչպես նաև այլ տվյալներ, որոնք “ՍԵՖ Ինտերնեյշնլ Ունիվերսալ Վարկային Կազմակերպություն” ՍՊԸ-ի կողմից կարող են հաշվի առնվել ինձ հետ վարկային (փոխառության և այլն) պայմանագիր կնքելու վերաբերյալ որոշում կայացնելիս: Ինչպես նաև տալիս եմ իմ համաձայնությունը, որպեսզի “ՍԵՖ Ինտերնեյշնլ Ունիվերսալ Վարկային Կազմակերպություն” ՍՊԸ-ի կողմից վարկային (փոխառության և այլն) պայմանագիր կնքելու դեպքում տվյալ վարկային (փոխառության և ալյն) պայմանագրի գործողության ողջ ընթացքում ցանկացած պահին առանց ինձ նախապես տեղյակ պահելու “ԱՔՌԱ Քրեդիտ Ռեփորթինգ” ՓԲԸ-ն “ՍԵՖ Ինտերնեյշնլ Ունիվերսալ Վարկային Կազմակերպություն” ՍՊԸ-ին տրամադրի իմ ապագա ֆինանսական պարտավորությունների վերաբերյալ տեղեկություններ, ինչպես նաև այլ տվյալներ: Գիտակցում եմ, որ տրամադրված տեղեկությունները և տվյալները, կախված դրանց բովանդակությունից կարող են ազդել “ՍԵՖ Ինտերնեյշնլ Ունիվերսալ Վարկային Կազմակերպություն” ՍՊԸ-ի կողմից կայացված համապատասխան որոշման վրա:
+    </li>
+    <li>
+        Ես հասկանում եմ, որ դիմումի համար վճարումը ոչ մի կերպ չի ապահովում վարկի հաստատումը և հետ չի վերադարձվում:
+    </li>
+    <li>
+        Ես` @Model.ClientName, սույն դիմումը կարդացել եմ և հաստատում եմ, որ այն ինձ համար ամբողջությամբ հասկանալի և ընդունելի է: Ես հավաստիացնում եմ, որ սույն փաստաթղթում պարունակվող տեղեկատվությունը արժանահավատ է և ճշգրիտ:
+
+    </li>
+</ol>
+
+<div>
+
+    <div style="border:1px solid #000000;padding:7px;position:relative; ">
+
+
+        <table style="width:100%;" class="pdftable">
+            <tr>
+                <td colspan="3">
+                    <div style="height:15px;"></div>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="tdmiddle">_____________________________</td>
+                <td class="tdmiddle">____________________________________________</td>
+                <td class="tdmiddle">________________________</td>
+            </tr>
+            <tr>
+                <td class="tdmiddle">Ստորագրություն</td>
+                <td class="tdmiddle">Անուն Ազգանուն</td>
+                <td class="tdmiddle">Ամսաթիվ</td>
+            </tr>
+
+            <tr>
+                <td colspan="3">
+                    <div style="height:15px;"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+
+<div style="height:20px;"></div>
+
+
+<div style="text-align:center;">
+    <h2>
+        ՎԱՐԿԻ ՀԱՍՏԱՏՈՒՄ
+    </h2>
+</div>
+
+<br />
+
+<div>
+    Համաձայն կցված Ակտի վարկառուի գրավը գնահատված է @Model.EstimatedTotalCostAMDSumStr:
+</div>
+<div style="text-decoration:underline; padding-top:10px;">
+    ՀԱՍՏԱՏՎՈՒՄ Է`
+</div>
+<div style="  top:-10px; position:relative;">
+    Վարկի մեծություն ` @Model.CreditTotalAmount, մարման ժամկետը`
+    <b>3 ամիս</b>
+    <span class="chkTopAlight">
+        @Html.CheckBox("month3", new { @class = "regular-checkbox big-checkbox" })
+        @Html.Label("checkbox-" + "month3", " ", new { @class = "big-checkbox-label" })
+    </span>,&nbsp;
+    <b>6 ամիս</b>
+
+    <span class="chkTopAlight">
+        @Html.CheckBox("month6", new { @class = "regular-checkbox big-checkbox" })
+        @Html.Label("checkbox-" + "month6", " ", new { @class = "big-checkbox-label" })
+    </span>,&nbsp;
+    <b>12 ամիս</b>
+
+    <span class="chkTopAlight">
+        @Html.CheckBox("month12", new { @class = "regular-checkbox big-checkbox" })
+        @Html.Label("checkbox-" + "month12", " ", new { @class = "big-checkbox-label" })
+    </span>,&nbsp;
+    <b>24 ամիս</b>
+
+    <span class="chkTopAlight">
+        @Html.CheckBox("month24", new { @class = "regular-checkbox big-checkbox" })
+        @Html.Label("checkbox-" + "month24", " ", new { @class = "big-checkbox-label" })
+    </span>
+</div>
+<div>
+    Տոկոսադրույքը` @Model.anualRate
+</div>
+
+
+<div style="height:40px;"></div>
+
+<table style="width:100%;" class="pdftable">
+
+    <tr>
+        <td>1-ին հաստատող`</td>
+        <td class="tdmiddle">________________________________________________________ </td>
+        <td>@Model.aprDateStr</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+
+        <td class="tdmiddle">անուն ազգանուն, պաշտոն, ստորագրություն</td>
+        <td class="tdmiddle"></td>
+        <td width="250px;"></td>
+    </tr>
+
+    <tr>
+        <td colspan="4">
+            <div style="height:25px;"></div>
+        </td>
+
+    </tr>
+    <tr>
+        <td>2-րդ հաստատող`</td>
+        <td class="tdmiddle">________________________________________________________ </td>
+        <td>@Model.aprDateStr</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+
+        <td class="tdmiddle">անուն ազգանուն, պաշտոն, ստորագրություն</td>
+        <td class="tdmiddle"></td>
+        <td width="250px;"></td>
+    </tr>
+
+</table>
+
+

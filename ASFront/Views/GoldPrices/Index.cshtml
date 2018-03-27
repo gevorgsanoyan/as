@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ASFront.Models.GoldPrices>
+
+@{
+    ViewBag.Title = "Ոսկու գին";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ոսկու գին</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GoldAssayes.Assay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GoldAssayes.Assay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>

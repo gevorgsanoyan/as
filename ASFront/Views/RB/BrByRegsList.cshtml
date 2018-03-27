@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ASFront.Models.BranchRegionsView>
+
+@{
+    ViewBag.Title = "Branches by regions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Մասնաճյուղերն ըստ տարածաշրջանների</h2>
+
+<p>
+    @Html.ActionLink("Ավելացնել", "CreateBR")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Branch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Region)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rDate)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Branch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Region)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rDate)
+        </td>
+    </tr>
+}
+
+</table>

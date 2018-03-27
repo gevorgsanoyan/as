@@ -1,0 +1,486 @@
+﻿@model ASFront.ModelsView.CreditCommiteeView
+
+@{
+    ViewBag.Title = "CreditCommiteePDF";
+    Layout = "~/Views/Shared/_LayoutPdf.cshtml";
+}
+
+
+@using ASFront.Classes
+
+<link href="@Url.Content("~/Content/bootstrap.css", true)" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/regular-checkbox.css", true)" rel="stylesheet" type="text/css" />
+
+
+@*<style>
+    li {
+        padding-bottom: 12px;
+    }
+
+    .chkTopAlight {
+        top: 16px;
+        position: relative;
+    }
+
+    .tdhiegth {
+        height: 15px;
+    }
+
+    .colordiv {
+        background-color: lightgray !important;
+        border: 1px solid #000000;
+        padding: 8px;
+    }
+</style>*@
+
+
+<div>
+    <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <div>
+                        <div style="left:20px; ">
+                            <img src='@Url.Content("~/img/SefLogoGold.gif")' /> <strong>@String.Format("{0:d}", DateTime.Now)</strong><br />
+                        </div>
+                        <p align="center">
+                            <strong>ԱՐՁԱՆԱԳՐՈՒԹՅՈՒՆ</strong>
+                        </p>
+                        <p align="center">
+                            “ՍԵՖ Ինտերնեյշնլ ՈՒՎԿ” ՍՊԸ-ի
+                        </p>
+                        <p align="center">
+                            Վարկային հանձնաժողով
+                        </p>
+                        <p align="center">
+
+
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <div>
+                        <p>
+                            Օրակարգ՝ <strong>@Model.prodName</strong>   հայտի քննարկում
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <div>
+                        <p>
+                            Վարկային մասնագետ` @Model.creditSpec
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br clear="ALL" />
+<div>
+    <table border="1" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td width="103" valign="middle" align="center">
+                    <p>
+                        <strong>Հայտատու</strong>
+                    </p>
+                </td>
+                <td width="204" colspan="2" valign="middle" align="center">
+                    @Model.clientFullName
+                </td>
+                <td width="84" valign="middle" align="center">
+                    <p>
+                        Հայտի համար
+                    </p>
+                </td>
+                <td width="70" colspan="2" valign="middle" align="center">
+                    @Model.appId
+                </td>
+                <td width="80" colspan="2" valign="top">
+                    <p>
+                        Հայտի ընդունման ամսաթիվ
+                    </p>
+                </td>
+                <td width="80" colspan="2" valign="middle" align="center">
+                    @Model.appDate
+                </td>
+            </tr>
+            <tr>
+                <td width="50" valign="middle" align="center">
+                    <p>
+                        Վարկի արժույթը` <br /> <strong>@Model.appCurrency</strong>
+                    </p>
+                </td>
+                <td width="90" valign="middle" align="center">
+                    <p>
+                        Հայտի գումար
+                    </p>
+                </td>
+                <td width="72" colspan="2" valign="middle" align="center">@Model.appSum</td>
+                <td width="90" valign="middle" align="center">Վարկի գումար</td>
+                <td width="72" valign="middle" align="center">@Model.creditSum</td>
+                <td width="40" valign="middle" align="center">
+                    <p>
+                        Հաճախորդի ներդրում
+                    </p>
+                </td>
+                <td width="73" valign="middle" align="center">@Model.clientInvest</td>
+                <td width="50" valign="middle" align="center">
+                    <p>
+                        Պահանջվող վարկի ժամկետ
+                    </p>
+                </td>
+                <td width="51" valign="middle" align="center">@Model.creditDur ամիս</td>
+            </tr>
+            <tr>
+                <td width="103" valign="middle" align="center">
+                    <p>
+                        Տարեկան անվանական տոկոսադրույք
+                    </p>
+                </td>
+                <td width="42" valign="middle" align="center">@Model.interest</td>
+                <td width="90" valign="middle" align="center">
+                    <p>
+                        Վարկի ամսական սպասարկման վճար
+                    </p>
+                </td>
+                <td width="72" valign="middle" align="center">@Model.monthFee</td>
+                <td width="84" valign="middle" align="center">
+                    <p>
+                        Տրման միջնորդավճար
+                    </p>
+                </td>
+                <td width="72" valign="middle" align="center">@Model.upfrontFee</td>
+                <td width="72" valign="middle" align="center">
+                    <p>
+                        Արտոնյալ <br /> ժամանակա-<br />հատված <br />(ամիս)
+                    </p>
+                </td>
+                <td width="73" valign="middle" align="center">@Model.gracePeriod</td>
+                <td width="75" valign="middle" align="center">
+                    <p>
+                        Գրավի պահանջ
+                    </p>
+                </td>
+                <td width="51" valign="middle" align="center">@Model.collatReq</td>
+            </tr>
+            <tr>
+                <td width="103" valign="middle" colspan="2" align="center">
+                    <p>
+                        Ապահովագրություն
+                    </p>
+                </td>
+                <td width="288" colspan="3" valign="middle" align="center">@Model.insurance</td>
+                <td width="72" valign="middle" align="center">
+                    <p>
+                        Հաստատման նախապայման
+                    </p>
+                </td>
+                <td width="271" colspan="4" valign="middle" align="center">@Model.apprPreCond</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br />
+<div>
+    <table width="890" border="1" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td width="274" valign="middle" align="center">
+                    <p>
+                        <strong>Վարկի նպատակը</strong>
+                    </p>
+                </td>
+                <td width="154" valign="middle" align="center">
+                    <p>
+                        Վարկառուի միջոցներ
+                    </p>
+                </td>
+                <td width="156" valign="middle" align="center">
+                    <p>
+                        Վարկի միջոցներ
+                    </p>
+                </td>
+                <td width="144" valign="middle" align="center">
+                    <p>
+                        Ընդհանուր
+                    </p>
+                </td>
+            </tr>
+
+            @foreach (var prps in Model.crPurpose)
+            {
+                <tr>
+                    <td width="274" valign="middle" align="center">@prps.prodPurpose </td>
+                    <td width="154" valign="middle" align="center">@prps.clientInvest</td>
+                    <td width="156" valign="middle" align="center">@prps.itemSum</td>
+                    <td width="144" valign="middle" align="center">
+                        <strong> @((double.Parse(prps.clientInvest) + double.Parse(prps.itemSum)).ToString("N0")) </strong>
+                    </td>
+                </tr>
+            }
+
+
+            @*<tr>
+                <td width="274" valign="top">
+                    <p>
+                        Ընդամենը
+                    </p>
+                </td>
+                <td width="154" valign="top"></td>
+                <td width="156" valign="top"></td>
+            </tr>*@
+        </tbody>
+    </table>
+</div>
+<br />
+<div>
+    <table border="1" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td width="890" colspan="5" valign="middle" align="center">
+                    <p>
+                        <strong>
+                            Հայտի սքորինգային վերլուծության արդյունքները
+                        </strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="163" valign="middle" align="center">
+                    <p>
+                        Չափանիշ
+                    </p>
+                </td>
+                <td width="168" valign="middle" align="center">
+                    <p>
+                        Արժեք
+                    </p>
+                </td>
+                <td width="96" valign="middle" align="center">
+                    <p>
+                        Գնահատական
+                    </p>
+                </td>
+                <td width="156" valign="middle" align="center">
+                    <p>
+                        Ընդհանուր սքոր
+                    </p>
+                </td>
+                <td width="144" valign="middle" align="center">
+                    <p>
+                        Եզրակացություն
+                    </p>
+                </td>
+            </tr>
+            
+            @for(int i = 0; i < Model.scorDet.Count; i++)
+            {
+                <tr>
+                    <td width="163" valign="middle" align="center">@Model.scorDet[i].IndicatorName</td>
+                    <td width="168" valign="middle" align="center">@Model.scorDet[i].Value</td>
+                    <td width="96" valign="middle" align="center">@Model.scorDet[i].Score</td>
+                    @if (i == 0)                    
+                    {
+                        <td width="156" rowspan="@Model.scorDet.Count" valign="middle" align="center">@Model.scorDet[i].totScore</td>
+                        <td width="144" rowspan="@Model.scorDet.Count" valign="middle" align="center">@Model.scorDet[i].Decision</td>
+                    }
+
+                </tr>
+                             
+            }
+            
+            @*<tr>
+                <td width="163" valign="top"></td>
+                <td width="168" valign="top"></td>
+                <td width="96" valign="top"></td>
+            </tr>*@
+        </tbody>
+    </table>
+</div>
+<br />
+@if (Model.coallaterals.Count > 0)
+{
+<div>
+    <table width="890" border="1" cellspacing="0" cellpadding="1">
+        <tbody>
+            <tr>
+                <td width="880" colspan="4" valign="middle" align="center">
+                    <p>
+                        <strong>Վարկի ապահովվածությունը </strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="163" valign="middle" align="center">
+                    <p>
+                        Գնահատված գրավի կազմը
+                    </p>
+                </td>
+                <td width="200" colspan="2" valign="middle" align="center">
+                    <p>
+                        Նկարագրություն
+                    </p>
+                </td>
+                <td width="100" valign="middle" align="center">
+                    <p>
+                        Գնահատված ընդ. Արժեքը (ՀՀ դրամ)
+                    </p>
+                </td>
+            </tr>
+            @foreach (var cl in Model.coallaterals)
+            {
+                <tr>
+                    <td width="163" valign="middle" align="center">@cl.collateralName</td>
+                    <td width="200" colspan="2" valign="middle" align="center">@cl.collateralDesc</td>
+                    <td width="100" valign="middle" align="center">@cl.collateralSum</td>
+                </tr>
+            }
+            <tr>
+                <td width="163" valign="top"></td>
+                <td width="192" valign="top"></td>
+                <td width="198" rowspan="2" valign="middle" align="center">
+                    <p>
+                        Վարկ / Գրավ հարաբերակցություն
+                    </p>
+                </td>
+                <td width="174" rowspan="2" valign="middle" align="center">@Model.credSumCollateralSum%</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+}
+<br />
+@if (Model.guarantors.Count > 0)
+{
+<div>
+    <table width="890" border="1" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td width="727" colspan="7" valign="top">
+                    <p>
+                        <strong>Երաշխավորություններ</strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="130" valign="top">
+                    <p>
+                        Անուն, Ազգանուն
+                    </p>
+                </td>
+                <td width="136" valign="top">
+                    <p>
+                        Փոխկապակցվածություն
+                    </p>
+                </td>
+                <td width="97" valign="top">
+                    <p>
+                        Զբաղվածություն
+                    </p>
+                </td>
+                <td width="83" valign="top">
+                    <p>
+                        Ամսական եկամուտ
+                    </p>
+                </td>
+                <td width="96" valign="top">
+                    <p>
+                        Գումար. Ժամկետանց օրերի քանակ
+                    </p>
+                </td>
+                <td width="96" valign="top">
+                    <p>
+                        Երաշխավորի ընդհանուր սքորը
+                    </p>
+                </td>
+                <td width="90" valign="top">
+                    <p>
+                        Երաշխավորի տիպը
+                    </p>
+                </td>
+            </tr>
+            @foreach (var gr in Model.guarantors)
+            {
+                <tr>
+                    <td width="130" valign="top">@gr.guarantFullName</td>
+                    <td width="136" valign="top"></td>
+                    <td width="97" valign="top">@gr.guarantJob</td>
+                    <td width="83" valign="top">@gr.guarantIncome</td>
+                    <td width="96" valign="top">@gr.guarantDelaySumAndDaysCnt</td>
+                    <td width="96" valign="top"></td>
+                    <td width="90" valign="top"></td>
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+</div>
+}
+<br />
+<div>
+    <table width="890" border="1" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td width="733" colspan="4" valign="middle" align="center">
+                    <p>
+                        <strong>Հաստատման մանրամասներ</strong>
+                        <strong></strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="247" valign="top">
+                    <p>
+                        Սքորինգ
+                    </p>
+                </td>
+                <td width="150" valign="top">
+                    <p>
+                        Գնահատական
+                    </p>
+                </td>
+                <td width="78" valign="middle" align="center">@Model.finalSocre</td>
+                <td width="258" valign="middle" align="center">
+                    <p>
+                        Լրացուցիչ մեկնաբանություններ
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="247" valign="middle" align="center">@Model.app1</td>
+                <td width="150" valign="middle" align="center">
+                    <p>
+                        Օղակ 1
+                    </p>
+                </td>
+                <td width="78" valign="middle" align="center"></td>
+                <td width="258" rowspan="2" valign="middle" align="center">@Model.creditSum</td>
+            </tr>
+            <tr>
+                <td width="247" valign="middle" align="center">@Model.app2</td>
+                <td width="150" valign="middle" align="center">
+                    <p>
+                        Օղակ 2
+                    </p>
+                </td>
+                <td width="78" valign="middle" align="center"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

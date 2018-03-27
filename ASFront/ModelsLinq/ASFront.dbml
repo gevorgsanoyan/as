@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="aspnet-ASFront-20170110104121" Class="ASFrontDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-ASFront-20170110104121.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DefaultConnection" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.GetTablesNames" Method="GetTablesNames">
+    <ElementType Name="GetTablesNamesResult">
+      <Column Name="TABLE_NAME" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetColumnNames" Method="GetColumnNames">
+    <Parameter Name="TableName" Parameter="tableName" Type="System.String" DbType="NVarChar(250)" />
+    <ElementType Name="GetColumnNamesResult">
+      <Column Name="[Column Name]" Member="Column_Name" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

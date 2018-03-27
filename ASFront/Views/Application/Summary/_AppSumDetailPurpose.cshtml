@@ -1,0 +1,95 @@
+﻿@model ASFront.ModelsView.AppSumDetailPurposeViewModel
+
+<div>
+    @*<h3 class="BoldText">
+        Հայտի Մանրամասն Նպատակ</h3>*@
+     
+    <table class="table table-striped table-advance table-hover">
+        
+        <tr>
+
+
+
+            <td class="col-md-6">
+                @Html.DisplayNameFor(model => model.userName)
+            </td>
+
+             <td class="col-md-6">
+                @Html.DisplayFor(model => model.userName)
+            </td>
+        </tr>
+        <tr>
+
+
+             <td class="col-md-6">
+                @Html.DisplayNameFor(model => model.asCode)
+            </td>
+
+             <td class="col-md-6">
+                @Html.DisplayFor(model => model.asCode)
+            </td>
+
+        </tr>
+        <tr>
+
+             <td class="col-md-6">
+                @Html.DisplayNameFor(model => model.Branch)
+            </td>
+
+             <td class="col-md-6">
+                @Html.DisplayFor(model => model.Branch)
+            </td>
+
+        </tr>
+        <tr>
+
+
+             <td class="col-md-6">
+                @Html.DisplayNameFor(model => model.appDate)
+            </td>
+
+             <td class="col-md-6">
+                @Html.DisplayFor(model => model.appDate)
+            </td>
+
+
+        </tr>
+        @if (@Model.appStatus == "Հաստատված")
+        {
+            <tr>
+                <td class="col-md-6">
+                    @Html.DisplayNameFor(model => model.aprDate)
+                </td>
+
+                 <td class="col-md-6">                 
+                     @Html.DisplayFor(model => model.aprDate)              
+                </td>
+            </tr>
+        }
+        @*<tr>
+
+
+             <td class="col-md-6">
+                @Html.DisplayNameFor(model => model.appStatus)
+            </td>
+
+             <td class="col-md-6">
+                @Html.DisplayFor(model => model.appStatus)
+            </td>
+
+        </tr>*@
+        @*<tr>
+
+
+
+             <td class="col-md-6">
+                @Html.DisplayNameFor(model => model.appDescr)
+            </td>
+
+             <td class="col-md-6">
+                @Html.DisplayFor(model => model.appDescr)
+            </td>
+        </tr>*@
+
+    </table>
+</div>

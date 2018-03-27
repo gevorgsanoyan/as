@@ -1,0 +1,35 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.Models.ScoringIndicatorsTypes>
+
+@{
+    ViewBag.Title = "Ցուցիչների տեսակներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ցուցիչների տեսակներ</h2>
+
+<p>
+    @Html.ActionLink(Resources.Page.CreateNew, "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TypeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeName)
+        </td>
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id=item.ID }) 
+        </td>
+    </tr>
+}
+
+</table>
+@Html.Partial("_Paging", Model)
+@Html.Partial("_IndicatorMenu")

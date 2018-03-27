@@ -1,0 +1,344 @@
+﻿@model ASFront.Models.UserProfileView
+
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Օգտատիրոջ տվյալներ</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Օգտատեր</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @Html.HiddenFor(model => model.UserId)       
+        @Html.HiddenFor(model => model.branch)
+
+        @Html.HiddenFor(model => model.UserASProfileId)
+        @Html.HiddenFor(model => model.UserName)
+        @Html.HiddenFor(model => model.Email)
+
+        @Html.HiddenFor(model => model.branchId)
+
+        
+
+        @*@Html.HiddenFor(model => model.UserBranches)      
+        @Html.HiddenFor(model => model.SelectedStr)
+        @Html.HiddenFor(model => model.SelectedBranchesStr)*@
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+               
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Patronymic, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Patronymic, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Patronymic, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+           
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Role, (SelectList)ViewBag.Roles, "---Ընտրել---", new {  @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+        
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.branch, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.branchId, (SelectList)ViewBag.br, "---Ընտրել---", new {  @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.branchId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserBranches, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+             
+                <select class="form-control" id="UserBranches" multiple="multiple" name="UserBranches" data-role="multiselect" > 
+                </select>
+
+    @*@Html.ListBox(
+             "UserBranches",
+        ViewBag.br as MultiSelectList,
+             new { @class = "form-control" }
+         )*@
+
+    @*@Html.EditorFor(model => model.branchId, new { htmlAttributes = new { @class = "form-control" } })*@
+    @Html.ValidationMessageFor(model => model.UserBranches, "", new { @class = "text-danger" })
+</div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.asName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.asName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.asName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.asCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.asCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.asCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.asUserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.asUserId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.asUserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.uPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.uPhoneNumber, new { htmlAttributes = new { @class = "form-control inputphone" } })
+                @Html.ValidationMessageFor(model => model.uPhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.telegramId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telegramId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.telegramId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.telegramPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telegramPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.telegramPhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value=@Resources.Page.Save   name="Save"  class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @Html.ActionLink(Resources.Page.BackToList, "ShowAllUsers")
+    </div>
+}
+
+<script type="text/javascript" src="~/Scripts/jquery.maskedinput.min.js"></script>
+
+<script type="text/javascript">
+         
+        
+
+
+            $(function () {
+                $('.inputphone').mask("(099) 99-99-99");
+            });
+
+
+</script>
+  
+<script>
+        $(document).ready(function () {
+            $("#Role").kendoDropDownList({
+               placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: false,
+                    transport: {
+                        read: {
+                            url: "@(Url.RouteUrl("ListRoles"))",
+                            dataType: "json"
+                        },
+                        dataType: "json"
+                    },
+
+
+
+
+
+
+
+                }
+
+            });
+        });
+
+
+
+
+
+
+
+</script>
+
+         @*@{ 
+             var k = @Html.Raw(@Json.Encode(@ViewBag.SelectedBranches)).ToString();
+
+
+
+         }*@
+<script>
+        $(document).ready(function () {
+            $("#UserBranches").kendoMultiSelect({
+                placeholder: "@Resources.Page.Select",
+                maxSelectedItems: 10, //only three or less items could be selected
+                //change: onChange,
+                //autoBind: false,
+
+
+
+
+
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: false,
+                    transport: {
+                        read: {
+                         
+                             url: "@(Url.RouteUrl("ListUserBranches"))",
+                            dataType: "json",
+                            data: "onChange",
+                        },
+                        dataType: "json"
+                    },
+
+
+
+                }
+
+            });
+
+
+
+
+
+            //function onChange() {
+
+
+            //    var km =
+
+
+            //        $('#UserBranches').val($("#UserBranches").data("kendoMultiSelect").dataItems());
+
+            //    return {
+
+
+            //        //SelectedStr: $("#branchId").data("kendoMultiSelect").dataItems()
+            //        //SelectedStr: "aa"
+            //    };
+            //}
+
+
+
+
+
+
+                //$("#branchId").getKendoMultiSelect().value(@Json.Encode(Model.UserBranches)); //select items which have value respectively "1" and "2"
+
+            //$("#branchId").getKendoMultiSelect().value( @Html.Raw(@Json.Encode(ViewBag.sel))) ; //select items which have value respectively "1" and "2"
+
+
+
+
+
+
+            $("#UserBranches").getKendoMultiSelect().value(@Json.Encode(Model.UserBranches)); //select items which have value respectively "1" and "2"
+
+               //$("#branchId").getKendoMultiSelect().value(["1", "2"]); //select items which have value respectively "1" and "2"
+        });
+
+
+
+        //function set(value) {
+        //    return value;
+        //}
+
+
+
+
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

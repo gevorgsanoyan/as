@@ -1,0 +1,60 @@
+﻿@model ASFront.ModelsView.clientsGroupDetView
+
+@{
+
+    Layout = null;
+}
+
+
+
+    
+       
+
+                <td>
+                    @Html.DisplayFor(model => model.clientsGroupId)
+                </td>
+                <td>
+
+                    @Html.ActionLink("" + @Html.DisplayFor(model => model.rpFirstName) + " " + @Html.DisplayFor(model => model.rpLastName), "Edit", "Clients", new { clientId = Model.SingleClientId }, htmlAttributes: new {  target = "_blank" })
+
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.rTypeName)
+                </td>
+
+
+
+
+
+
+
+                <th>
+                    @Html.DisplayFor(model => model.AcraLastRequestDate)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => model.CreditLoadAcra)
+                </th>
+
+                <th>
+                    @Html.DisplayFor(model => model.OverdueMoney)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => model.OverdueDaysCount)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => model.Income)
+                </th>
+
+                <th>
+                    @Html.EditorFor(model => model.AcraRequestAllow, new { htmlAttributes = new { @class = "chkB" } })
+                    @Html.HiddenFor(model => model.SingleClientId)
+                    @Html.HiddenFor(model => model.clientsGroupId)
+
+                </th>
+
+
+
+ 
+   

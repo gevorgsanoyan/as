@@ -1,0 +1,286 @@
+﻿@model ASFront.Models.acraLoanDetails
+
+@{
+    ViewBag.Title = "ACRALoanDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="wrapper">
+    <h3><i class="fa fa-angle-right"></i> @Model.clientName </h3>
+    <h3><i class="fa fa-angle-right"></i> ԱՔՌԱ ՏՎՅԱԼՆԵՐ` Պայմանագրի համար՝ @Model.credit_id, Թարմացման ամսաթիվ՝ @Model.incoming_date, </h3>
+    <h3><i class="fa fa-angle-right"></i>  Վարկատու՝ @Model.lender </h3>
+    <h3>
+        @if (@Model.l_type == "Վարկ")
+        {
+            <i class="fa fa-angle-right"></i> <span class="label label-success">Վարկ</span>
+        }
+        else
+        {
+            <i class="fa fa-angle-right"></i> <span class="label label-info label-warning">Երաշխավորություն</span>
+        }                
+    </h3>
+
+
+    <div class="row mt">
+        <div class="col-md-12">
+            <!--/ c-->
+            <div class="col-md-6 col-sm-6 mb">
+                <table class="table table-striped table-advance table-hover">
+                    <tbody>
+                        <tr>
+                            <td><b>Վարկի կարգավիճակը</b></td>
+                            <td>
+                                @if (Model.status == "գործող")
+                                {
+                                    <span class="label label-success">Գործող</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-warning">Մարված</span>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Պայմանագրի ամսաթիվը</b></td>
+                            <td>@Model.credit_date</td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Տրամադրման ամսաթիվը</b></td>
+                            <td>@Model.credit_start</td>
+                        </tr>
+                        <tr>
+                            <td><b>Վերջնական մարման ամսաթիվը</b></td>
+                            <td>@Model.close_date</td>
+                        </tr>
+                        <tr>
+                            <td><b>Փաստացի մարման ամսաթիվը</b></td>
+                            <td>@Model.last_pmt_date</td>
+                        </tr>
+                        <tr>
+                            <td><b>Վճարման չափը</b></td>
+                            <td>
+                                @if (@Model.payment_amount.Length > 0)
+                                {
+                                    @Model.currency  @Model.payment_amount
+                                }
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Ոլորտ</b></td>
+                            <td>@Model.credit_type</td>
+                        </tr>
+                        <tr>
+                            <td><b>Վայր</b></td>
+                            <td>@Model.use_place</td>
+                        </tr>
+                        <tr>
+                            <td><b>Գրավի առարկա</b></td>
+                            <td>@Model.pledge</td>
+                        </tr>
+                        <tr>
+                            <td><b>Գրավի արժեք</b></td>
+                            <td>@Model.clCurrency  @Model.collateral_value</td>
+                        </tr>
+                        <tr>
+                            <td><b>Գրավի նշումներ</b></td>
+                            <td>@Model.collateral_note</td>
+                        </tr>
+                        <tr>
+                            <td><b>Երաշխավորների քանակ</b></td>
+                            <td>@Model.guarantor_count</td>
+                        </tr>
+                        <tr>
+                            <td><b>Երաշխավորության գումար</b></td>
+                            <td>
+                                @if (@Model.guarantor_amount.Length > 0)
+                                {
+                                @Model.currency  @Model.guarantor_amount
+                                }
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Վարկի այլ նշում</b></td>
+                            <td>@Model.credit_notes</td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+
+
+            </div><!-- /col-md-4 -->
+
+            <div class="col-md-6 col-sm-6 mb">
+                <table class="table table-striped table-advance table-hover">
+                    <tbody>
+                        <tr>
+                            <td><b>Վարկի տեսակ</b></td>
+                            <td> @Model.credit_type</td>
+                        </tr>
+                        <tr>
+                            <td><b>Տոկոսադրույք</b></td>
+                            <td>@Model.Interest</td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Պայմանագրի գումար</b></td>
+                            <td>@Model.currency  @Model.contract_amount</td>
+                        </tr>
+                        <tr>
+                            <td><b>Փաստացի տրամադրված գումարը</b></td>
+                            <td>@Model.currency  @Model.Amount</td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Փաստացի մարված գումարը</b></td>
+                            <td>@Model.currency  @Model.AmountBalance</td>
+                        </tr>
+                        <tr>
+                            <td><b>Մայր գումարի մնացորդ</b></td>
+                            <td>@Model.currency  @Model.balance</td>
+                        </tr>
+                        <tr>
+                            <td><b>Ժամկետանց մայր գումարի մնացորդ</b></td>
+                            <td>@Model.currency  @Model.amount_overdue</td>
+                        </tr>
+                        <tr>
+                            <td><b>Ժամկետանց դառնալու ամսաթիվ</b></td>
+                            <td> @Model.outstanding_date</td>
+                        </tr>
+                        <tr>
+                            <td><b>Ժամկետանց տոկոս</b></td>
+                            <td>@Model.outstanding_percent</td>
+                        </tr>
+                        <tr>
+                            <td><b>Ժամկետանց օրերի քանակ</b></td>
+                            <td>@Model.overdue_days</td>
+                        </tr>
+                        <tr>
+                            <td><b>Վարկային ռիսկի դասը</b></td>
+                            <td>
+                                @if(@Model.loan_class == "Ստանդարտ")
+                                {
+                                    <span class="label label-info label-info">Ստանդարտ</span>
+                                }
+                                
+                                @if(@Model.loan_class == "Հսկվող")
+                                {
+                                    <span class="label label-info label-warning">Հսկվող</span>
+                                }
+                                @if(@Model.loan_class == "Ոչ ստանդարտ")
+                                {
+                                    <span class="label label-info label-warning">Ոչ ստանդարտ</span>
+                                }
+                                @if(@Model.loan_class == "Կասկածելի")
+                                {
+                                    <span class="label label-info label-warning">Կասկածելի</span>
+                                }
+                                @if(@Model.loan_class == "Անհուսալի")
+                                {
+                                    <span class="label label-info label-danger">Անհուսալի</span>
+                                }
+                            </td>
+
+
+                        </tr>
+                        <tr>
+                            @*@Model.classification_last_date*@
+                            <td><b>Վերջին դասակարգման ամսաթիվ</b></td>
+                            <td>@Model.classification_last_date</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+
+            </div><!-- /col-md-4 -->
+            <div class="row mt">
+                <div class="col-md-12">
+                    <div class="content-panel">
+                        <h4>Վճարումների կարգապահություն</h4>
+                        <hr>
+                        <table class="table table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class="fa fa-bullhorn"></i> Տարեթիվ/Ամիս</th>
+                                    <th> 1</th>
+                                    <th> 2</th>
+                                    <th> 3</th>
+                                    <th> 4</th>
+                                    <th> 5</th>
+                                    <th> 6</th>
+                                    <th> 7</th>
+                                    <th> 8</th>
+                                    <th> 9</th>
+                                    <th> 10</th>
+                                    <th> 11</th>
+                                    <th> 12</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(Model.lOSdays != null)
+                                {
+                                    for(int i = 0; i < Model.lOSdays.GetLength(0); i++)
+                                    {
+                                        <tr>
+                                        @for (int j = 0; j < Model.lOSdays.GetLength(1); j++)
+                                        {
+                                            if (Model.lOSdays[i, j] == "OK")
+                                            {
+                                            <td>
+                                                <span class="label label-success">@Model.lOSdays[i, j]</span>
+                                            </td>
+                                            }
+                                            else if (Model.lOSdays[i, j] == "NO")
+                                            {
+                                                <td>
+                                                    <span class="label label-info">@Model.lOSdays[i, j]</span>
+                                                </td>
+                                            }
+                                            else if (Model.lOSdays[i, j] == "  ")
+                                            {
+                                                <td>
+                                                    <span class="label ">@Model.lOSdays[i, j]</span>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                if (j > 0)
+                                                {
+                                                    <td>
+                                                        <span class="label label-danger">@Model.lOSdays[i, j]</span>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        <span class="font-weight:bold"><strong>@Model.lOSdays[i, j]</strong> </span>
+                                                    </td>
+                                                }
+
+                                            }
+                                        }
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                    </div><!-- /col-md-12 -->
+                </div><!-- /row -->
+
+
+            </div><!-- /content-panel -->
+        </div><!-- /col-md-12 -->
+    </div><!-- /row -->
+
+
+
+</section>

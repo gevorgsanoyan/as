@@ -1,0 +1,43 @@
+﻿@model ASFront.Models.BusinessType
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Բիզնեսի տեսակ</h2>
+
+<div>
+    <h4>Մանրամասներ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessSector.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessSector.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Խմբագրել", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Վերադառնալ", "Index")
+</p>

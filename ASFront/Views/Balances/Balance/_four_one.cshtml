@@ -1,0 +1,84 @@
+﻿@model ASFront.Models.Balance
+
+<div id="tab41BalancePanel">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShortTermLoans, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.ShortTermLoans, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+
+            @Html.ValidationMessageFor(model => model.ShortTermLoans, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="col-md-6">
+            <button type="button" id="CalculateShortTermLoans" onclick="CalculateShortTermLoansClick()" value="Հաշվարկել" name="CalculateShortTermLoans" class="btn btn-success btn-FullWidth">
+                <span>
+
+                    Հաշվարկել
+                </span>
+
+
+            </button>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+    <script>
+
+
+
+
+    function CalculateShortTermLoansClick() {
+
+        $("#CalculateShortTermLoans span").html('<i class="fa fa-refresh fa-spin"></i>&ensp;Հաշվարկվում է ... ');
+
+
+
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+
+                traditional: true,
+
+                url: "@(Url.RouteUrl("CalculateShortTermLoans"))",
+                cache: false,
+                data: {
+                     ApplicationID: @Model.applicationId,
+
+                },
+                success: function (response) {
+
+                    $('#tab41BalancePanel').html('');
+                    $('#tab41BalancePanel').html(response.responseText);
+
+
+                },
+                failure: function (response) {
+
+                },
+                error: function (response) {
+
+                    $('#tab41BalancePanel').html('');
+
+                    $('#tab41BalancePanel').html(response.responseText);
+
+                    }
+
+            });
+
+
+        };
+
+
+
+
+
+    </script>

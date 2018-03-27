@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href='@Url.Action("Index","Manage", new { title = "Manage" })'>
+                <i id="main_notif" class="glyphicon glyphicon-bell notification-icon" style="display:none"></i>
+                <span id="rCount" class="badge bg-theme"></span>
+                Ողջույն  @User.FullName() !                
+            </a> 
+            
+            @*@Html.ActionLink("Ողջույն " + User.FullName() + " !", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@            
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Ելք</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+        <li>@Html.ActionLink("Մուտք", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+
+
+<script type="text/javascript">
+        $(document).ready(function () {
+
+            function getAppNotifications()
+            {
+                var r = '';
+                r =
+                $.ajax({
+                    url: '@Url.Action("GetAppNotifications", "Lists")',
+                    method: 'GET',
+                    dataType: "json",
+                    success: function (data) {
+                        if (data > 0) {
+                            //alert('Դուք ունեք հաստատման ենթակա վարկեր:');
+                            $("#main_notif").show();
+                            $("#rCount").text(data);
+                            //$("#sec_notif").show();
+                        }
+                        else {
+                            $("#main_notif").hide();
+                            //$("#sec_notif").hide();
+                        }
+                        return data;
+                    }
+                });
+                return r;
+            }
+
+            getAppNotifications();
+        })
+
+
+
+   
+
+</script>

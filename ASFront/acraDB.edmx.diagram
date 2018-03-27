@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6eec768c67e449b2bac7c9b3b1500a25" Name="Diagram1">
+        <EntityTypeShape EntityType="acramonModel.ACRA_R_CurrentOverdue" Width="2.625" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="acramonModel.ACRA_R_TotalLiabilities" Width="1.5" PointX="1" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="acramonModel.ACRA_Interrelated" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="acramonModel.ACRA_R_Loan" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="acramonModel.ACRA_RequestesInfo" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="acramonModel.ACRA_RequestsI" Width="1.5" PointX="3.75" PointY="3.5" />
+        <AssociationConnector Association="acramonModel.FK_ACRA_R_TotalLiabilities_ACRA_RequestsI" />
+        <EntityTypeShape EntityType="acramonModel.ACRA_osDays" Width="1.5" PointX="0.75" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ASFront.ModelsView.AppSumProductDescriptionViewModel>
+
+     @*@{ 
+         string RowCalss = "OddRow";
+         int RowIndex = 1;
+     }*@
+
+<div >
+    @*<h3 class="BoldText">Ապրանքի նկարագիր</h3>*@
+</div>
+
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientInvest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sum)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    //if(@RowIndex % 2==0)
+    //{
+    //    RowCalss = "OddRow";
+    //}
+    //else
+    //{
+    //    RowCalss = "EvenRow";
+    //}
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientInvest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sum)
+        </td>
+        
+    </tr>      @*RowIndex++;*@
+}
+
+</table>

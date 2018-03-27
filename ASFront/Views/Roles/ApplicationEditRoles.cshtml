@@ -1,0 +1,42 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList < ASFront.Models.applicationEditRoles>
+
+@{
+    ViewBag.Title = "Application Edit Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Հայտերը խմբագրելու թույլատրված դերեր</h2>
+
+<p>
+    @Html.ActionLink("Ավելացնել նորը", "CreateRoleEdit")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().canEdit)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName, new { @class = "form-control" })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.canEdit, new { @class = "form-control" })
+        </td>
+        <td>
+            @Html.ActionLink("Խմբագրել/Դիտել", "EditRoleEdit", new { appEditRoleId = item.applicationEditRolesId })            
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+@Html.Partial("_Paging", Model)

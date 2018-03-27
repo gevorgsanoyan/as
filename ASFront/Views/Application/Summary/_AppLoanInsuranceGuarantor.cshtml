@@ -1,0 +1,44 @@
+﻿
+@model IEnumerable<ASFront.ModelsView.GuarantorsViewModel>
+
+<h4 class=" NameTitle">Երաշխավոր</h4>
+
+
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)  @Html.DisplayNameFor(model => model.lName)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.socNumb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Income)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.ActionLink("" + @Html.DisplayFor(model => item.fName) + " " + @Html.DisplayFor(model => item.lName), "Edit", "Clients", new { clientId = item.Id }, htmlAttributes: new { target = "_blank" })
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.socNumb)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Income)
+            </td>
+        </tr>
+    }
+
+</table>

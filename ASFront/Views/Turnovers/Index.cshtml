@@ -1,0 +1,43 @@
+﻿@model ASFront.ModelsView.TurnoverViewModels
+
+@{
+    ViewBag.Title = "Ապրանքանյութական Պաշարներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ապրանքանյութական Պաշարներ</h2>
+
+<p>
+
+    <a href='@Url.Action("Create", new { ApplicationID = ViewBag.ApplicationID})'
+       data-toggle="popover" data-trigger="hover" data-content=@Resources.Page.CreateNew>
+        <img src='@Url.Content("~/img/copy.png")' />
+    </a>
+</p>
+
+
+
+
+
+
+@Html.Partial("_Edit", Model.InputForm)
+<div style="height:80px;">
+
+</div>
+
+@Html.Partial("_Table", Model.Table)
+
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+
+
+</script>
+@Scripts.Render("~/bundles/jqueryval")
+

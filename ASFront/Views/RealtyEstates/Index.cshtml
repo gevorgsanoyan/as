@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ASFront.Models.RealtyEstates>
+
+@{
+    ViewBag.Title = "Անշարժ գույք";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Անշարժ գույք</h2>
+
+<p>
+    @Html.ActionLink(Resources.Page.CreateNew, "Create", new { ApplicationID = ViewBag.ApplicationID }, null)
+
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RealtyTypes.Title)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotRatedPrice)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RealtyTypes.Title)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotRatedPrice)
+        </td>
+
+
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id = item.Id })
+
+        </td>
+    </tr>
+}
+
+</table>

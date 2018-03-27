@@ -1,0 +1,99 @@
+﻿@model ASFront.Models.Turnovers
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Turnovers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.applications.userId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.applications.userId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeasurementUnits.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeasurementUnits.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthlySalesQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthlySalesQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COGS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COGS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OutstandingQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OutstandingQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note3)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

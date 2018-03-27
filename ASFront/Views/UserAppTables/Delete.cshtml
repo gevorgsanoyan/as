@@ -1,0 +1,89 @@
+﻿@model ASFront.Models.UserAppTable
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>UserAppTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Branches.Branch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branches.Branch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.changeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.changeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prodLimitId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prodLimitId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maxLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maxLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cUserId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

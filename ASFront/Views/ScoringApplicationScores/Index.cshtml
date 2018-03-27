@@ -1,0 +1,62 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.ModelsView.ScoringApplicationScoresView>
+
+@{
+    ViewBag.Title = "Հայտ-գնահատականներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Հայտ-գնահատականներ</h2>
+
+@*<p>
+    @Html.ActionLink(Resources.Page.CreateNew, "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ApplicationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().IndicatorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Coefficient)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("" + @Html.DisplayFor(modelItem => item.ApplicationName), "Index","Application", new { ClientID = @ViewBag.ClientId }, null)           
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndicatorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Coefficient)
+        </td>
+        <td>
+            @*@Html.ActionLink(Resources.Page.Edit, "Edit", new { id=item.ID }) |
+            @Html.ActionLink(Resources.Page.Details, "Details", new { id=item.ID }) |
+            @Html.ActionLink(Resources.Page.Delete, "Delete", new { id=item.ID })*@
+        </td>
+    </tr>
+}
+
+</table>
+@Html.Partial("_Paging", Model)
+
+@Html.Partial("_IndicatorMenu")

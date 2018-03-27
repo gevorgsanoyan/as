@@ -1,0 +1,134 @@
+﻿@model ASFront.Models.IncomeExpenses
+
+
+   
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FamilyMembersWages, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.FamilyMembersWages, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+        @Html.ValidationMessageFor(model => model.FamilyMembersWages, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.OtherFamilyIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.OtherFamilyIncome, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+        @Html.ValidationMessageFor(model => model.OtherFamilyIncome, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FamilyExpenses, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.FamilyExpenses, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+        @Html.ValidationMessageFor(model => model.FamilyExpenses, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button   type="button" id="CalculateFamilyCost" onclick="CalculateFamilyCostClick()" value="Հաշվարկել" name="CalculateFamilyCost" class="btn btn-success btn-FullWidth" >
+          <span>
+            
+              Հաշվարկել
+              </span> 
+          
+
+        </button>
+
+    </div>
+</div>
+
+
+ 
+
+
+
+<script>
+    
+
+    //$(document).ready(function () {
+    //    $("#GroupAcraGet").on("click", function (e) {
+    //        e.preventDefault();
+    //        e.stopPropagation();
+
+
+
+    function CalculateFamilyCostClick() {
+
+        $("#CalculateFamilyCost span").html('<i class="fa fa-refresh fa-spin"></i>&ensp;Հաշվարկվում է ... ');
+
+          
+           
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                //contentType: false,
+                //processData: false,
+                //type: "POST",
+                //contentType: "application/json; charset=utf-8",
+                //dataType: "html",
+
+                traditional: true,
+                //url: "/acra/ClientsGroup",
+
+                url: "@(Url.RouteUrl("CalculateFamilyCost"))",
+
+                //UpdateTargetId: "UpdateTargetClientsGroup",
+                cache: false,
+                data: {
+                    ApplicationID: @Model.applicationId,
+                   
+                },
+                success: function (response) {
+                    
+                    $('#FamilyCostPanel').html('');
+                    $('#FamilyCostPanel').html(response.responseText);
+                    //$('#UpdateTargetClientsGroup').html("Hello <b>world</b>!");
+
+                },
+                failure: function (response) {
+                  
+
+                    //alert(response.responseText);
+                    //$('#UpdateTargetClientsGroup').html(response);
+                    //$('#UpdateTargetClientsGroup').html("Hello <b>world</b>! failure");
+                },
+                error: function (response) {
+                   
+                    $('#FamilyCostPanel').html('');
+
+                    $('#FamilyCostPanel').html(response.responseText);
+
+                    }
+
+            });
+
+
+        };
+
+        //);
+
+
+
+
+        @*$("#GroupAcraGet").change(function () {
+
+            $("#UpdateTargetClientsGroup").load('@(Url.Action("ClientsGroupByEditClientId", "clientsGroups", null, Request.Url.Scheme))?EditClientId=' + @ViewBag.EditClientId);
+        });*@
+
+
+
+    //});
+
+
+
+
+
+</script>
+                             

@@ -1,0 +1,40 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.Models.Regions>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Տարածաշրջաններ և Մասնաճյուղեր</h2>
+
+<section class="col-sm-6">
+    <table class="table-bordered">
+        @Html.ActionLink("Նոր տարածաշրջան", "CreateRegion", "RB")
+    </table>
+</section>
+
+<section class="col-sm-6">
+    <table class="table-bordered">
+        @Html.ActionLink("Բաշխել մասնաճյուղն ըստ տարածաշրջանի", "BrByRegsCreate", "RB")
+    </table>
+</section>
+
+<br />
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <td class="c">Տարածաշրջաններ</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="c">
+                @item.Region
+            </td>
+        </tr>
+    }
+</table>
+<br />
+
+
+@Html.Partial("_Paging", Model)

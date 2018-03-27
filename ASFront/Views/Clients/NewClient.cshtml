@@ -1,0 +1,54 @@
+﻿
+@model ASFront.ModelsView.ClientTypeViewModel
+
+@{
+    ViewBag.Title = "Նոր հաճախորդ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<h2>Նոր հաճախորդի մուտքագրում</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <section>
+        <h4>Հաճախորդ</h4>
+        <hr />
+
+
+
+
+      
+
+
+    </section>
+
+    <div>
+        <div class="row">
+            <div class="col-md-12 ">
+
+                <div class="col-sm-6 Div-Center">@Html.ActionLink("Ֆիզիկական անձ", "Create", "Clients",null, htmlAttributes: new { @class = "btn btn-success btn-FullWidth" }) </div>
+
+                <div class="col-sm-6 Div-Center">@Html.ActionLink("Իրավաբանական անձ", "CreateCompany", "Clients", null, htmlAttributes: new { @class = "btn btn-success btn-FullWidth" }) </div>
+
+               
+
+
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+
+
+   
+
+</div>
+
+            }

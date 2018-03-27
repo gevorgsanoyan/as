@@ -1,0 +1,86 @@
+﻿
+@model ASFront.Models.Balance
+
+
+
+<div id="tab51BalancePanel">
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MediumLongTermLoans, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.MediumLongTermLoans, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+            @Html.ValidationMessageFor(model => model.MediumLongTermLoans, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            <button type="button" id="CalculateMediumLongTermLoans" onclick="CalculateMediumLongTermLoansClick()" value="Հաշվարկել" name="CalculateMediumLongTermLoans" class="btn btn-success btn-FullWidth">
+                <span>
+
+                    Հաշվարկել
+                </span>
+
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    </div>
+
+
+    <script>
+
+
+
+
+    function CalculateMediumLongTermLoansClick() {
+
+        $("#CalculateMediumLongTermLoans span").html('<i class="fa fa-refresh fa-spin"></i>&ensp;Հաշվարկվում է ... ');
+
+
+
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+
+                traditional: true,
+
+                url: "@(Url.RouteUrl("CalculateMediumLongTermLoans"))",
+                cache: false,
+                data: {
+                     ApplicationID: @Model.applicationId,
+
+                },
+                success: function (response) {
+
+                    $('#tab51BalancePanel').html('');
+                    $('#tab51BalancePanel').html(response.responseText);
+
+
+                },
+                failure: function (response) {
+
+                },
+                error: function (response) {
+
+                    $('#tab51BalancePanel').html('');
+
+                    $('#tab51BalancePanel').html(response.responseText);
+
+                    }
+
+            });
+
+
+        };
+
+
+
+
+
+    </script>

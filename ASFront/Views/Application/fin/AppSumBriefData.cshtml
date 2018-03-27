@@ -1,0 +1,55 @@
+﻿@model ASFront.ModelsView.AppSumBriefDataViewModel
+
+
+
+
+<div>
+    <h4>AppSumBriefDataViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.applicationId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.applicationId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditTotalAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditTotalAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Investment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Investment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditTerm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditTerm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthlyPaymentSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthlyPaymentSize)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

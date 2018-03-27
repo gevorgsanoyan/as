@@ -1,0 +1,52 @@
+﻿@model ASFront.ModelsView.AppSumDecisionMakingViewModel
+
+<div>
+    <h4>AppSumDecisionMakingModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ring1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ring1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IndicatorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IndicatorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalDecision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalDecision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApprovedFinalAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApprovedFinalAmount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

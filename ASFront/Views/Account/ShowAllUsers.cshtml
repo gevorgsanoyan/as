@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ASFront.Models.UserProfileView>
+
+@{
+    ViewBag.Title = "Show All Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Օգտատերեր</h2>
+
+<p>
+    @Html.ActionLink("Նոր օգտատոր", "AddNewUser")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName) @Html.DisplayNameFor(model => model.LastName) @Html.DisplayNameFor(model => model.Patronymic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.branch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.asName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.asCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.asUserId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(model => item.FirstName) @Html.DisplayFor(model => item.LastName) @Html.DisplayFor(model => item.Patronymic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.branch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.asName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.asCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.asUserId)
+        </td>
+        <td>
+            @Html.ActionLink("Մանրամասն", "UserProfile", new { id=item.UserId })|
+            <a href="@Url.Action("Index", "UserAppTables", new {id = item.UserId  })">Հաստատման աղյուսակ</a>
+        </td>
+    </tr>
+}
+
+</table>

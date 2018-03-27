@@ -1,0 +1,68 @@
+﻿@model ASFront.ModelsView.AppSumDetailPurposeViewModel
+
+<div>
+    <h4>AppSumDetailPurposeViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.asCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Branch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aprDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aprDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appDescr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appDescr)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,117 @@
+﻿@model ASFront.Models.IncomeExpenses
+@{
+    ViewBag.Title = "ԵԾ-ի տվյալ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="@Url.Content("~/Content/TabsPanels.css")" rel="stylesheet" type="text/css" />
+<h2>@Resources.Page.Edit</h2>
+
+
+
+
+
+@*@Styles.Render("~/Content/css")*@
+
+@using (Html.BeginForm())
+{   @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>ԵԾ-ի տվյալ</h4>
+    <hr />
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.clientId)
+    @Html.HiddenFor(model => model.applicationId)
+
+    @*@Html.Hidden("ApplicationID", (long)(@ViewBag.ApplicationID ?? 0))*@
+
+    @Html.Hidden("Edit", (bool)(@ViewBag.Edit ?? false))
+
+
+
+    <p style="color:limegreen;">
+        @ViewBag.cSaved
+    </p>
+    <p style="color:red;">
+        @ViewBag.ErrorText
+
+    </p>
+
+
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="panel with-nav-tabs panel-success">
+                    <div class="panel-heading panel-headingGreen">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1IncomeExpenses" data-toggle="tab">1.Ընդհանուր Տվյալներ</a></li>
+                            <li><a href="#tab2IncomeExpenses" data-toggle="tab">2.Բիզնեսի Տվյալներ</a></li>
+                            <li><a href="#tab3IncomeExpenses" data-toggle="tab">3.Գյուղատնտեսական Տվյալներ</a></li>
+                            <li><a href="#tab4IncomeExpenses" data-toggle="tab">4.Ընտանեկան Տվյալներ</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1IncomeExpenses">
+                                @Html.Partial("IncomeExpenses/_one", Model)
+                            </div>
+                            <div class="tab-pane fade" id="tab2IncomeExpenses">
+                                @Html.Partial("IncomeExpenses/_two", Model)
+                            </div>
+                            <div class="tab-pane fade" id="tab3IncomeExpenses">
+                                <div id="AgroPanel">
+                                    @Html.Partial("IncomeExpenses/_three", Model)
+                                </div>
+                                   
+                                </div>
+                                <div class="tab-pane fade" id="tab4IncomeExpenses">
+
+                                    <div id="FamilyCostPanel">
+                                        @Html.Partial("IncomeExpenses/_four", Model)
+                                    </div>
+
+
+
+
+                                </div>
+
+                                <div class="form-group" style="padding-top:30px;">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value=@Resources.Page.Save name="Save" class="btn btn-default" />
+                                        <input type="submit" value=@Resources.Page.Cancel name="Cancel" formnovalidate="formnovalidate" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

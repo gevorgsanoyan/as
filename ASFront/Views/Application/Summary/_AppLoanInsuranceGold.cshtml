@@ -1,0 +1,66 @@
+﻿
+@model ASFront.ModelsView.LoanInsuranceViewModel
+
+
+<h4 class=" NameTitle">Ոսկու գրավ</h4>
+
+
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GoldCollateralSumStr)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.GoldCollateralSumStr)
+        </th>
+       
+
+    </tr>
+
+  
+
+</table>
+
+
+
+@*<table class="table table-striped table-advance table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GoldAssayes.Assay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GoldTypes.Title)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.EstimatedTotalCostAMD)
+            </th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GoldAssayes.Assay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GoldTypes.Title)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstimatedTotalCostAMD)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>*@

@@ -1,0 +1,108 @@
+﻿@model ASFront.ModelsView.UserAppTableView
+
+@{
+    ViewBag.Title = "Հաստատման աղյուսակ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Հաստատման աղյուսակ</h2>
+
+
+@using (Html.BeginForm())
+{
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.prodoctId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.prodLimitId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.branchId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.userId)
+                </th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DropDownListFor(model => model.prodoctId, (SelectList)ViewBag.pr, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.prodLimitId, (SelectList)ViewBag.prlimitId, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.branchId, (SelectList)ViewBag.br, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.userId, (SelectList)ViewBag.usrs, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right">
+                    <input type="submit" name="submit" value="Փնտրել" id="Approve" class="btn btn-success" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table class="table">
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.usrAppTbl.ElementAtOrDefault(0).userId)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.usrAppTbl.ElementAtOrDefault(0).BrancheId)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.usrAppTbl.ElementAtOrDefault(0).createDate)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.usrAppTbl.ElementAtOrDefault(0).prodLimitId)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.usrAppTbl.ElementAtOrDefault(0).maxLimit)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.usrAppTbl.ElementAtOrDefault(0).appTypeId)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.usrAppTbl.ElementAtOrDefault(0).isActive)
+                </td>
+                <td></td>
+            </tr>
+            @for(int i = 0; i < Model.usrAppTbl.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DropDownList("User", new SelectList(ViewBag.usrst, "Id", "fullName", Model.usrAppTbl.ElementAt(i).userId), htmlAttributes: new { @class = "form-control", disabled = "disabled" })
+                    </td>
+                    <td>       
+                        @Html.DropDownList("Branche", new SelectList(ViewBag.brt, "Id", "Branch", Model.usrAppTbl.ElementAt(i).BrancheId), htmlAttributes: new { @class = "form-control", disabled = "disabled" })                                         
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.usrAppTbl.ElementAt(i).createDate)
+                    </td>
+                    <td>
+                        @Html.DropDownList("ProdLimit", new SelectList(ViewBag.prlimitIdt, "Id", "pname", Model.usrAppTbl.ElementAt(i).prodLimitId), htmlAttributes: new { @class = "form-control", disabled = "disabled" })                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.usrAppTbl.ElementAt(i).maxLimit)
+                    </td>
+                    <td>
+                        @Html.DropDownList("appType", new SelectList(ViewBag.appTt, "AppTypesId", "appType", Model.usrAppTbl.ElementAt(i).appTypeId), "---", htmlAttributes: new { @class = "form-control", disabled = "disabled" })                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.usrAppTbl.ElementAt(i).isActive)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Խմբագրել", "Edit", new { id = Model.usrAppTbl.ElementAt(i).UserAppTableId })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}

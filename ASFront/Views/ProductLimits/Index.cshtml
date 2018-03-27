@@ -1,0 +1,109 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.Models.ProductLimits>
+
+@{
+    ViewBag.Title = "Պրոդուկտների սահմանափակումներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Պրոդուկտների սահմանափակումներ</h2>
+
+@*<p>
+    @Html.ActionLink("Ստեղծել նոր սահմանաչափ", "Create")
+</p>*@
+<p>
+    @Html.ActionLink(Resources.Page.CreateNew, "Create")
+</p>
+
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div>
+            <table class="table tab-pane">
+                <tr>
+                    <td colspan="3">
+                        @Html.Label("Ֆիլտրել ըստ", htmlAttributes: new { @class = "control-label" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Պրոդուկտի խումբ</td>
+                    <td>Պրոդուկտի անվանում</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Html.DropDownList("prGroupName", (SelectList)ViewBag.prGroup, "---Ընտրել---", new { onchange = "this.form.submit();", @class = "form-control" })</td>
+                    <td>@Html.DropDownList("prName", (SelectList)ViewBag.grName, "---Ընտրել---", new { @class = "form-control" })</td>
+                    <td><input type="submit" name="btnsubmit" value="Փնտրել" id="execFilter" class="btn btn-success" /> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+<br />
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Products.productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().AmountLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Scoring)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().App1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().App2)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           @* @Html.DropDownListFor(modelItem => item.ProductID, new SelectList(@ViewBag.pr, "productId", "productName", item.ProductID), new {  @class = "form-control", disabled = "disabled" })*@
+            @Html.DisplayFor(modelItem => item.Products.productName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmountLimit)
+        </td>
+        <td>
+           @if(item.Scoring!=null){
+            @Html.DisplayFor(modelItem => item.Scoring.Value)
+            }
+           
+        </td>
+        <td>
+            @if (item.App1 != null)
+            {
+                @Html.DisplayFor(modelItem => item.App1.Value)
+            }
+             
+        </td>
+        <td>
+            @if (item.App2 != null)
+            {
+                @Html.DisplayFor(modelItem => item.App2.Value)
+            }
+            
+        </td>
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id = item.Id })
+          
+        </td>
+    </tr>
+}
+
+</table>
+
+<br />
+
+
+@Html.Partial("_Paging", Model)
+
+@Scripts.Render("~/bundles/jqueryval")

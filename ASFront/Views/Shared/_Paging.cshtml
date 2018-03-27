@@ -1,0 +1,10 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList
+
+
+
+
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)-րդ էջը @Model.PageCount -ից,
+ Ընդհանուր քանակ @Model.TotalItemCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

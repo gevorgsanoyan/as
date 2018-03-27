@@ -1,0 +1,355 @@
+﻿
+@model ASFront. ModelsView.ClientShearchViewModel
+
+@{
+    ViewBag.Title = "Հաճախորդներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .center {
+        margin: auto;
+        width: 55%;
+        padding: 10px;
+    }
+</style>
+
+
+
+<h2 class="arrangeCenter NameTitle">Որոնման Չափանիշ</h2>
+<br />
+@if (!string.IsNullOrWhiteSpace(@ViewBag.ErrorMessage))
+{
+    <div style="color:red; text-align:center;">
+
+        @Html.Label((string)ViewBag.ErrorMessage)
+
+        <br />
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    <div class="center">
+
+
+        <div>
+            @Html.Label("Անուն Ազգանուն", new { @class = "" })
+        </div>
+        <div style="padding-bottom:20px;">
+
+
+             @Html.EditorFor(model => model.NameStr, new { htmlAttributes = new { @class = "form-control searchBox", @placeholder = "Անուն Ազգանուն" } })
+
+
+        </div>
+        <div>
+            @Html.Label("Սոցիալական քարտ / Անձնագրի համար ", new { @class = "" })
+        </div>
+        <div style="padding-bottom:20px;">
+            
+            @Html.EditorFor(model => model.PassOrSocNumtStr, new { htmlAttributes = new { @class = "form-control searchBox", @placeholder = "Սոցիալական քարտ կամ Անձնագրի համար " } })
+        </div>
+
+
+
+        <div>
+
+            @Html.Label("Հեռախոս", new { @class = "" })
+        </div>
+        <div style="padding-bottom:20px;">
+             
+
+            @Html.EditorFor(model => model.PhoneStr, new { htmlAttributes = new { @class = "form-control searchBox inputphone", @placeholder = "հեռախոս, օրինակ՝ (093) 87-89-10" } })
+        </div>
+
+
+
+
+        <div>
+
+            @Html.Label("Մարզ", new { @class = "" })
+        </div>
+        <div style="padding-bottom:20px;">
+
+           
+            @Html.EditorFor(model => model.Region, new { htmlAttributes = new { @class = "form-control searchBox" } })
+
+        </div>
+        <div>
+
+            @Html.Label("Քաղաք", new { @class = "" })
+        </div>
+        <div style="padding-bottom:20px;">
+             @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control searchBox" } })
+
+
+        </div>
+        <div>
+
+            @Html.Label("Փողոց", new { @class = "" })
+        </div>
+        <div style="padding-bottom:20px;">
+            
+            @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control searchBox" } })
+
+
+        </div>
+
+
+        <div style="text-align:left;">
+
+            <input type="submit" name="searchBtn" value="որոնել" id="search" class="btn btn-success">
+
+        </div>
+
+    </div>
+}
+<br />
+
+<script>
+
+
+    @*//$(document).ready(function () {
+    //    var RegionID = $("#Region").data("kendoDropDownList"),
+    //        CityID = $("#City").data("kendoDropDownList"),
+    //        StreetID = $("#Street").data("kendoDropDownList");
+
+
+    //    });
+
+
+
+
+
+
+
+        $(document).ready(function () {
+            $("#Region").kendoDropDownList({
+               placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: false,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                             url: "@(Url.RouteUrl("ListRegion"))",
+                            dataType: "json"
+                        },
+                        dataType: "json"
+                    },
+
+
+
+
+
+
+
+                }
+
+
+                //,open: function () {
+                //    var filters = this.dataSource.filter();
+
+                //    if (filters) {
+                //        //clear applied filters
+                //        this.dataSource.filter({});
+                //    }
+                //}
+
+            });
+        });
+
+
+
+     $(document).ready(function () {
+         $("#City").kendoDropDownList({
+               placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: false,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                             url: "@(Url.RouteUrl("ListCity"))",
+                            dataType: "json"
+                        },
+                        dataType: "json"
+                    },
+
+
+
+
+
+
+
+                }
+
+
+            });
+    });
+
+
+
+     $(document).ready(function () {
+         $("#Street").kendoDropDownList({
+               placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: false,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                             url: "@(Url.RouteUrl("ListStreet"))",
+                            dataType: "json"
+                        },
+                        dataType: "json"
+                    },
+
+
+
+
+
+
+
+                }
+
+
+
+
+
+            });
+        });*@
+
+
+
+    $(document).ready(function () {
+        function onCityChange() {
+            $("#Street").kendoDropDownList({
+                placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: true,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                            url: "@(Url.Action("Street", "Lists"))",
+                        data: { cityName: $("#City").val() },
+                        dataType: "json"
+                    },
+                    dataType: "json"
+                },
+
+            }
+
+            });
+    }
+    function onChange() {
+        $("#City").kendoDropDownList({
+            placeholder: "@Resources.Page.Select",
+            filter: "contains",
+            dataTextField: "Name",
+            dataValueField: "Id",
+            optionLabel: " ",
+            change: onCityChange,
+            dataSource: {
+                //type: "json",
+                serverFiltering: true,
+                //serverFiltering: true,
+                transport: {
+                    read: {
+
+                        url: "@(Url.Action("City", "Lists"))",
+                    data: { regName: $("#Region").val() },
+                    dataType: "json"
+                },
+                dataType: "json"
+            },
+
+        }
+
+
+        });
+    };
+    $("#Region").kendoDropDownList({
+        placeholder: "@Resources.Page.Select",
+        filter: "contains",
+        dataTextField: "Name",
+        dataValueField: "Id",
+        optionLabel: " ",
+        change: onChange,
+        dataSource: {
+            //type: "json",
+            serverFiltering: true,
+            //serverFiltering: true,
+            transport: {
+                read: {
+
+                    url: "@(Url.RouteUrl("ListRegion"))",
+                dataType: "json"
+            },
+            dataType: "json"
+        },
+
+
+    }
+
+
+    });
+    });
+
+
+
+</script>
+
+@section Scripts {
+
+
+    <script type="text/javascript" src="~/Scripts/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript">
+        //$(function HideActuallyAddress() {
+        //    $('#ActuallyAddress').toggle(2000);
+        //});
+
+
+
+
+        $(function () {
+            $('.inputphone').mask("(099) 99-99-99");
+        });
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+}
+
+

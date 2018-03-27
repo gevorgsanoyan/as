@@ -1,0 +1,40 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewBag.Title = "Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Օգտատերերի դերեր</h2>
+
+<section class="col-sm-6">
+    <table class="table-bordered">
+        @Html.ActionLink("Ստեղծել դեր", "Create", "Roles")
+    </table>
+</section>
+
+<section class="col-sm-6">
+    <table class="table-bordered">
+        @*@Html.ActionLink("Օժտել օգտատիրոջը դերով", "RegisterRole", "Account")*@
+    </table>
+</section>
+
+<br />
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <td class="c">Դերեր</td>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td class="c">
+                @item.Name
+            </td>
+        </tr>
+    }
+</table>
+<br />
+
+
+@Html.Partial("_Paging", Model)

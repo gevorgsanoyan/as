@@ -1,0 +1,94 @@
+﻿@model ASFront.ModelsView.AppSumBriefDataViewModel
+
+
+
+
+<div>
+    @*<h3 class="BoldText">Հայտի Ամփոփ Տվյալ</h3>*@
+
+    <table class="table table-striped table-advance table-hover">
+
+        <tr>
+            @* <td class="col-md-6">@Html.DisplayNameFor(model => model.applicationId)</td>*@
+             <td class="col-md-6">
+                <a href="@Url.Action("Edit", "Application", new { ID = @Model.applicationId })" title=@Resources.Page.Edit class = "btn btn-success btnBig" > <span class="glyphicon glyphicon-pencil"></span>
+                 @Html.DisplayNameFor(model => model.applicationId) № @Html.DisplayFor(model => model.applicationId)  </a>
+                 
+            </td>
+             <td class="col-md-6">@*@Html.DisplayFor(model => model.applicationId)*@</td>
+
+        </tr>
+        <tr>
+             <td class="col-md-6">@Html.DisplayNameFor(model => model.CreditTotalAmount)</td>
+             <td class="col-md-6">@Html.DisplayFor(model => model.CreditTotalAmount)</td>
+
+        </tr>
+        <tr>
+
+             <td class="col-md-6">@Html.DisplayNameFor(model => model.Investment)</td>
+             <td class="col-md-6">@Html.DisplayFor(model => model.Investment)</td>
+
+        </tr>
+        <tr>
+
+             <td class="col-md-6">@Html.DisplayNameFor(model => model.CreditTerm)</td>
+             <td class="col-md-6">@Html.DisplayFor(model => model.CreditTerm)</td>
+
+        </tr>
+
+
+
+
+
+        <tr>
+
+             <td class="col-md-6">@Html.DisplayNameFor(model => model.productName)</td>
+             <td class="col-md-6">@Html.DisplayFor(model => model.productName)</td>
+
+        </tr>
+        <tr>
+
+             <td class="col-md-6">@Html.DisplayNameFor(model => model.productCurrency)</td>
+             <td class="col-md-6">@Html.DisplayFor(model => model.productCurrency)</td>
+
+        </tr>
+        <tr>
+
+             <td class="col-md-6">@Html.DisplayNameFor(model => model.anualRate)</td>
+             <td class="col-md-6">@Html.DisplayFor(model => model.anualRate)</td>
+
+        </tr>
+
+
+        <tr>
+
+             <td class="col-md-6">@Html.DisplayNameFor(model => model.appFee)</td>
+             <td class="col-md-6">@Html.DisplayFor(model => model.appFee)</td>
+
+        </tr>
+        <tr>
+
+             <td class="col-md-6">@Html.DisplayNameFor(model => model.mothFee)</td>
+             <td class="col-md-6">@Html.DisplayFor(model => model.mothFee)</td>
+
+        </tr>
+        <tr>
+
+             <td class="col-md-6">@Html.DisplayNameFor(model => model.upfronFee)</td>
+             <td class="col-md-6">@Html.DisplayFor(model => model.upfronFee)</td>
+
+        </tr>
+
+
+
+
+
+        <tr>
+
+             <td class="col-md-6">@Html.DisplayNameFor(model => model.MonthlyPaymentSize)</td>
+             <td class="col-md-6">@Html.DisplayFor(model => model.MonthlyPaymentSize)</td>
+        </tr>
+    </table>
+
+</div>
+

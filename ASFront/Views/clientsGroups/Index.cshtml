@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ASFront.ModelsView.clientsGroupDetView>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Խմբի անդամներ</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.rTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.groupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rpFirstName)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.rTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.groupName)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.rpFirstName)*@
+            @Html.ActionLink("" + @Html.DisplayFor(modelItem => item.rpFirstName)+ " " + @Html.DisplayFor(modelItem => item.rpLastName), "Edit", "Clients", new { clientId = item.SingleClientId }, htmlAttributes: new { target = "_blank" })
+        </td>
+        
+        <td>
+            @Html.ActionLink("Խմբագրել", "Edit", new { id=item.clientsGroupId }) 
+        </td>
+    </tr>
+}
+
+</table>
+
+@if (ViewBag.clientId > 0)
+{
+    <div>
+        <p>
+            <a href="@Url.Action("Edit", "Clients", new {  clientId = @ViewBag.clientId })" title=@Resources.Page.Edit class="btn btn-success btnBig">
+                <span class="glyphicon glyphicon-pencil"></span>
+                Վերադառնալ հաճախորդի խմբագրման էջ
+            </a>
+        </p>
+    </div>
+}

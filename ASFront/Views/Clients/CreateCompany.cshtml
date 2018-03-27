@@ -1,0 +1,902 @@
+﻿@model ASFront.Models.CompanyFullViewModel
+
+@{
+    ViewBag.Title = "Նոր Ընկերություն";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<h2>Նոր Ընկերության մուտքագրում</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <section>
+            <h4>Ընկերություն</h4>
+            <hr />
+
+            <p style="color:limegreen;">
+                @ViewBag.cSaved
+            </p>
+            <p style="color:red;">
+                @ViewBag.ErrorText
+            </p>
+            <br />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <br />
+            <h4 class=" NameTitle">Կազմակեպության մասին տվյալներ</h4>
+            <hr />
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.clientName, new { Value = "_" })
+                @Html.LabelFor(model => model.b.clientName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.clientName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.c.clientName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.dob, new { Value = DateTime.Now.ToShortDateString() })
+                @Html.LabelFor(model => model.b.dob, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.dob, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.c.dob, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.passpNumb, new { Value = "_" })
+                @Html.LabelFor(model => model.b.passpNumb, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.passpNumb, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.c.passpNumb, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.socNumb, new { Value = "_" })
+                @Html.LabelFor(model => model.b.socNumb, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.socNumb, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.c.socNumb, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <br />
+            <h4 class=" NameTitle">Գրանցման հասցե</h4>
+            <hr />
+
+
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.rRegion, new { Value = "_" })
+                @Html.LabelFor(model => model.b.rRegion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.DropDownListFor(model => model.c.rRegion, (SelectList)ViewBag.rg, "---Ընտրել ռեգիոնը---", new { onchange = "this.form.submit();", @class = "form-control" })*@
+                    @Html.EditorFor(model => model.c.rRegion, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.c.rRegion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.rCity, new { Value = "_" })
+                @Html.LabelFor(model => model.b.rCity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.DropDownListFor(model => model.c.rCity, (SelectList)ViewBag.ct, "---Ընտրել համայնքը---", htmlAttributes: new { onchange = "this.form.submit();", @class = "form-control" })*@
+                    @Html.EditorFor(model => model.c.rCity, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.c.rCity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.rStreet, new { Value = "_" })
+                @Html.LabelFor(model => model.b.rStreet, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.DropDownListFor(model => model.c.rStreet, (SelectList)ViewBag.Streets, "---Ընտրել Փողոց---", htmlAttributes: new { @class = "form-control" })*@
+                    @Html.EditorFor(model => model.c.rStreet, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.c.rStreet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.rBuilding, new { Value = "_" })
+                @Html.LabelFor(model => model.b.rBuilding, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.rBuilding, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.c.rBuilding, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.rApartment, new { Value = "_" })
+                @Html.LabelFor(model => model.b.rApartment, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.rApartment, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.c.rApartment, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.isSameAddress, new { Value = true })
+                @Html.LabelFor(model => model.b.isSameAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkboxForm">
+                        @Html.EditorFor(model => model.c.isSameAddress)
+                        @Html.ValidationMessageFor(model => model.c.isSameAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="ActuallyAddress" style=" @(Model?.c?.isSameAddress== true ?  "display: none;" :  "" )">
+
+
+                <br />
+                <h4 class=" NameTitle">
+                    Գործունեության հասցե      </h4>
+                    <hr />
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.b.cRegion, new { Value = "_" })
+                        @Html.LabelFor(model => model.b.cRegion, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.DropDownListFor(model => model.c.cRegion, (SelectList)ViewBag.rg, "---Ընտրել ռեգիոնը---", new { onchange = "this.form.submit();", @class = "form-control" })*@
+                            @Html.EditorFor(model => model.c.cRegion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.c.cRegion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.b.cCity, new { Value = "_" })
+                        @Html.LabelFor(model => model.b.cCity, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.DropDownListFor(model => model.c.cCity, (SelectList)ViewBag.cct, "---Ընտրել համայնքը---", htmlAttributes: new { onchange = "this.form.submit();", @class = "form-control" })*@
+                            @Html.EditorFor(model => model.c.cCity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.c.cCity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.b.cStreet, new { Value = "_" })
+                        @Html.LabelFor(model => model.b.cStreet, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.DropDownListFor(model => model.c.cStreet, (SelectList)ViewBag.cStreets, "---Ընտրել Փողոց---", htmlAttributes: new { @class = "form-control" })*@
+                            @Html.EditorFor(model => model.c.cStreet, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.c.cStreet, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.b.cBuilding, new { Value = "_" })
+                        @Html.LabelFor(model => model.b.cBuilding, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.c.cBuilding, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.c.cBuilding, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.b.cApartment, new { Value = "_" })
+                        @Html.LabelFor(model => model.b.cApartment, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.c.cApartment, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.c.cApartment, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+</div>
+
+
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.tel, new { Value = "0000000" })
+                @Html.LabelFor(model => model.b.tel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.tel, new { htmlAttributes = new { @class = "form-control inputphone" } })
+                    @Html.ValidationMessageFor(model => model.c.tel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.mob1, new { Value = "0000000" })
+                @Html.LabelFor(model => model.b.mob1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.mob1, new { htmlAttributes = new { @class = "form-control inputphone" } })
+                    @Html.ValidationMessageFor(model => model.c.mob1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.Email, new { Value = "aaa@aaa.aa" })
+                @Html.LabelFor(model => model.b.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = Resources.Placeholder.Email } })
+                    @Html.ValidationMessageFor(model => model.c.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+         
+
+
+        </section>
+        <section>
+            <br />
+            <h4 class=" NameTitle">Գործունեության  տվյալներ  </h4>
+            <hr />
+
+
+
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.BusinessSectorId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.bi.BusinessSectorId, (SelectList)ViewBag.BusinessSectorId,"---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.bi.BusinessSectorId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.BusinessTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.bi.BusinessTypeId, (SelectList)ViewBag.BusinessTypeId, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.bi.BusinessTypeId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.OwnershipTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.bi.OwnershipTypeId, (SelectList)ViewBag.OwnershipTypeId, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.bi.OwnershipTypeId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.NameofBanksId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.bi.NameofBanksId, (SelectList)ViewBag.NameofBanksId, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.bi.NameofBanksId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.businessDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.businessDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.businessDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.NumberofMonths, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.NumberofMonths, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.NumberofMonths, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.fMemb, new { Value = "0"})
+                @Html.LabelFor(model => model.b.fMemb, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.fMemb, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    @Html.ValidationMessageFor(model => model.c.fMemb, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.fEmpMemb, new { Value = "0" })
+                @Html.LabelFor(model => model.b.fEmpMemb, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.fEmpMemb, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    @Html.ValidationMessageFor(model => model.c.fEmpMemb, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.b.fTenMemb, new { Value = "0" })
+                @Html.LabelFor(model => model.b.fTenMemb, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.c.fTenMemb, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    @Html.ValidationMessageFor(model => model.c.fTenMemb, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.BankAccount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.BankAccount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.BankAccount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <br />
+            <h4 class=" NameTitle">Տնօրենի մասին տվյալներ  </h4>
+            <hr />
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.MidName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.MidName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.MidName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.GenderId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.bi.GenderId, (SelectList)ViewBag.GenderId, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.bi.GenderId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.DayofBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.DayofBirth, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.DayofBirth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.SocialNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.SocialNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.SocialNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.tel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.tel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.tel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.Mobile, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.Mobile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.DirEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.DirEmail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.DirEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.note1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.note1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.note1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bi.note2, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bi.note2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bi.note2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.HiddenFor(model => model.c.passpAuth, new { Value = "_"})
+            @Html.HiddenFor(model => model.c.clientMidName, new { Value = "_" })
+            @Html.HiddenFor(model => model.c.clientLastName, new { Value = "_" })
+
+@*@Html.HiddenFor(model => model.cw.clientId)
+            @Html.HiddenFor(model => model.cw.companyAddress)
+            @Html.HiddenFor(model => model.cw.companyName)
+            @Html.HiddenFor(model => model.cw.CompanyTel)
+            @Html.HiddenFor(model => model.cw.companyTypeId)
+            @Html.HiddenFor(model => model.cw.CreatedDate)
+            @Html.HiddenFor(model => model.cw.employmentTypeId)
+            @Html.HiddenFor(model => model.cw.empRegDate)
+            @Html.HiddenFor(model => model.cw.Id)
+            @Html.HiddenFor(model => model.cw.jobTitle)
+            @Html.HiddenFor(model => model.cw.LastModifDate)
+            @Html.HiddenFor(model => model.cw.otherIncome)
+            @Html.HiddenFor(model => model.cw.otherIncomeDescr)
+            @Html.HiddenFor(model => model.cw.taxNumber)
+            @Html.HiddenFor(model => model.cw.userId)*@
+
+        </section>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value=@Resources.Page.Save name="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(Resources.Page.BackToList, "Index")
+</div>
+
+
+
+
+<script>
+
+
+    //$(document).ready(function () {
+    //    var RegionID = $("#Region").data("kendoDropDownList"),
+    //        CityID = $("#City").data("kendoDropDownList"),
+    //        StreetID = $("#Street").data("kendoDropDownList");
+
+
+    //    });
+
+
+
+
+
+
+
+    $(document).ready(function () {
+        function onCityChange() {
+            $("#c_rStreet").kendoDropDownList({
+                placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: true,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                            url: "@(Url.Action("Street", "Lists"))",
+                            data: { cityName: $("#c_rCity").val() },
+                        dataType: "json"
+                    },
+                    dataType: "json"
+                },
+
+            }
+
+            });
+        }
+        function onChange() {
+            $("#c_rCity").kendoDropDownList({
+                placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                change: onCityChange,
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: true,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                            url: "@(Url.Action("City", "Lists"))",
+                            data: { regName: $("#c_rRegion").val() },
+                        dataType: "json"
+                    },
+                    dataType: "json"
+                },
+
+            }
+
+
+            });
+        };
+            $("#c_rRegion").kendoDropDownList({
+               placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                change: onChange,
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: true,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                             url: "@(Url.RouteUrl("ListRegion"))",
+                            dataType: "json"
+                        },
+                        dataType: "json"
+                    },
+
+
+                }
+
+
+            });
+        });
+
+
+
+
+    $(document).ready(function () {
+        function oncCityChange() {
+            $("#c_cStreet").kendoDropDownList({
+                placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: true,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                            url: "@(Url.Action("Street", "Lists"))",
+                        data: { cityName: $("#c_cCity").val() },
+                        dataType: "json"
+                    },
+                    dataType: "json"
+                },
+
+            }
+
+            });
+    }
+    function oncChange() {
+        $("#c_cCity").kendoDropDownList({
+            placeholder: "@Resources.Page.Select",
+            filter: "contains",
+            dataTextField: "Name",
+            dataValueField: "Id",
+            optionLabel: " ",
+            change: oncCityChange,
+            dataSource: {
+                //type: "json",
+                serverFiltering: true,
+                //serverFiltering: true,
+                transport: {
+                    read: {
+
+                        url: "@(Url.Action("City", "Lists"))",
+                    data: { regName: $("#c_cRegion").val() },
+                    dataType: "json"
+                },
+                dataType: "json"
+            },
+
+        }
+
+
+        });
+    };
+    $("#c_cRegion").kendoDropDownList({
+        placeholder: "@Resources.Page.Select",
+        filter: "contains",
+        dataTextField: "Name",
+        dataValueField: "Id",
+        optionLabel: " ",
+        change: oncChange,
+        dataSource: {
+            //type: "json",
+            serverFiltering: true,
+            //serverFiltering: true,
+            transport: {
+                read: {
+
+                    url: "@(Url.RouteUrl("ListRegion"))",
+                dataType: "json"
+            },
+            dataType: "json"
+        },
+
+
+    }
+
+
+    });
+    });
+
+
+
+
+
+
+   @*$(document).ready(function () {
+       $("#c_cRegion").kendoDropDownList({
+               placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                dataSource: {
+                    //type: "json",
+                     serverFiltering: true,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                             url: "@(Url.RouteUrl("ListRegion"))",
+                            dataType: "json"
+                        },
+                        dataType: "json"
+                    },
+
+
+
+
+
+
+
+                }
+
+
+                //,open: function () {
+                //    var filters = this.dataSource.filter();
+
+                //    if (filters) {
+                //        //clear applied filters
+                //        this.dataSource.filter({});
+                //    }
+                //}
+
+            });
+        });
+
+
+
+     $(document).ready(function () {
+         $("#c_cCity").kendoDropDownList({
+               placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                dataSource: {
+                    //type: "json",
+                     serverFiltering: true,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                             url: "@(Url.RouteUrl("ListCity"))",
+                            dataType: "json"
+                        },
+                        dataType: "json"
+                    },
+
+
+
+
+
+
+
+                }
+
+
+            });
+    });
+
+
+
+     $(document).ready(function () {
+         $("#c_cStreet").kendoDropDownList({
+               placeholder: "@Resources.Page.Select",
+                filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                optionLabel: " ",
+                dataSource: {
+                    //type: "json",
+                     serverFiltering: true,
+                    //serverFiltering: true,
+                    transport: {
+                        read: {
+
+                             url: "@(Url.RouteUrl("ListStreet"))",
+                            dataType: "json"
+                        },
+                        dataType: "json"
+                    },
+
+
+
+
+
+
+
+                }
+
+
+
+
+
+            });
+        });*@
+
+
+
+
+
+
+
+</script>
+
+
+@section Scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @*<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js" charset="utf-8"></script>*@
+    @*<script type="text/javascript" src="~/Scripts/jquery-1.12.4.min.js" ></script>*@
+
+    @*<script type="text/javascript" src="~/Scripts/jquery-ui-1.12.1.min.js"></script>*@
+    @*<script type="text/javascript" src="~/Scripts/jquery-ui-1.12.1/jquery-ui.min.js"></script>*@
+    @*<script type="text/javascript" src="~/Scripts/i18n/datepicker-hy.js"></script>*@
+
+
+    @*<script type="text/javascript" src="~/Scripts/globalizeNew.js"></script>
+        <script type="text/javascript" src="~/Scripts/globalize-cultures/globalize.culture.hy-AM.js"></script>*@
+
+    <script type="text/javascript" src="~/Scripts/jquery.maskedinput.min.js"></script>
+
+
+    <script type="text/javascript">
+        //        $(function () { // will trigger when the document is ready
+        //            $('.datepicker').datepicker(); //Initialise any date pickers
+        //            $.datepicker.setDefaults(
+        //  $.extend(
+        //    //{ 'dateFormat': 'dd.MM.yyyy' },
+        //    $.datepicker.regional['hy']
+
+        //  )
+        //);
+
+        //            $('.datepicker').datepicker({
+        //                language: "hy-AM"
+        //            });
+
+        //        });
+
+        $(function () {
+            $('.inputphone').mask("(099) 99-99-99");
+        });
+
+
+
+        $('#c_isSameAddress').change(function () {
+            $('#ActuallyAddress').toggle(2000);
+
+
+        });
+
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#c_sex_clientSexId").kendoDropDownList({
+               placeholder: "@Resources.Page.Select",
+                //filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                dataSource: {
+                    //type: "json",
+                     serverFiltering: false,
+                    transport: {
+                        read: {
+                            url: "@(Url.RouteUrl("ListGender"))",
+                            dataType: "json"
+                        },
+                        dataType: "json"
+                    },
+
+
+
+
+
+
+
+                }
+
+            });
+        });
+
+
+
+
+
+
+
+    </script>
+
+
+
+    @*@Scripts.Render("~/bundles/jquery",
+         "~/bundles/globalisation",
+         string.Format("~/bundles/globalisation{0}", "hy-AM")
+        )*@
+
+
+}
+
+
+
+@*<script type="text/javascript">
+
+
+
+
+            $('input[data-val="true"], textarea[data-val="true"]').each(function () {
+                {
+
+                    var txt = $(this).closest('div').prev('label').text();
+                    $(this).closest('div').prev('label').html(txt + '<span class="reqred"> *</span>');
+                    $(this).css("background-color", "AliceBlue ");
+                }
+            });
+
+
+    </script>*@

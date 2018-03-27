@@ -1,0 +1,20 @@
+﻿@model ASFront.ModelsView.AppSumContractViewModel
+
+<div>
+    <h4>AppSumContractViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,93 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.ModelsView.ScoringScoreView>
+
+
+
+@{
+    ViewBag.Title = "Գնահատման միավորներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Պրոդուկտի գնահատման միավորներ</h2>
+
+<p>
+    @Html.ActionLink(Resources.Page.CreateNew, "Create")
+</p>
+
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div>
+            <table class="table tab-pane">
+                <tr>
+                    <td colspan="3">
+                        @Html.Label("Ֆիլտրել ըստ", htmlAttributes: new { @class = "control-label" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ցուցիչի</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Html.DropDownList("indicator", (SelectList)ViewBag.indicator, "---Ընտրել---", new { @class = "form-control" })</td>
+                    <td><input type="submit" name="btnsubmit" value="Փնտրել" id="execFilter" class="btn btn-success" /> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+<br />
+
+
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.First().IndicatorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().minValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().maxValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Coefficient)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.IndicatorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maxValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Coefficient)
+        </td>
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id=item.ID }) 
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+@Html.Partial("_Paging", Model)
+@Html.Partial("_IndicatorMenu")

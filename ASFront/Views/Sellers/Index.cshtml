@@ -1,0 +1,136 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.Models.Sellers>
+
+@{
+    ViewBag.Title = "Վաճառողներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Վաճառողներ</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Suppliers.SupplierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SupplierBranchs.BrancheName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Patronymic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TelegramID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Position)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.First().note1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().note2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().note3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().note4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().note5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Active)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Suppliers.SupplierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierBranchs.BrancheName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patronymic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelegramID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.note1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>*@
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id=item.Id }) @*|*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+        </td>
+    </tr>
+}
+
+</table>
+
+<br />
+
+
+@Html.Partial("_Paging", Model)

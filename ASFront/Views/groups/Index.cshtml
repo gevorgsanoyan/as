@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ASFront.Models.group>
+
+@{
+    ViewBag.Title = "Խմբեր";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Խմբեր</h2>
+
+<p>
+    @Html.ActionLink("Ստեղծել", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.gruopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gruopAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gruopFullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note3)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.gruopName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gruopAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gruopFullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note3)
+        </td>
+        <td>
+            @Html.ActionLink("Խմբագրել", "Edit", new { id=item.groupId }) |
+            @Html.ActionLink("Դիտել", "Details", new { id=item.groupId })
+        </td>
+    </tr>
+}
+
+</table>
+

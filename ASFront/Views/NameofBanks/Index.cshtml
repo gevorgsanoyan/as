@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ASFront.Models.NameofBanks>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Սպասարկող բանկերի ցուցակ</h2>
+
+<p>
+    @Html.ActionLink("Մուտքագրել", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note)
+        </td>
+        <td>
+            @Html.ActionLink("Խմբագրել", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Մանրամասն", "Details", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+
+    @using ASFront.Classes
+
+    <script src="@Url.Content("~/Scripts/less-1.5.1.min.js", true)"></script>
+
+
+    <link href="@Url.Content("~/Content/bootstrap.css", true)" rel="stylesheet" type="text/css" />
+
+
+
+    <link href="@Url.Content("~/Content/RotativaPrint.css", true)" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/ToPdf.css", true)" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/regular-checkbox.css", true)" rel="stylesheet" type="text/css" />
+
+
+
+
+    <script src="@Url.Content("~/bundles/jquery", true)"></script>
+    <script src="@Url.Content("~/bundles/bootstrap", true)"></script>
+
+
+
+
+
+
+
+
+
+
+    @*<link href="@Url.Content("~/Content/style.min.css", true)" rel="stylesheet" type="text/css" />*@
+
+
+
+
+    <link rel="stylesheet/less" type="text/css" href="Styles.less" />
+
+
+    <style>
+        .tabloddrow {
+            background-color: #f1f1f1 !important;
+        }
+    </style>
+
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

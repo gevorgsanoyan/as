@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ASFront.Models.GoldAssayes>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Assay)
+        </th>
+     
+        <th>
+            @Html.DisplayNameFor(model => model.note1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note3)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assay)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.note1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note3)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>

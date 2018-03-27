@@ -1,0 +1,897 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="acramonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACRA_Interrelated">
+          <Key>
+            <PropertyRef Name="irId" />
+          </Key>
+          <Property Name="irId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resultId" Type="bigint" />
+          <Property Name="iNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="iCreditStart" Type="nvarchar" MaxLength="50" />
+          <Property Name="iLastInstallment" Type="nvarchar" MaxLength="50" />
+          <Property Name="iContractAmount" Type="float" />
+          <Property Name="iAmountDue" Type="float" />
+          <Property Name="iAmountOverdue" Type="float" />
+          <Property Name="iOutstandingPercent" Type="float" />
+          <Property Name="iOutstandingDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="iCurrency" Type="nvarchar" MaxLength="50" />
+          <Property Name="iCreditClassification" Type="nvarchar" MaxLength="50" />
+          <Property Name="vDebtorNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="vInterrelatedSourceName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ACRA_osDays">
+          <Key>
+            <PropertyRef Name="osDaysId" />
+          </Key>
+          <Property Name="osDaysId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loanId" Type="bigint" />
+          <Property Name="osYear" Type="nvarchar" MaxLength="10" />
+          <Property Name="osMoth" Type="nvarchar" MaxLength="10" />
+          <Property Name="osValue" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ACRA_R_CurrentOverdue">
+          <Key>
+            <PropertyRef Name="overd_ID" />
+          </Key>
+          <Property Name="overd_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="l_type" Type="int" />
+          <Property Name="fk_result_ID" Type="bigint" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="currID" Type="int" />
+        </EntityType>
+        <EntityType Name="ACRA_R_Loan">
+          <Key>
+            <PropertyRef Name="loan_ID" />
+          </Key>
+          <Property Name="loan_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_result_ID" Type="bigint" />
+          <Property Name="l_type" Type="int" />
+          <Property Name="CreditID" Type="nvarchar" MaxLength="50" />
+          <Property Name="SourceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="currID" Type="int" />
+          <Property Name="CreditingDate" Type="datetime" />
+          <Property Name="CloseDate" Type="datetime" />
+          <Property Name="Interest" Type="float" />
+          <Property Name="Balance" Type="float" />
+          <Property Name="LastPaymentDate" Type="datetime" />
+          <Property Name="LoanClass" Type="int" />
+          <Property Name="DelayPaymentQuantity1_12" Type="int" />
+          <Property Name="DelayPaymentQuantity13_24" Type="int" />
+          <Property Name="DelayPaymentFrequency1_12" Type="int" />
+          <Property Name="DelayPaymentFrequency13_24" Type="int" />
+          <Property Name="CreditStatus" Type="int" />
+          <Property Name="ContractAmount" Type="float" />
+          <Property Name="CreditScope" Type="int" />
+          <Property Name="CreditUsePlace" Type="int" />
+          <Property Name="PersonCount" Type="int" />
+          <Property Name="GuarantorCount" Type="int" />
+          <Property Name="PledgeSubject" Type="nvarchar" MaxLength="50" />
+          <Property Name="CollateralNotes" Type="nvarchar" MaxLength="150" />
+          <Property Name="CollateralAmount" Type="float" />
+          <Property Name="CollateralCurrency" Type="int" />
+          <Property Name="PMT" Type="float" />
+          <Property Name="IncomingDate" Type="datetime" />
+          <Property Name="AmountOverdue" Type="float" />
+          <Property Name="CreditStart" Type="datetime" />
+          <Property Name="OutstandingDate" Type="datetime" />
+          <Property Name="OverdueDays" Type="int" />
+          <Property Name="OutstandingPercent" Type="float" />
+          <Property Name="PaymentAmount" Type="float" />
+          <Property Name="ClassificationLastDate" Type="datetime" />
+          <Property Name="CreditNotes" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProlongationsNum" Type="int" />
+          <Property Name="sumOutstandingDaysCount" Type="int" />
+          <Property Name="CreditType" Type="nvarchar" MaxLength="50" />
+          <Property Name="GuarantorAmount" Type="float" />
+          <Property Name="CreditScopeText" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreditUsePlaceText" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ACRA_R_TotalLiabilities">
+          <Key>
+            <PropertyRef Name="tot_l_ID" />
+          </Key>
+          <Property Name="tot_l_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_result_ID" Type="bigint" />
+          <Property Name="l_type" Type="int" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="currID" Type="int" />
+        </EntityType>
+        <EntityType Name="ACRA_RequestesInfo">
+          <Key>
+            <PropertyRef Name="rsId" />
+          </Key>
+          <Property Name="rsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resultId" Type="bigint" />
+          <Property Name="vNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="vBankName" Type="nvarchar" MaxLength="500" />
+          <Property Name="vDate" Type="nvarchar" MaxLength="150" />
+          <Property Name="vReason" Type="nvarchar" MaxLength="150" />
+          <Property Name="vSubReason" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="ACRA_RequestsI">
+          <Key>
+            <PropertyRef Name="result_ID" />
+          </Key>
+          <Property Name="result_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bid_numb" Type="nchar" MaxLength="10" />
+          <Property Name="r_ans_date" Type="datetime" />
+          <Property Name="repres_type" Type="int" />
+          <Property Name="client_numb" Type="nchar" MaxLength="10" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="passport" Type="nchar" MaxLength="10" />
+          <Property Name="soc_card" Type="nchar" MaxLength="14" />
+          <Property Name="r_objective" Type="int" />
+          <Property Name="address" Type="nvarchar" MaxLength="500" />
+          <Property Name="d_avilib" Type="int" />
+          <Property Name="residentity" Type="int" />
+          <Property Name="avrg_m_income" Type="float" />
+          <Property Name="income_update_date" Type="datetime" />
+          <Property Name="employer" Type="nvarchar" MaxLength="150" />
+          <Property Name="req30_count" Type="int" />
+          <Property Name="req_count" Type="int" />
+          <Property Name="delay_tot" Type="int" />
+          <Property Name="delay_max" Type="int" />
+          <Property Name="overdue_tot" Type="int" />
+          <Property Name="c_overdue_sum" Type="float" />
+          <Property Name="fk_ov_curr_ID" Type="int" />
+          <Property Name="g_overdue_sum" Type="float" />
+          <Property Name="fk_gov_curr_ID" Type="int" />
+          <Property Name="covd_class_change" Type="int" />
+          <Property Name="data_err" Type="int" />
+          <Property Name="AppNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdCardNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PersonBankruptIncome" Type="nvarchar" MaxLength="150" />
+          <Property Name="SwitchisClassQuantity" Type="nvarchar" MaxLength="50" />
+          <Property Name="InformationReviewDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="TheWorstClassLoan" Type="nvarchar" MaxLength="50" />
+          <Property Name="SelfEnquiryQuantity30" Type="nvarchar" MaxLength="50" />
+          <Property Name="SelfEnquiryQuantity" Type="nvarchar" MaxLength="50" />
+          <Property Name="DelayPaymentQuantity" Type="nvarchar" MaxLength="50" />
+          <Property Name="TheWorsClassGuarantee" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ACRA_R_TotalLiabilities_ACRA_RequestsI">
+          <End Role="ACRA_RequestsI" Type="Self.ACRA_RequestsI" Multiplicity="0..1" />
+          <End Role="ACRA_R_TotalLiabilities" Type="Self.ACRA_R_TotalLiabilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACRA_RequestsI">
+              <PropertyRef Name="result_ID" />
+            </Principal>
+            <Dependent Role="ACRA_R_TotalLiabilities">
+              <PropertyRef Name="fk_result_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ACRA_CreditSortsGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sortId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ACRA_CreditUsePlacesGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uPlId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ACRA_LoansGetDetEx" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="r_ID" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="acramonModelStoreContainer">
+          <EntitySet Name="ACRA_Interrelated" EntityType="Self.ACRA_Interrelated" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACRA_osDays" EntityType="Self.ACRA_osDays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACRA_R_CurrentOverdue" EntityType="Self.ACRA_R_CurrentOverdue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACRA_R_Loan" EntityType="Self.ACRA_R_Loan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACRA_R_TotalLiabilities" EntityType="Self.ACRA_R_TotalLiabilities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACRA_RequestesInfo" EntityType="Self.ACRA_RequestesInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACRA_RequestsI" EntityType="Self.ACRA_RequestsI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ACRA_R_TotalLiabilities_ACRA_RequestsI" Association="Self.FK_ACRA_R_TotalLiabilities_ACRA_RequestsI">
+            <End Role="ACRA_RequestsI" EntitySet="ACRA_RequestsI" />
+            <End Role="ACRA_R_TotalLiabilities" EntitySet="ACRA_R_TotalLiabilities" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="acramonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACRA_R_CurrentOverdue">
+          <Key>
+            <PropertyRef Name="overd_ID" />
+          </Key>
+          <Property Name="overd_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="l_type" Type="Int32" />
+          <Property Name="fk_result_ID" Type="Int64" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="currID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ACRA_R_TotalLiabilities">
+          <Key>
+            <PropertyRef Name="tot_l_ID" />
+          </Key>
+          <Property Name="tot_l_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_result_ID" Type="Int64" />
+          <Property Name="l_type" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="currID" Type="Int32" />
+          <NavigationProperty Name="ACRA_RequestsI" Relationship="acramonModel.FK_ACRA_R_TotalLiabilities_ACRA_RequestsI" FromRole="ACRA_R_TotalLiabilities" ToRole="ACRA_RequestsI" />
+        </EntityType>
+        <EntityContainer Name="acramonEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACRA_R_CurrentOverdue" EntityType="Self.ACRA_R_CurrentOverdue" />
+          <EntitySet Name="ACRA_R_TotalLiabilities" EntityType="Self.ACRA_R_TotalLiabilities" />
+          <EntitySet Name="ACRA_Interrelated" EntityType="acramonModel.ACRA_Interrelated" />
+          <EntitySet Name="ACRA_R_Loan" EntityType="acramonModel.ACRA_R_Loan" />
+          <EntitySet Name="ACRA_RequestesInfo" EntityType="acramonModel.ACRA_RequestesInfo" />
+          <EntitySet Name="ACRA_RequestsI" EntityType="acramonModel.ACRA_RequestsI" />
+          <AssociationSet Name="FK_ACRA_R_TotalLiabilities_ACRA_RequestsI" Association="acramonModel.FK_ACRA_R_TotalLiabilities_ACRA_RequestsI">
+            <End Role="ACRA_RequestsI" EntitySet="ACRA_RequestsI" />
+            <End Role="ACRA_R_TotalLiabilities" EntitySet="ACRA_R_TotalLiabilities" />
+          </AssociationSet>
+          <EntitySet Name="ACRA_osDays" EntityType="acramonModel.ACRA_osDays" />
+          <FunctionImport Name="ACRA_CreditSortsGet" ReturnType="Collection(acramonModel.ACRA_CreditSortsGet_Result1)">
+          <Parameter Name="sortId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ACRA_CreditUsePlacesGet" ReturnType="Collection(acramonModel.ACRA_CreditUsePlacesGet_Result1)">
+          <Parameter Name="uPlId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ACRA_LoansGetDetEx" ReturnType="Collection(acramonModel.ACRA_LoansGetDetEx_Result4)">
+            <Parameter Name="r_ID" Mode="In" Type="Int64" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="ACRA_Interrelated">
+          <Key>
+            <PropertyRef Name="irId" />
+          </Key>
+          <Property Name="irId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resultId" Type="Int64" />
+          <Property Name="iNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="iCreditStart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="iLastInstallment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="iContractAmount" Type="Double" />
+          <Property Name="iAmountDue" Type="Double" />
+          <Property Name="iAmountOverdue" Type="Double" />
+          <Property Name="iOutstandingPercent" Type="Double" />
+          <Property Name="iOutstandingDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="iCurrency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="iCreditClassification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vDebtorNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vInterrelatedSourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACRA_R_Loan">
+          <Key>
+            <PropertyRef Name="loan_ID" />
+          </Key>
+          <Property Name="loan_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_result_ID" Type="Int64" />
+          <Property Name="l_type" Type="Int32" />
+          <Property Name="CreditID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="currID" Type="Int32" />
+          <Property Name="CreditingDate" Type="DateTime" Precision="3" />
+          <Property Name="CloseDate" Type="DateTime" Precision="3" />
+          <Property Name="Interest" Type="Double" />
+          <Property Name="Balance" Type="Double" />
+          <Property Name="LastPaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="LoanClass" Type="Int32" />
+          <Property Name="DelayPaymentQuantity1_12" Type="Int32" />
+          <Property Name="DelayPaymentQuantity13_24" Type="Int32" />
+          <Property Name="DelayPaymentFrequency1_12" Type="Int32" />
+          <Property Name="DelayPaymentFrequency13_24" Type="Int32" />
+          <Property Name="CreditStatus" Type="Int32" />
+          <Property Name="ContractAmount" Type="Double" />
+          <Property Name="CreditScope" Type="Int32" />
+          <Property Name="CreditUsePlace" Type="Int32" />
+          <Property Name="PersonCount" Type="Int32" />
+          <Property Name="GuarantorCount" Type="Int32" />
+          <Property Name="PledgeSubject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CollateralNotes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CollateralAmount" Type="Double" />
+          <Property Name="CollateralCurrency" Type="Int32" />
+          <Property Name="PMT" Type="Double" />
+          <Property Name="IncomingDate" Type="DateTime" Precision="3" />
+          <Property Name="AmountOverdue" Type="Double" />
+          <Property Name="CreditStart" Type="DateTime" Precision="3" />
+          <Property Name="OutstandingDate" Type="DateTime" Precision="3" />
+          <Property Name="OverdueDays" Type="Int32" />
+          <Property Name="OutstandingPercent" Type="Double" />
+          <Property Name="PaymentAmount" Type="Double" />
+          <Property Name="ClassificationLastDate" Type="DateTime" Precision="3" />
+          <Property Name="CreditNotes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProlongationsNum" Type="Int32" />
+          <Property Name="sumOutstandingDaysCount" Type="Int32" />
+          <Property Name="CreditType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GuarantorAmount" Type="Double" />
+          <Property Name="CreditScopeText" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreditUsePlaceText" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACRA_RequestesInfo">
+          <Key>
+            <PropertyRef Name="rsId" />
+          </Key>
+          <Property Name="rsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resultId" Type="Int64" />
+          <Property Name="vNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vBankName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="vDate" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="vReason" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="vSubReason" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACRA_RequestsI">
+          <Key>
+            <PropertyRef Name="result_ID" />
+          </Key>
+          <Property Name="result_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bid_numb" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="r_ans_date" Type="DateTime" Precision="3" />
+          <Property Name="repres_type" Type="Int32" />
+          <Property Name="client_numb" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="passport" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="soc_card" Type="String" MaxLength="14" FixedLength="true" Unicode="true" />
+          <Property Name="r_objective" Type="Int32" />
+          <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="d_avilib" Type="Int32" />
+          <Property Name="residentity" Type="Int32" />
+          <Property Name="avrg_m_income" Type="Double" />
+          <Property Name="income_update_date" Type="DateTime" Precision="3" />
+          <Property Name="employer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="req30_count" Type="Int32" />
+          <Property Name="req_count" Type="Int32" />
+          <Property Name="delay_tot" Type="Int32" />
+          <Property Name="delay_max" Type="Int32" />
+          <Property Name="overdue_tot" Type="Int32" />
+          <Property Name="c_overdue_sum" Type="Double" />
+          <Property Name="fk_ov_curr_ID" Type="Int32" />
+          <Property Name="g_overdue_sum" Type="Double" />
+          <Property Name="fk_gov_curr_ID" Type="Int32" />
+          <Property Name="covd_class_change" Type="Int32" />
+          <Property Name="data_err" Type="Int32" />
+          <Property Name="AppNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdCardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersonBankruptIncome" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SwitchisClassQuantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InformationReviewDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TheWorstClassLoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SelfEnquiryQuantity30" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SelfEnquiryQuantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DelayPaymentQuantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TheWorsClassGuarantee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACRA_R_TotalLiabilities" Relationship="acramonModel.FK_ACRA_R_TotalLiabilities_ACRA_RequestsI" FromRole="ACRA_RequestsI" ToRole="ACRA_R_TotalLiabilities" />
+        </EntityType>
+        <Association Name="FK_ACRA_R_TotalLiabilities_ACRA_RequestsI">
+          <End Type="acramonModel.ACRA_RequestsI" Role="ACRA_RequestsI" Multiplicity="0..1" />
+          <End Type="acramonModel.ACRA_R_TotalLiabilities" Role="ACRA_R_TotalLiabilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACRA_RequestsI">
+              <PropertyRef Name="result_ID" />
+            </Principal>
+            <Dependent Role="ACRA_R_TotalLiabilities">
+              <PropertyRef Name="fk_result_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="ACRA_LoansGetDetEx_Result">
+          <Property Type="Int64" Name="loan_ID" Nullable="false" />
+          <Property Type="Int32" Name="l_type" Nullable="true" />
+          <Property Type="String" Name="CreditID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="currID" Nullable="true" />
+          <Property Type="String" Name="exch_code" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="ExRate" Nullable="true" />
+          <Property Type="Double" Name="Balance" Nullable="true" />
+          <Property Type="Double" Name="BalanceAMD" Nullable="true" />
+          <Property Type="Double" Name="PMT" Nullable="true" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="Double" Name="AmountAMD" Nullable="true" />
+          <Property Type="Int32" Name="LoanClass" Nullable="true" />
+          <Property Type="String" Name="LClass" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreditingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="Interest" Nullable="true" />
+          <Property Type="DateTime" Name="LastPaymentDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="ContractAmount" Nullable="true" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreditScope" Nullable="true" />
+          <Property Type="String" Name="Scope" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PledgeSubject" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CollateralNotes" Nullable="true" MaxLength="150" />
+          <Property Type="Double" Name="CollateralAmount" Nullable="true" />
+          <Property Type="Int32" Name="CollateralCurrency" Nullable="true" />
+          <Property Type="Int32" Name="CreditStatus" Nullable="true" />
+          <Property Type="String" Name="CStatus" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DelayPaymentQuantity1_12" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentQuantity13_24" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentFrequency1_12" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentFrequency13_24" Nullable="true" />
+          <Property Type="DateTime" Name="IncomingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="AmountOverdue" Nullable="true" />
+          <Property Type="DateTime" Name="CreditStart" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="OutstandingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="OutstandingPercent" Nullable="true" />
+          <Property Type="Double" Name="PaymentAmount" Nullable="true" />
+          <Property Type="DateTime" Name="ClassificationLastDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreditNotes" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="ProlongationsNum" Nullable="true" />
+          <Property Type="Int32" Name="sumOutstandingDaysCount" Nullable="true" />
+          <Property Type="Double" Name="GuarantorAmount" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="ACRA_osDays">
+          <Key>
+            <PropertyRef Name="osDaysId" />
+          </Key>
+          <Property Name="osDaysId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loanId" Type="Int64" />
+          <Property Name="osYear" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="osMoth" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="osValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="ACRA_LoansGetDetEx_Result1">
+          <Property Type="Int64" Name="loan_ID" Nullable="false" />
+          <Property Type="Int32" Name="l_type" Nullable="true" />
+          <Property Type="String" Name="CreditID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="currID" Nullable="true" />
+          <Property Type="String" Name="exch_code" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="ExRate" Nullable="true" />
+          <Property Type="Double" Name="Balance" Nullable="true" />
+          <Property Type="Double" Name="BalanceAMD" Nullable="true" />
+          <Property Type="Double" Name="PMT" Nullable="true" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="Double" Name="AmountAMD" Nullable="true" />
+          <Property Type="Int32" Name="LoanClass" Nullable="true" />
+          <Property Type="String" Name="LClass" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreditingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="Interest" Nullable="true" />
+          <Property Type="DateTime" Name="LastPaymentDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="ContractAmount" Nullable="true" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreditScope" Nullable="true" />
+          <Property Type="String" Name="Scope" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PledgeSubject" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CollateralNotes" Nullable="true" MaxLength="150" />
+          <Property Type="Double" Name="CollateralAmount" Nullable="true" />
+          <Property Type="Int32" Name="CollateralCurrency" Nullable="true" />
+          <Property Type="Int32" Name="CreditStatus" Nullable="true" />
+          <Property Type="String" Name="CStatus" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DelayPaymentQuantity1_12" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentQuantity13_24" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentFrequency1_12" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentFrequency13_24" Nullable="true" />
+          <Property Type="DateTime" Name="IncomingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="AmountOverdue" Nullable="true" />
+          <Property Type="DateTime" Name="CreditStart" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="OutstandingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="OutstandingPercent" Nullable="true" />
+          <Property Type="Double" Name="PaymentAmount" Nullable="true" />
+          <Property Type="DateTime" Name="ClassificationLastDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreditNotes" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="ProlongationsNum" Nullable="true" />
+          <Property Type="Int32" Name="sumOutstandingDaysCount" Nullable="true" />
+          <Property Type="Double" Name="GuarantorAmount" Nullable="true" />
+          <Property Type="String" Name="CreditUsePlaceText" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="PersonCount" Nullable="true" />
+          <Property Type="Int32" Name="GuarantorCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ACRA_LoansGetDetEx_Result2">
+          <Property Type="Int64" Name="loan_ID" Nullable="false" />
+          <Property Type="Int32" Name="l_type" Nullable="true" />
+          <Property Type="String" Name="CreditID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="currID" Nullable="true" />
+          <Property Type="String" Name="exch_code" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="ExRate" Nullable="true" />
+          <Property Type="Double" Name="Balance" Nullable="true" />
+          <Property Type="Double" Name="BalanceAMD" Nullable="true" />
+          <Property Type="Double" Name="PMT" Nullable="true" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="Double" Name="AmountAMD" Nullable="true" />
+          <Property Type="Int32" Name="LoanClass" Nullable="true" />
+          <Property Type="String" Name="LClass" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreditingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="Interest" Nullable="true" />
+          <Property Type="DateTime" Name="LastPaymentDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="ContractAmount" Nullable="true" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreditScope" Nullable="true" />
+          <Property Type="String" Name="Scope" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PledgeSubject" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CollateralNotes" Nullable="true" MaxLength="150" />
+          <Property Type="Double" Name="CollateralAmount" Nullable="true" />
+          <Property Type="Int32" Name="CollateralCurrency" Nullable="true" />
+          <Property Type="Int32" Name="CreditStatus" Nullable="true" />
+          <Property Type="String" Name="CStatus" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DelayPaymentQuantity1_12" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentQuantity13_24" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentFrequency1_12" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentFrequency13_24" Nullable="true" />
+          <Property Type="DateTime" Name="IncomingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="AmountOverdue" Nullable="true" />
+          <Property Type="DateTime" Name="CreditStart" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="OutstandingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="OutstandingPercent" Nullable="true" />
+          <Property Type="Double" Name="PaymentAmount" Nullable="true" />
+          <Property Type="DateTime" Name="ClassificationLastDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreditNotes" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="ProlongationsNum" Nullable="true" />
+          <Property Type="Int32" Name="sumOutstandingDaysCount" Nullable="true" />
+          <Property Type="Double" Name="GuarantorAmount" Nullable="true" />
+          <Property Type="String" Name="CreditUsePlaceText" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="PersonCount" Nullable="true" />
+          <Property Type="Int32" Name="GuarantorCount" Nullable="true" />
+          <Property Type="DateTime" Name="IncomingDate1" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="ACRA_LoansGetDetEx_Result3">
+          <Property Type="Int64" Name="loan_ID" Nullable="false" />
+          <Property Type="Int32" Name="l_type" Nullable="true" />
+          <Property Type="String" Name="CreditID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="currID" Nullable="true" />
+          <Property Type="String" Name="exch_code" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="ExRate" Nullable="true" />
+          <Property Type="Double" Name="Balance" Nullable="true" />
+          <Property Type="Double" Name="BalanceAMD" Nullable="true" />
+          <Property Type="Double" Name="PMT" Nullable="true" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="Double" Name="AmountAMD" Nullable="true" />
+          <Property Type="Int32" Name="LoanClass" Nullable="true" />
+          <Property Type="String" Name="LClass" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreditingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="Interest" Nullable="true" />
+          <Property Type="DateTime" Name="LastPaymentDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="ContractAmount" Nullable="true" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreditScope" Nullable="true" />
+          <Property Type="String" Name="Scope" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PledgeSubject" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CollateralNotes" Nullable="true" MaxLength="150" />
+          <Property Type="Double" Name="CollateralAmount" Nullable="true" />
+          <Property Type="Int32" Name="CollateralCurrency" Nullable="true" />
+          <Property Type="Int32" Name="CreditStatus" Nullable="true" />
+          <Property Type="String" Name="CStatus" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DelayPaymentQuantity1_12" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentQuantity13_24" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentFrequency1_12" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentFrequency13_24" Nullable="true" />
+          <Property Type="DateTime" Name="IncomingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="AmountOverdue" Nullable="true" />
+          <Property Type="DateTime" Name="CreditStart" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="OutstandingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="OutstandingPercent" Nullable="true" />
+          <Property Type="Double" Name="PaymentAmount" Nullable="true" />
+          <Property Type="DateTime" Name="ClassificationLastDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreditNotes" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="ProlongationsNum" Nullable="true" />
+          <Property Type="Int32" Name="sumOutstandingDaysCount" Nullable="true" />
+          <Property Type="Double" Name="GuarantorAmount" Nullable="true" />
+          <Property Type="String" Name="CreditUsePlaceText" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="PersonCount" Nullable="true" />
+          <Property Type="Int32" Name="GuarantorCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ACRA_CreditSortsGet_Result">
+          <Property Type="Int32" Name="crSortId" Nullable="true" />
+          <Property Type="String" Name="CreditSortName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ACRA_CreditUsePlacesGet_Result">
+          <Property Type="Int32" Name="crUsPlId" Nullable="true" />
+          <Property Type="String" Name="CreditUsePlace" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ACRA_CreditSortsGet_Result1">
+          <Property Type="Int32" Name="crSortId" Nullable="true" />
+          <Property Type="String" Name="CreditSortName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ACRA_CreditUsePlacesGet_Result1">
+          <Property Type="Int32" Name="crUsPlId" Nullable="true" />
+          <Property Type="String" Name="CreditUsePlace" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ACRA_LoansGetDetEx_Result4">
+          <Property Type="Int64" Name="loan_ID" Nullable="false" />
+          <Property Type="Int32" Name="l_type" Nullable="true" />
+          <Property Type="String" Name="CreditID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="currID" Nullable="true" />
+          <Property Type="String" Name="exch_code" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="ExRate" Nullable="true" />
+          <Property Type="Double" Name="Balance" Nullable="true" />
+          <Property Type="Double" Name="BalanceAMD" Nullable="true" />
+          <Property Type="Double" Name="PMT" Nullable="true" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="Double" Name="AmountAMD" Nullable="true" />
+          <Property Type="Int32" Name="LoanClass" Nullable="true" />
+          <Property Type="String" Name="LClass" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreditingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="Interest" Nullable="true" />
+          <Property Type="DateTime" Name="LastPaymentDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="ContractAmount" Nullable="true" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreditScope" Nullable="true" />
+          <Property Type="String" Name="Scope" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PledgeSubject" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CollateralNotes" Nullable="true" MaxLength="150" />
+          <Property Type="Double" Name="CollateralAmount" Nullable="true" />
+          <Property Type="Int32" Name="CollateralCurrency" Nullable="true" />
+          <Property Type="Int32" Name="CreditStatus" Nullable="true" />
+          <Property Type="String" Name="CStatus" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DelayPaymentQuantity1_12" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentQuantity13_24" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentFrequency1_12" Nullable="true" />
+          <Property Type="Int32" Name="DelayPaymentFrequency13_24" Nullable="true" />
+          <Property Type="DateTime" Name="IncomingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="AmountOverdue" Nullable="true" />
+          <Property Type="DateTime" Name="CreditStart" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="OutstandingDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="OutstandingPercent" Nullable="true" />
+          <Property Type="Double" Name="PaymentAmount" Nullable="true" />
+          <Property Type="DateTime" Name="ClassificationLastDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreditNotes" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="ProlongationsNum" Nullable="true" />
+          <Property Type="Int32" Name="sumOutstandingDaysCount" Nullable="true" />
+          <Property Type="Double" Name="GuarantorAmount" Nullable="true" />
+          <Property Type="String" Name="CreditUsePlaceText" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="PersonCount" Nullable="true" />
+          <Property Type="Int32" Name="GuarantorCount" Nullable="true" />
+          <Property Type="String" Name="CreditType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CreditSortName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="acramonModelStoreContainer" CdmEntityContainer="acramonEntities">
+          <EntitySetMapping Name="ACRA_R_CurrentOverdue">
+            <EntityTypeMapping TypeName="acramonModel.ACRA_R_CurrentOverdue">
+              <MappingFragment StoreEntitySet="ACRA_R_CurrentOverdue">
+                <ScalarProperty Name="overd_ID" ColumnName="overd_ID" />
+                <ScalarProperty Name="l_type" ColumnName="l_type" />
+                <ScalarProperty Name="fk_result_ID" ColumnName="fk_result_ID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="currID" ColumnName="currID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACRA_R_TotalLiabilities">
+            <EntityTypeMapping TypeName="acramonModel.ACRA_R_TotalLiabilities">
+              <MappingFragment StoreEntitySet="ACRA_R_TotalLiabilities">
+                <ScalarProperty Name="tot_l_ID" ColumnName="tot_l_ID" />
+                <ScalarProperty Name="fk_result_ID" ColumnName="fk_result_ID" />
+                <ScalarProperty Name="l_type" ColumnName="l_type" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="currID" ColumnName="currID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACRA_Interrelated">
+            <EntityTypeMapping TypeName="acramonModel.ACRA_Interrelated">
+              <MappingFragment StoreEntitySet="ACRA_Interrelated">
+                <ScalarProperty Name="vInterrelatedSourceName" ColumnName="vInterrelatedSourceName" />
+                <ScalarProperty Name="vDebtorNum" ColumnName="vDebtorNum" />
+                <ScalarProperty Name="iCreditClassification" ColumnName="iCreditClassification" />
+                <ScalarProperty Name="iCurrency" ColumnName="iCurrency" />
+                <ScalarProperty Name="iOutstandingDate" ColumnName="iOutstandingDate" />
+                <ScalarProperty Name="iOutstandingPercent" ColumnName="iOutstandingPercent" />
+                <ScalarProperty Name="iAmountOverdue" ColumnName="iAmountOverdue" />
+                <ScalarProperty Name="iAmountDue" ColumnName="iAmountDue" />
+                <ScalarProperty Name="iContractAmount" ColumnName="iContractAmount" />
+                <ScalarProperty Name="iLastInstallment" ColumnName="iLastInstallment" />
+                <ScalarProperty Name="iCreditStart" ColumnName="iCreditStart" />
+                <ScalarProperty Name="iNumber" ColumnName="iNumber" />
+                <ScalarProperty Name="resultId" ColumnName="resultId" />
+                <ScalarProperty Name="irId" ColumnName="irId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACRA_R_Loan">
+            <EntityTypeMapping TypeName="acramonModel.ACRA_R_Loan">
+              <MappingFragment StoreEntitySet="ACRA_R_Loan">
+                <ScalarProperty Name="CreditUsePlaceText" ColumnName="CreditUsePlaceText" />
+                <ScalarProperty Name="CreditScopeText" ColumnName="CreditScopeText" />
+                <ScalarProperty Name="GuarantorAmount" ColumnName="GuarantorAmount" />
+                <ScalarProperty Name="CreditType" ColumnName="CreditType" />
+                <ScalarProperty Name="sumOutstandingDaysCount" ColumnName="sumOutstandingDaysCount" />
+                <ScalarProperty Name="ProlongationsNum" ColumnName="ProlongationsNum" />
+                <ScalarProperty Name="CreditNotes" ColumnName="CreditNotes" />
+                <ScalarProperty Name="ClassificationLastDate" ColumnName="ClassificationLastDate" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="OutstandingPercent" ColumnName="OutstandingPercent" />
+                <ScalarProperty Name="OverdueDays" ColumnName="OverdueDays" />
+                <ScalarProperty Name="OutstandingDate" ColumnName="OutstandingDate" />
+                <ScalarProperty Name="CreditStart" ColumnName="CreditStart" />
+                <ScalarProperty Name="AmountOverdue" ColumnName="AmountOverdue" />
+                <ScalarProperty Name="IncomingDate" ColumnName="IncomingDate" />
+                <ScalarProperty Name="PMT" ColumnName="PMT" />
+                <ScalarProperty Name="CollateralCurrency" ColumnName="CollateralCurrency" />
+                <ScalarProperty Name="CollateralAmount" ColumnName="CollateralAmount" />
+                <ScalarProperty Name="CollateralNotes" ColumnName="CollateralNotes" />
+                <ScalarProperty Name="PledgeSubject" ColumnName="PledgeSubject" />
+                <ScalarProperty Name="GuarantorCount" ColumnName="GuarantorCount" />
+                <ScalarProperty Name="PersonCount" ColumnName="PersonCount" />
+                <ScalarProperty Name="CreditUsePlace" ColumnName="CreditUsePlace" />
+                <ScalarProperty Name="CreditScope" ColumnName="CreditScope" />
+                <ScalarProperty Name="ContractAmount" ColumnName="ContractAmount" />
+                <ScalarProperty Name="CreditStatus" ColumnName="CreditStatus" />
+                <ScalarProperty Name="DelayPaymentFrequency13_24" ColumnName="DelayPaymentFrequency13_24" />
+                <ScalarProperty Name="DelayPaymentFrequency1_12" ColumnName="DelayPaymentFrequency1_12" />
+                <ScalarProperty Name="DelayPaymentQuantity13_24" ColumnName="DelayPaymentQuantity13_24" />
+                <ScalarProperty Name="DelayPaymentQuantity1_12" ColumnName="DelayPaymentQuantity1_12" />
+                <ScalarProperty Name="LoanClass" ColumnName="LoanClass" />
+                <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CreditingDate" ColumnName="CreditingDate" />
+                <ScalarProperty Name="currID" ColumnName="currID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
+                <ScalarProperty Name="CreditID" ColumnName="CreditID" />
+                <ScalarProperty Name="l_type" ColumnName="l_type" />
+                <ScalarProperty Name="fk_result_ID" ColumnName="fk_result_ID" />
+                <ScalarProperty Name="loan_ID" ColumnName="loan_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACRA_RequestesInfo">
+            <EntityTypeMapping TypeName="acramonModel.ACRA_RequestesInfo">
+              <MappingFragment StoreEntitySet="ACRA_RequestesInfo">
+                <ScalarProperty Name="vSubReason" ColumnName="vSubReason" />
+                <ScalarProperty Name="vReason" ColumnName="vReason" />
+                <ScalarProperty Name="vDate" ColumnName="vDate" />
+                <ScalarProperty Name="vBankName" ColumnName="vBankName" />
+                <ScalarProperty Name="vNumber" ColumnName="vNumber" />
+                <ScalarProperty Name="resultId" ColumnName="resultId" />
+                <ScalarProperty Name="rsId" ColumnName="rsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACRA_RequestsI">
+            <EntityTypeMapping TypeName="acramonModel.ACRA_RequestsI">
+              <MappingFragment StoreEntitySet="ACRA_RequestsI">
+                <ScalarProperty Name="TheWorsClassGuarantee" ColumnName="TheWorsClassGuarantee" />
+                <ScalarProperty Name="DelayPaymentQuantity" ColumnName="DelayPaymentQuantity" />
+                <ScalarProperty Name="SelfEnquiryQuantity" ColumnName="SelfEnquiryQuantity" />
+                <ScalarProperty Name="SelfEnquiryQuantity30" ColumnName="SelfEnquiryQuantity30" />
+                <ScalarProperty Name="TheWorstClassLoan" ColumnName="TheWorstClassLoan" />
+                <ScalarProperty Name="InformationReviewDate" ColumnName="InformationReviewDate" />
+                <ScalarProperty Name="SwitchisClassQuantity" ColumnName="SwitchisClassQuantity" />
+                <ScalarProperty Name="PersonBankruptIncome" ColumnName="PersonBankruptIncome" />
+                <ScalarProperty Name="IdCardNumber" ColumnName="IdCardNumber" />
+                <ScalarProperty Name="ReportNumber" ColumnName="ReportNumber" />
+                <ScalarProperty Name="AppNumber" ColumnName="AppNumber" />
+                <ScalarProperty Name="data_err" ColumnName="data_err" />
+                <ScalarProperty Name="covd_class_change" ColumnName="covd_class_change" />
+                <ScalarProperty Name="fk_gov_curr_ID" ColumnName="fk_gov_curr_ID" />
+                <ScalarProperty Name="g_overdue_sum" ColumnName="g_overdue_sum" />
+                <ScalarProperty Name="fk_ov_curr_ID" ColumnName="fk_ov_curr_ID" />
+                <ScalarProperty Name="c_overdue_sum" ColumnName="c_overdue_sum" />
+                <ScalarProperty Name="overdue_tot" ColumnName="overdue_tot" />
+                <ScalarProperty Name="delay_max" ColumnName="delay_max" />
+                <ScalarProperty Name="delay_tot" ColumnName="delay_tot" />
+                <ScalarProperty Name="req_count" ColumnName="req_count" />
+                <ScalarProperty Name="req30_count" ColumnName="req30_count" />
+                <ScalarProperty Name="employer" ColumnName="employer" />
+                <ScalarProperty Name="income_update_date" ColumnName="income_update_date" />
+                <ScalarProperty Name="avrg_m_income" ColumnName="avrg_m_income" />
+                <ScalarProperty Name="residentity" ColumnName="residentity" />
+                <ScalarProperty Name="d_avilib" ColumnName="d_avilib" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="r_objective" ColumnName="r_objective" />
+                <ScalarProperty Name="soc_card" ColumnName="soc_card" />
+                <ScalarProperty Name="passport" ColumnName="passport" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="client_numb" ColumnName="client_numb" />
+                <ScalarProperty Name="repres_type" ColumnName="repres_type" />
+                <ScalarProperty Name="r_ans_date" ColumnName="r_ans_date" />
+                <ScalarProperty Name="bid_numb" ColumnName="bid_numb" />
+                <ScalarProperty Name="result_ID" ColumnName="result_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACRA_osDays">
+            <EntityTypeMapping TypeName="acramonModel.ACRA_osDays">
+              <MappingFragment StoreEntitySet="ACRA_osDays">
+                <ScalarProperty Name="osValue" ColumnName="osValue" />
+                <ScalarProperty Name="osMoth" ColumnName="osMoth" />
+                <ScalarProperty Name="osYear" ColumnName="osYear" />
+                <ScalarProperty Name="loanId" ColumnName="loanId" />
+                <ScalarProperty Name="osDaysId" ColumnName="osDaysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ACRA_CreditSortsGet" FunctionName="acramonModel.Store.ACRA_CreditSortsGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="acramonModel.ACRA_CreditSortsGet_Result1">
+                <ScalarProperty Name="crSortId" ColumnName="crSortId" />
+                <ScalarProperty Name="CreditSortName" ColumnName="CreditSortName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ACRA_CreditUsePlacesGet" FunctionName="acramonModel.Store.ACRA_CreditUsePlacesGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="acramonModel.ACRA_CreditUsePlacesGet_Result1">
+                <ScalarProperty Name="crUsPlId" ColumnName="crUsPlId" />
+                <ScalarProperty Name="CreditUsePlace" ColumnName="CreditUsePlace" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ACRA_LoansGetDetEx" FunctionName="acramonModel.Store.ACRA_LoansGetDetEx">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="acramonModel.ACRA_LoansGetDetEx_Result4">
+                <ScalarProperty Name="loan_ID" ColumnName="loan_ID" />
+                <ScalarProperty Name="l_type" ColumnName="l_type" />
+                <ScalarProperty Name="CreditID" ColumnName="CreditID" />
+                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
+                <ScalarProperty Name="currID" ColumnName="currID" />
+                <ScalarProperty Name="exch_code" ColumnName="exch_code" />
+                <ScalarProperty Name="ExRate" ColumnName="ExRate" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="BalanceAMD" ColumnName="BalanceAMD" />
+                <ScalarProperty Name="PMT" ColumnName="PMT" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AmountAMD" ColumnName="AmountAMD" />
+                <ScalarProperty Name="LoanClass" ColumnName="LoanClass" />
+                <ScalarProperty Name="LClass" ColumnName="LClass" />
+                <ScalarProperty Name="CreditingDate" ColumnName="CreditingDate" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
+                <ScalarProperty Name="ContractAmount" ColumnName="ContractAmount" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CreditScope" ColumnName="CreditScope" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="PledgeSubject" ColumnName="PledgeSubject" />
+                <ScalarProperty Name="CollateralNotes" ColumnName="CollateralNotes" />
+                <ScalarProperty Name="CollateralAmount" ColumnName="CollateralAmount" />
+                <ScalarProperty Name="CollateralCurrency" ColumnName="CollateralCurrency" />
+                <ScalarProperty Name="CreditStatus" ColumnName="CreditStatus" />
+                <ScalarProperty Name="CStatus" ColumnName="CStatus" />
+                <ScalarProperty Name="DelayPaymentQuantity1_12" ColumnName="DelayPaymentQuantity1_12" />
+                <ScalarProperty Name="DelayPaymentQuantity13_24" ColumnName="DelayPaymentQuantity13_24" />
+                <ScalarProperty Name="DelayPaymentFrequency1_12" ColumnName="DelayPaymentFrequency1_12" />
+                <ScalarProperty Name="DelayPaymentFrequency13_24" ColumnName="DelayPaymentFrequency13_24" />
+                <ScalarProperty Name="IncomingDate" ColumnName="IncomingDate" />
+                <ScalarProperty Name="AmountOverdue" ColumnName="AmountOverdue" />
+                <ScalarProperty Name="CreditStart" ColumnName="CreditStart" />
+                <ScalarProperty Name="OutstandingDate" ColumnName="OutstandingDate" />
+                <ScalarProperty Name="OutstandingPercent" ColumnName="OutstandingPercent" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="ClassificationLastDate" ColumnName="ClassificationLastDate" />
+                <ScalarProperty Name="CreditNotes" ColumnName="CreditNotes" />
+                <ScalarProperty Name="ProlongationsNum" ColumnName="ProlongationsNum" />
+                <ScalarProperty Name="sumOutstandingDaysCount" ColumnName="sumOutstandingDaysCount" />
+                <ScalarProperty Name="GuarantorAmount" ColumnName="GuarantorAmount" />
+                <ScalarProperty Name="CreditUsePlaceText" ColumnName="CreditUsePlaceText" />
+                <ScalarProperty Name="PersonCount" ColumnName="PersonCount" />
+                <ScalarProperty Name="GuarantorCount" ColumnName="GuarantorCount" />
+                <ScalarProperty Name="CreditType" ColumnName="CreditType" />
+                <ScalarProperty Name="CreditSortName" ColumnName="CreditSortName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

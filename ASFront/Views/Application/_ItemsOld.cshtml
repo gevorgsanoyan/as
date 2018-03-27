@@ -1,0 +1,112 @@
+﻿
+@model IEnumerable<ASFront.ModelsView.ItemViewModel>
+
+
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.First().applicationName)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemDescr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPurposeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientInvest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierName)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.First().clientName)
+            </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.First().note1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().note2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().note3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().note4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().note5)
+            </th>*@
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.applicationName)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemDescr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPurposeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientInvest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierName)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.clientName)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.note1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note5)
+                </td>*@
+
+            <td>
+                @*@Html.ActionLink(Resources.Page.Edit, "Edit", new { id = item.Id })*@
+            </td>
+        </tr>
+    }
+
+</table>
+<br />

@@ -1,0 +1,125 @@
+﻿@model IEnumerable<ASFront.ModelsView.AppSumDecisionMakingViewModel>
+
+@{
+    //string RowCalss = "OddRow";
+    //int RowIndex = 1;
+
+    int i = 0;
+}
+
+
+
+@*<h3 class="BoldText">Հատատման Որոշում</h3>*@
+@*<div class="container">*@
+<p style="color:red;">
+    @ViewBag.ErrorText
+
+</p>
+<div>
+    <table class="table table-striped table-advance table-hover">
+        <tr >
+            <th class="col-md-3">@Html.DisplayNameFor(model => model.RowName)</th>
+            <th class="col-md-3">@Html.DisplayNameFor(model => model.ApprovalRequirement)</th>
+            <th class="col-md-3">@Html.DisplayNameFor(model => model.CurrentState)</th>
+            @*<th class="col-md-2">@Html.DisplayNameFor(model => model.Verifying)</th>*@
+            <th class="col-md-3">@Html.DisplayNameFor(model => model.Notification)</th>
+            @*<th class="col-md-2">@Html.DisplayNameFor(model => model.FinalDecision)</th>*@
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+
+            i++;
+
+            <tr>  
+                <td class="col-md-3">
+                @if (!(@i == 4) )
+                {    
+                    @Html.DisplayFor(modelItem => item.RowName)
+                }
+                else
+                {
+                    <span style="font-weight:bold;">
+                        @Html.DisplayFor(modelItem => item.RowName)
+                    </span>
+                }
+             
+               
+                </td>
+                <td class="col-md-1">
+                    @if (item.ApprovalRequirement != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.ApprovalRequirement.Value)
+                    }
+
+
+
+
+                </td>
+                <td class="col-md-2">@Html.DisplayFor(modelItem => item.CurrentState)</td>
+                @*<td class="col-md-2">
+                        @if (!string.IsNullOrWhiteSpace(item.Verifying))
+                        {
+                            <a target="_blank" href="@Url.Action("", "ApplicationApprove", new { applicationId = ViewBag.ApplicationID, appGrade = item.AppGrade })" class="btn btn-success ">Հաստատել-@Html.DisplayFor(modelItem => item.Verifying)</a>
+                        }
+
+                    </td>*@
+                <td class="col-md-2">
+                    @foreach (var b in item.NotificationInfo)
+                    {
+                        <a target="_blank" style="margin-top:4px;margin-bottom:4px;" href="@Url.Action("SendTelegramMessage", new { appId = ViewBag.ApplicationID, userId = b.UserID })" class="NoDekoration">
+                            <img src="@Url.Content("~/img/Telegram.jpg")" alt="Telegram" height="24" width="24" style="margin-top:4px;margin-bottom:4px;">
+                            <span style="font-weight:bold"> @Html.DisplayFor(modelItem => b.UserFullName)</span>
+                        </a>                        
+                        <br />     
+                    }
+
+                </td>
+                @*<td class="col-md-2">
+                    @if (!string.IsNullOrWhiteSpace(item.FinalDecision))
+                    {
+
+                        <span class=" btn  NoPointer @item.btnClass">@Html.DisplayFor(modelItem => item.FinalDecision)</span>
+                    }
+                     </td>*@
+            </tr>
+
+
+           
+        }
+
+    </table>
+  
+    <p>
+        
+@if (ViewBag.isShowApproveButton ?? true)
+{
+        <div style="text-align:right; padding-right:10px;">
+        @Html.ActionLink("Հաստատել", "", "ApplicationApprove", new { applicationId = ViewBag.ApplicationID, appGrade = 0 }, htmlAttributes: new { @class = "btn btn-success ", }) 
+        </div>
+}
+
+    </p>
+    @if(ViewBag.Approved ?? false){
+    
+    @*<p>
+        Արտոնյալ Ժամանակահատված - <span style="font-weight:bold;">@ViewBag.grPeriod</span>
+    </p>*@
+    <h3>
+        Հաստատված նախապայման
+    </h3>
+      @Html.Partial("Summary/_Appruves", (ASFront.ModelsView.ApplicationAppruvesViewModels)@ViewBag.Appruves)
+    <br />
+    <div class="col-sm-4 Div-Center">@Html.ActionLink("Վարկային կոմիտեի ակտ", "CreditCommitee", "ToPDF", new { ApplicationID = ViewBag.ApplicationID }, htmlAttributes: new { @class = "btn btn-success ", target = "_blank" }) </div>
+
+    }
+</div>
+ 
+
+ 
+
+
+
+
+<br />

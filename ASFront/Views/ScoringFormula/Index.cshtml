@@ -1,0 +1,53 @@
+﻿@model ASFront.ModelsView.FormulaViewModel
+
+@{
+    ViewBag.Title = "Վարկանիշային Ֆորմուլա";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Վարկանիշային Ֆորմուլա</h2>
+
+<div class="form-horizontal">
+  
+    
+
+        @using(Html.BeginForm("DropDownSelchange", "ScoringFormula", "POST" )) {
+
+        <div class="form-group" style="margin-top:50px;">
+            @Html.DropDownListFor(model => model.IndicatorID, (SelectList)ViewBag.ind, "---Ընտրել Ինդիկատոր---", new { onchange = "this.form.submit();", @class = "form-control" })
+        </div>
+           }   
+    
+@if (Model.IndicatorID > 0)
+{
+
+        @Html.Partial("ScoringParametersPartial", @Model.ParametersList)
+
+   
+
+        @Html.Partial("CreateFormulaPartial", @Model.CreateFormula)
+
+
+
+
+
+
+
+
+    }
+        <br />
+
+ Operations  +-/*=^()
+    <br /> Functions
+    #Year(par)#
+     
+    
+    <br /> 
+    Formula example<br /> 
+    $par1 + $par2 * $par3 + #Year(PAR5)
+    <br />
+    $par4^3 = $par4*$par4*$par4
+    <br />
+    <br />
+</div>
+@Html.Partial("_IndicatorMenu")

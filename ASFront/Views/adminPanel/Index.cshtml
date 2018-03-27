@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    td {
+        padding: 15px;
+        vertical-align: central;
+        text-align: left;
+    }
+
+
+    #toolbarbutton {
+        width: 24.5%;
+    }
+</style>
+<br />
+<h2>Ադմինիստրատորի գործիքներ</h2>
+<br />
+<div class="form-horizontal">
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="panel with-nav-tabs panel-success">
+                    <div class="panel-heading" style="background-color:#c8e1f6">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#admintab1" data-toggle="tab">Պարամետրեր</a></li>
+                            <li><a href="#admintab2" data-toggle="tab">Մատակարարներ</a></li>
+                            <li><a href="#admintab3" data-toggle="tab">Աուտենտիֆիկացիա և իրավասություններ</a></li>
+                            <li><a href="#admintab4" data-toggle="tab">Պրոդուկտ</a></li>
+                            <li><a href="#admintab5" data-toggle="tab">Վարկանիշ</a></li>
+                            <li><a href="#admintab6" data-toggle="tab">Հաստատում</a></li>
+                            <li><a href="#admintab7" data-toggle="tab">Վարկի ապահովվածություն</a></li>
+                            <li><a href="#admintab8" data-toggle="tab">Նորմատիվներ</a></li>
+                            <li><a href="#admintab9" data-toggle="tab">Բիզնես կարգավորումներ</a></li>
+                            <li><a href="#admintab10" data-toggle="tab">Այլ</a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="admintab1">
+                                <div class="btn-toolbar">
+                                    <a href="@Url.Action("Index","RB")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Տարածաշրջաններ</a>
+                                    <a href="@Url.Action("Branches","RB")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Մասնաճյուղեր</a>
+                                    <a href="@Url.Action("Index","Roles")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Դերեր</a>
+                                    <a href="@Url.Action("ApplicationEditRoles","Roles")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Խմբագրման դերեր</a>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="admintab2">
+                                <div class="btn-toolbar">
+                                    <a href="@Url.Action("","Supplier")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Մատակարարներ</a>
+                                    <a href="@Url.Action("","SupplierBranches")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Մատակարարողի մասնաճյուղեր</a>
+                                    <a href="@Url.Action("","Sellers")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Վաճառողներ</a>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="admintab3">
+                                <a href="@Url.Action("ShowAllUsers","Account")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Օգտատերեր</a>
+                            </div>
+                            <div class="tab-pane fade" id="admintab4">
+                                <div class="btn-toolbar">
+                                    <a href="@Url.Action("","productGroup")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Պրոդուկտների խմբեր</a>
+                                    <a href="@Url.Action("","products")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Պրոդուկտ</a>
+                                    <a href="@Url.Action("","Purpose")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Նպատակ</a>
+                                    <a href="@Url.Action("","ProductPurpose")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Պրոդուկտ-Նպատակ</a>
+                                </div>
+                                <div class="btn-toolbar" style="margin-top: 6px">
+                                    <a href="@Url.Action("Index","ProductLimits")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Պրոդուկտների սահմանաչափեր</a>
+                                    <a href="@Url.Action("","ProductSupplier")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Պրոդուկտ-Մատակարար</a>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="admintab5">
+                                <div class="btn-toolbar">
+                                    <a href="@Url.Action("","ScoringIndicatorsTypes")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Ցուցիչների տեսակներ</a>
+                                    <a href="@Url.Action("","ScoringIndicators")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Ցուցիչներ</a>
+                                    <a href="@Url.Action("","ScoringParameters")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Պարամետրեր</a>
+                                    <a href="@Url.Action("","ScoringFormula")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Վարկանիշային Ֆորմուլա</a>
+                                </div>
+                                <div class="btn-toolbar" style="margin-top:6px">
+                                    <a href="@Url.Action("","ScoringIndicatorsParameters")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Ցուցիչներ-Պարամետրեր</a>
+                                    <a href="@Url.Action("","ScoringProductIndicators")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Պրոդուկտ-Ցուցիչ</a>
+                                    <a href="@Url.Action("","ScoringScores")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Պրոդուկտի գնահատման միավորներ</a>
+                                    <a href="@Url.Action("","ScoringDecisions")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Որոշում</a>
+                                </div>
+                                <div class="btn-toolbar" style="margin-top:6px">
+                                    <a href="@Url.Action("","ScoringScoreDecisions")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Պրոդուկտի գնահատման որոշումներ</a>
+                                    <a href="@Url.Action("","ScoringApplicationScores")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Հայտ-գնահատականներ</a>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="admintab6">
+
+                                <div class="btn-toolbar">
+                                    <a href="@Url.Action("Create","UserAppTables")" role="button" style="width:27%" class="btn btn-info" target="_blank">Ստեղծել հաստատման սահմանափակում</a>
+                                    <a href="@Url.Action("","AppTypes")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Հաստատման տեսակ</a>
+                                    <a href="@Url.Action("IndexEx", "UserAppTables")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Սահմանափակման աղյուսակ</a>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="admintab7">
+                                <div class="btn-toolbar">
+                                    <a href="@Url.Action("","GoldAssayes")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Ոսկու Հարգ</a>
+                                    <a href="@Url.Action("","GoldPrices")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Ոսկու գին</a>
+                                    <a href="@Url.Action("","GoldTypes")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Ոսկու տեսակ</a>
+                                    <a href="@Url.Action("","MovableEstateTypes")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Շարժական գույքի տեսակ</a>
+                                </div>
+                                <div class="btn-toolbar" style="margin-top:6px">
+                                    <a href="@Url.Action("","RealtyTypes")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Անշարժ գույքի տեսակ</a>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="admintab8">
+                                <div class="btn-toolbar">
+                                    <a href="@Url.Action("","AgroAssetTypes")" role="button" style="width:29%" class="btn btn-info" target="_blank">Գյուղատնտեսական ակտիվների տեսակներ</a>
+                                    <a href="@Url.Action("","AgroAssetIncomeNormatives")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Գյուղատնտեսական Ե/Ծ նորմատիվներ</a>
+                                    <a href="@Url.Action("","FamilyCostNormatives")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Ընտանեկան ծախսերի նորմատիվ</a>
+                                    <a href="@Url.Action("","MeasurementUnits")" role="button" style="width:19%" class="btn btn-info" target="_blank">Չափի միավոր</a>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="admintab9">
+                                <div class="btn-toolbar">
+                                    <a href="@Url.Action("Index", "BusinessSectors")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Բիզնես ոլորտներ</a>
+                                    <a href="@Url.Action("Index", "BusinessTypes")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Բիզնեսի տեսակներ</a>
+                                    <a href="@Url.Action("Index", "NameofBanks")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Բիզնեսի սպասարկող բանկեր</a>
+                                    <a href="@Url.Action("Index", "OwnershipTypes")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Բիզնեսի սեփականության ձևեր</a>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="admintab10">
+                                <div class="btn-toolbar">
+                                    <a href="@Url.Action("", "Settings")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Կարգավորումներ</a>
+                                    <a href="@Url.Action("", "Streets")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Փողոց</a>
+                                    <a href="@Url.Action("", "DocTypes")" role="button" id="toolbarbutton" class="btn btn-info" target="_blank">Փաստաթղթի տեսակը</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

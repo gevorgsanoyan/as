@@ -1,0 +1,212 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.ModelsView.ApplicationViewModel>
+
+@{
+    ViewBag.Title = "Հայտ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Հայտ</h2>
+
+<p>
+    @if (ViewBag.ClientID > 0)
+    {
+        @Html.ActionLink("Նոր հայտ", "Create", new { ClientID = ViewBag.ClientID })
+
+    }
+    else
+    {
+        @Html.ActionLink("Նոր հայտ", "Create")
+    }
+
+
+</p>
+<table class="table table-striped table-advance table-hover">
+    <thead>
+        <tr>
+            <th colspan="11">
+                <input class="form-control searchBox" id="searchBox" type="text" placeholder="Որոնել էջում..">
+
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().appDate)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.First().userId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.First().clientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().SupplierName)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.First().branchName)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.First().appStatusName)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.First().appuserId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.First().appDescr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().aprDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().agrNumb)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.First().agrNumbP)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.First().productName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CreditTerm)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.First().note1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().note2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().note3)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().note4)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().note5)
+                </th>*@
+            <th>@*Հայտի ամփոփ վիճակ*@</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody id="ApplicationTable">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.appDate)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.userId)
+                    </td>*@
+                <td>
+                    <a target="_blank" href='@Url.Action("Edit", "Clients",  new {  clientId = item.clientId })'
+                       data-toggle="popover" data-trigger="hover" data-content="Հաճախորդի տվյալներ"> @Html.DisplayFor(modelItem => item.clientName)
+                    </a>                    
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierName)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.branchName)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.appStatusName)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.appuserId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.appDescr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.aprDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.agrNumb)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.agrNumbP)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.productName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreditTerm)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.note1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.note2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.note3)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.note4)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.note5)
+                    </td>*@
+                
+
+
+
+                <td>
+                    <a href='@Url.Action("Edit",  new { id = item.applicationId })'
+                       data-toggle="popover" target="_blank" data-trigger="hover" data-content="Խմբագրել">
+                        <img src='@Url.Content("~/img/edit.gif")' />
+                    </a>
+
+                </td>
+                <td>
+                    <a href='@Url.Action("ApplicationSummary",  new { ApplicationID = item.applicationId })'
+                       data-toggle="popover" target="_blank" data-trigger="hover" data-content="Հայտի ամփոփ վիճակ">
+                        <img src='@Url.Content("~/img/Checklist-Icon-PNG-02063.png")' class="ButtonIconsBig" />
+                    </a>
+                </td>
+
+
+                @*<td>*@
+                @*@Html.ActionLink(Resources.Page.Edit, "Edit", new { id=item.applicationId })*@
+
+
+                @*@Html.ActionLink(Resources.Page.Details, "Details", new { id=item.applicationId }) |
+                    @Html.ActionLink(Resources.Page.Delete, "Delete", new { id=item.applicationId }) |*@
+                @*@Html.ActionLink("Scores", "", "ScoringApplicationScores", new { ApplicationID = item.applicationId }, null)     |*@
+                @*@Html.ActionLink("Calculate Scores", "CalculateScores", "ScoringApplicationScores", new { ApplicationID = item.applicationId, clientId = item.clientId }, null)*@
+                @*</td>*@
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+<br />
+
+
+@Html.Partial("_PagingApp", Model)
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#searchBox").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#ApplicationTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+
+
+</script>

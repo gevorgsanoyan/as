@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ASFront.Models.UserAppTableDetView>
+
+@{
+    ViewBag.Title = "Հաստատման սահմանաչափեր";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Հաստատման սահմանաչափեր</h2>
+<h4>@Model.FirstOrDefault().userNameFull </h4>
+
+<p>
+    @Html.ActionLink("Նոր սահմանափակում", "Create", new { id = Model.FirstOrDefault().userId})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BrancheId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.changeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.maxLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prodCurrency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appTypeId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.BrancheId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.changeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maxLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prodCurrency)
+        </td>
+        <td>            
+            @Html.DisplayFor(modelItem => item.appTypeId)
+        </td>
+
+        <td>
+            @Html.ActionLink("Խմբագրել", "Edit", new { id=item.UserAppTableId })
+        </td>
+    </tr>
+}
+
+</table>

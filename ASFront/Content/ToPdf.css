@@ -1,0 +1,52 @@
+﻿
+input[type='checkbox'] {
+    -webkit-appearance: none;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #555;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ccc;
+}
+
+
+.tabloddrow {
+    background-color: #f1f1f1!important;
+}
+
+.NoSplite {
+    page-break-inside: avoid !important;
+}
+
+
+ .pdftable table {
+    background-color: white !important;
+}
+
+.pdftable tr {
+    background-color: white !important;
+}
+
+.pdftable td {
+    background-color: white !important;
+}
+
+.pdfhr {
+    height: 1px;
+    border: none;
+    color: #333 !important;
+    background-color: #333 !important;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.tdmiddle {
+    text-align: center;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 1px solid #333!important;
+}

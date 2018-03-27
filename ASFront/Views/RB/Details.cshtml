@@ -1,0 +1,51 @@
+﻿@model ASFront.Models.Branches
+
+@{
+    ViewBag.Title = "Մասնաճյուղեր";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Page.Details</h2>
+
+<div>
+    <h4>Մասնաճյուղեր</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Branch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.asCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Խմբագրել", "Edit", new { id = Model.BranchesId }) |*@
+    @Html.ActionLink(Resources.Page.BackToList, "Branches")
+</p>

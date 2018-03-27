@@ -1,0 +1,188 @@
+﻿@model IEnumerable<ASFront.ModelsView.clientsGroupDetView>
+
+@{
+
+    Layout = null;
+}
+
+@*<h2>Խմբի անդամներ</h2>*@
+@if (@Model.Any(p => p.clientsGroupId > 0))
+{
+
+
+    <div class="row">
+
+        <h2 class="arrangeCenter NameTitle">
+            @Html.ActionLink("" + @Html.DisplayFor(modelItem => modelItem.First().groupName), "Index", "clientsGroups", new { groupId = Model.First().groupId }, htmlAttributes: new { target = "_blank" })
+
+        </h2>
+    </div>
+
+    <script>
+
+
+
+        $(document).ready(function () {
+            $('.chkB').click(function () {
+                ClArray = [];
+
+
+
+                $('.chkB').each(function () {
+                    var clID = $(this).closest("th").find("#SingleClientId").val();
+                    if ($(this).is(':checked')) {
+
+                        ClArray.push(clID)
+
+
+                        $('#GroupAcraGet').removeAttr('disabled');
+
+
+                    }
+                    else {
+
+                    }
+
+                });
+
+
+
+            });
+        });
+
+
+
+
+
+
+    </script>
+
+
+    //using (Html.BeginForm("GetClientsGroupsAcra", "acra", FormMethod.Post))
+    //{
+
+    <input data-val="true" id="EditClientId" name="EditClientId" type="hidden" value=@ViewBag.EditClientId>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.clientsGroupId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rpFirstName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.rTypeName)
+            </th>
+
+
+
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.AcraLastRequestDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreditLoadAcra)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.OverdueMoney)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverdueDaysCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Income)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.AcraRequestAllow)
+            </th>
+
+
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*@Html.Partial("~/Views/clientsGroups/_ClientsGroupTableRow.cshtml", item)*@
+                @{Html.RenderPartial("~/Views/clientsGroups/_ClientsGroupTableRow.cshtml", item);}
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.clientsGroupId)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("" + @Html.DisplayFor(modelItem => item.rpFirstName) + " " + @Html.DisplayFor(modelItem => item.rpLastName), "Edit", new { clientId = item.clientId }, htmlAttributes: new {  target = "_blank" })
+
+
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.rTypeName)
+                    </td>
+
+
+
+
+
+
+
+                    <th>
+                        @Html.DisplayFor(model => item.AcraLastRequestDate)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(model => item.CreditLoadAcra)
+                    </th>
+
+                    <th>
+                        @Html.DisplayFor(model => item.OverdueMoney)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(model => item.OverdueDaysCount)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(model => item.Income)
+                    </th>
+
+                    <th>
+                        @Html.EditorFor(model => item.AcraRequestAllow, null)
+                        @Html.HiddenFor(model=> item.clientId)
+                        @Html.HiddenFor(model => item.clientsGroupId)
+                    </th>*@
+
+
+
+
+
+            </tr>
+        }
+
+    </table>
+
+    <br />
+
+    <div style="text-align:right; padding-right:10px;">
+        @*@Html.ActionLink("Կատարել խմբային ԱՔՌԱ հարցում", "ClientsGroupMembersInput", "groups", new { clientID = @Model.First().clientId }, htmlAttributes: new { @class = "btn btn-success", onclick = "document.forms[0].submit(); return false;" })*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="GroupAcraGet" disabled="disabled" onclick="GroupAcraGetClick()" value="Կատարել խմբային ԱՔՌԱ հարցում" name="GroupAcraGet" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+
+
+    //}
+}
+
+
+else
+{
+    <h3> <span class="btn btn-block btn-warning no-btn"> Դեռևս Փոխխապակցված անձ մուտքագրված չէ: </span></h3>
+}
+

@@ -1,0 +1,264 @@
+﻿@model ASFront.ModelsView.AgroAssetIncomeNormativesListViewModel
+
+@{
+    ViewBag.Title = "Գյուղատնտեսական Եկամտի Նորմատիվ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Page.Edit</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model=> model.BrancheId)
+    @Html.HiddenFor(model => model.AgroAssetTypesId)
+
+    <div class="form-inline">
+
+        <h4>Գյուղատնտեսական Եկամտի/Ծախսի Նորմատիվ</h4>
+ 
+        @*<hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @*<div class="SectionData row">
+
+
+
+            <div class="form-group formMargin col-md-2">
+                @Html.LabelFor(model => model.Month, htmlAttributes: new { @class = "control-label col-md-12 left-label" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Month, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Month, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group formMargin col-md-2">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-12 left-label" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group formMargin col-md-2">
+                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-12 left-label" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+          
+            <div class="form-group formMargin col-md-3">
+                @Html.LabelFor(model => model.note1, htmlAttributes: new { @class = "control-label col-md-12 left-label" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.note1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.note1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group formMargin col-md-3">
+                @Html.LabelFor(model => model.note2, htmlAttributes: new { @class = "control-label col-md-12 left-label" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.note2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.note2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            </div>*@
+
+
+     
+        @*<div class="container-fluid">
+            <div class="row">*@
+
+
+        
+
+            
+
+
+
+        <div class="row">
+
+            <h2 class="arrangeCenter NameTitle">
+
+                @ViewBag.Branche/@ViewBag.AgroAssetType 
+
+
+            </h2>
+        </div>
+        <div style="height:35px;"></div>
+
+
+        <div>
+            <div>
+                <table class="table table-striped table-advance table-hover table-responsive" >
+
+
+                    @*<thead >
+
+                        <tr class="col-md-12">
+                            <th class="col-md-2">
+                                <div class="col-md-12">
+                                    @Html.DisplayNameFor(model => model.Month)
+                                </div>
+                            </th>
+                            <th class="col-md-2">
+                                <div class="col-md-12">
+                                    @Html.DisplayNameFor(model => model.Price)
+                                </div>
+                            </th>
+                            <th class="col-md-2">
+                                <div class="col-md-12">
+                                    @Html.DisplayNameFor(model => model.Quantity)
+                                </div>
+                            </th>
+                            <th class="col-md-3">
+                                <div class="col-md-12">
+                                    @Html.DisplayNameFor(model => model.note1)
+                                </div>
+                            </th>
+                            <th class="col-md-3">
+                                <div class="col-md-12">
+                                    @Html.DisplayNameFor(model => model.note2)
+                                </div>
+                            </th>
+
+
+
+
+
+
+
+                        </tr>
+                    </thead>*@
+
+
+                    <tbody>
+
+                        @for (int i = 0; i <Model.AgroNormatives.Count; i++)
+                        {
+                        <tr class="col-md-12">
+
+                            <td class="col-md-2">
+
+                                @if (@i == 0)
+        {
+                        @Html.LabelFor(model => model.AgroNormatives[i].Month, htmlAttributes: new { @class = "control-label col-md-12 left-label LabelHeader" })
+
+}
+
+                                <div class="col-md-12">
+                                    @Html.HiddenFor(model => model.AgroNormatives[i].Id)
+                                    @Html.HiddenFor(model => model.AgroNormatives[i].BrancheId)
+                                    @Html.HiddenFor(model => model.AgroNormatives[i].AgroAssetTypesId)
+                                    @Html.HiddenFor(model => model.AgroNormatives[i].Month)
+
+
+
+
+                                    @*@Html.EditorFor(model => model.Month, new { htmlAttributes = new { @class = "form-control  form-control-plaintext", @readonly="" } })*@
+                                    <p class="form-control-static">@Html.DisplayFor(model => model.AgroNormatives[i].Month)</p>
+
+                                    @Html.ValidationMessageFor(model => model.AgroNormatives[i].Month, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+
+                            <td class="col-md-2">
+                                @if (@i == 0)
+        {
+                        @Html.LabelFor(model => model.AgroNormatives[i].Price, htmlAttributes: new { @class = "control-label col-md-12 left-label LabelHeader" })
+
+}
+
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.AgroNormatives[i].Price, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @value = "1" } })
+                                    @Html.ValidationMessageFor(model => model.AgroNormatives[i].Price, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+
+
+                            <td class="col-md-2">
+                                @if (@i == 0)
+        {
+                        @Html.LabelFor(model => model.AgroNormatives[i].Quantity, htmlAttributes: new { @class = "control-label col-md-12 left-label LabelHeader" })
+}
+
+
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.AgroNormatives[i].Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AgroNormatives[i].Quantity, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+
+
+                            <td class="col-md-2">
+                                @if (@i == 0)
+        {
+                        @Html.LabelFor(model => model.AgroNormatives[i].Expenses, htmlAttributes: new { @class = "control-label col-md-12 left-label LabelHeader" })
+}
+
+
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.AgroNormatives[i].Expenses, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AgroNormatives[i].Expenses, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                            <td class="col-md-2">
+                                @if (@i == 0)
+        {
+                        @Html.LabelFor(model => model.AgroNormatives[i].note1, htmlAttributes: new { @class = "control-label col-md-12 left-label LabelHeader" })
+
+}
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.AgroNormatives[i].note1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AgroNormatives[i].note1, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+
+                            <td class="col-md-2">
+                                @if (@i == 0)
+        {
+                        @Html.LabelFor(model => model.AgroNormatives[i].note2, htmlAttributes: new { @class = "control-label col-md-12 left-label LabelHeader" })
+
+}
+
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.AgroNormatives[i].note2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AgroNormatives[i].note2, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+
+
+                        </tr>
+                        }
+
+                    </tbody>
+
+
+
+
+                </table>
+            </div>
+        </div>
+
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value=@Resources.Page.Save name="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+}
+<br />
+<div style="text-align:right;">
+    @Html.ActionLink(Resources.Page.BackToList, "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

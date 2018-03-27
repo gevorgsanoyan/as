@@ -1,0 +1,133 @@
+﻿@model ASFront.Models.Turnovers
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-inline">
+
+        @*<hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.applicationId)
+
+        @Html.Hidden("EditMode", (string)ViewBag.EditMode)
+
+
+
+        <table class="table table-striped table-advance table-hover">
+
+            <thead>
+                <tr>
+                    <th class="col-md-2">
+                        @Html.LabelFor(model => model.productName, htmlAttributes: new { @class = "control-label col-md-12" })
+                    </th>
+                    <th class="col-md-2">
+                        @Html.LabelFor(model => model.MeasurementUnitId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    </th>
+                    <th class="col-md-2">
+                        @Html.LabelFor(model => model.MonthlySalesQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </th>
+
+
+
+                    <th class="col-md-2">
+                        @Html.LabelFor(model => model.COGS, htmlAttributes: new { @class = "control-label col-md-12" })
+                    </th>
+                    <th class="col-md-2">
+                        @Html.LabelFor(model => model.SalesPrice, htmlAttributes: new { @class = "control-label col-md-12" })
+
+                    </th>
+                    <th class="col-md-2">
+
+                        @Html.LabelFor(model => model.OutstandingQuantity, htmlAttributes: new { @class = "control-label col-md-12" })
+
+                    </th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>
+                        <div>
+                            @Html.EditorFor(model => model.productName, new { htmlAttributes = new { @class = "form-control" } })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.productName, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+
+
+                    <td>
+                        <div>
+                            @Html.DropDownList("MeasurementUnitId", null, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+
+                            <br />
+                            @Html.ValidationMessageFor(model => model.MeasurementUnitId, "", new { @class = "text-danger" })
+
+                        </div>
+                    </td>
+
+                    <td>
+
+                        <div>
+                            @Html.EditorFor(model => model.MonthlySalesQuantity, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @value = "1" } })                        <br />
+                            @Html.ValidationMessageFor(model => model.MonthlySalesQuantity, "", new { @class = "text-danger" })
+                        </div>
+
+                    </td>
+                    <td>
+                        <div>
+                            @Html.EditorFor(model => model.COGS, new { htmlAttributes = new { @class = "form-control", @type = "number", } })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.COGS, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.EditorFor(model => model.SalesPrice, new { htmlAttributes = new { @class = "form-control" } })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.SalesPrice, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.EditorFor(model => model.OutstandingQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.OutstandingQuantity, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+
+
+
+        <div class="form-group formMargin col-md-12">
+            <div style="text-align:right; padding-right: 0px; margin-right: -15px;">
+                @*<input type="submit" value=@Resources.Page.Save name="Save" class="btn btn-default" />
+                    <a href='@Url.Action("Create", new { ApplicationID = ViewBag.ApplicationID})'
+                       data-toggle="popover" data-trigger="hover" data-content=@Resources.Page.Save>
+                        <img src='@Url.Content("~/img/copy.png")' />
+                    </a>*@
+
+                <button type="submit" style="border: 0; background: transparent" title=@Resources.Page.Save id="SubmitButton">
+                    <img src='@Url.Content("~/img/Floppy-Small-icon.png")' alt="submit" class="ButtonIconsBig" />
+                </button>
+
+
+            </div>
+        </div>
+
+    </div>
+}
+

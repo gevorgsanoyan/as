@@ -1,0 +1,381 @@
+﻿
+
+@model ASFront.ModelsView.BalanceViewModel
+
+@*<link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" type="text/css" />*@
+
+
+<div class="row mt">
+    <div class="col-md-12">
+        <div class="content-panel">
+            <h4>Հաշվեկշռի տվյալները</h4>
+            <hr>
+            @if (Model.Id > 0)
+            {
+                <table class="table table-striped table-advance table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="fa fa-calendar fa-2x" aria-hidden="true"></i> Ամսաթիվ</th>
+
+                            <th>
+                                @Html.DisplayFor(model => model.PreparationDate)
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Կանխիկ/Դրամարկղ</b></td>
+
+                            <td>@Html.DisplayFor(model => model.Cash)</td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Բանկային/հաշվարկային հաշիվ</b></td>
+
+                            <td>@Html.DisplayFor(model => model.BankAccount)</td>
+
+                        </tr>
+
+                        <tr>
+                            <td><b>Դեբիտորական պարտք</b></td>
+
+                            <td>@Html.DisplayFor(model => model.AccountReceivable)</td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Ապրանքանյութական պաշարներ</b></td>
+
+                            <td>
+
+                                @Html.ActionLink("" + @Html.DisplayFor(model => model.Inventory), "", "Turnovers", new { ApplicationID = @Model.applicationId, ClientID = Model.clientId }, htmlAttributes: new { target = "_blank" })
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Այլ Ընթացիկ Ակտիվներ</b></td>
+
+                            <td>@Html.DisplayFor(model => model.OtherCurrentAssets)</td>
+
+                        </tr>
+                        <tr>
+                            <td style="font-size: larger"><b>ԸՆԴԱՄԵՆԸ ԸՆԹԱՑԻԿ ԱԿՏԻՎՆԵՐ</b></td>
+
+                            <td style="font-size: larger">
+                                <span class="label label-info label-default">
+
+                                    @Html.DisplayFor(model => model.TotalCurrentAssets)
+                                </span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Սարքավորումներ</b></td>
+
+                            <td>@Html.DisplayFor(model => model.Equipments)</td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Շարժական գույք</b></td>
+
+                            <td>@Html.DisplayFor(model => model.Vehicles)</td>
+
+                        </tr>
+
+                        <tr>
+                            <td><b>Անշարժ գույք</b></td>
+
+                            <td>@Html.DisplayFor(model => model.PropertyPlantes)</td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Այլ հիմնական միջոցներ</b></td>
+
+                            <td>@Html.DisplayFor(model => model.OtherNonCurrentAssets)</td>
+
+                        <tr>
+                            <td style="font-size: larger"><b>ԸՆԴԱՄԵՆԸ ՈՉ ԸՆԹԱՑԻԿ ԱԿՏԻՎՆԵՐ</b></td>
+
+                            <td style="font-size: larger">
+                                <span class="label label-info label-default">
+
+                                    @Html.DisplayFor(model => model.TotalNonCurrentAssets)
+
+                                </span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Կրեդիտորական պարտքեր</b></td>
+
+                            <td>@Html.DisplayFor(model => model.AccountPayable)</td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Կարճաժամկետ վարկեր</b></td>
+
+                            <td>@Html.DisplayFor(model => model.ShortTermLoans)</td>
+
+                        </tr>
+
+                        <tr>
+                            <td><b>Այլ ընթացիկ պարտավորություններ</b></td>
+
+                            <td>@Html.DisplayFor(model => model.OtherCurrentLiabilities)</td>
+
+                        </tr>
+                        <tr>
+                            <td style="font-size: larger"><b>ԸՆԴԱՄԵՆԸ ԸՆԹԱՑԻԿ ՊԱՐՏԱՎՈՐՈՒԹՅՈՒՆՆԵՐ</b></td>
+
+                            <td style="font-size: larger">
+                                <span class="label label-info label-warning">
+                                    @Html.DisplayFor(model => model.TotalCurrentLiabilities)
+                                </span>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td><b>Միջին և երկար վարկեր</b></td>
+
+                            <td>@Html.DisplayFor(model => model.MediumLongTermLoans)</td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Այլ ոչ ընթացիկ պարտավորություններ</b></td>
+
+                            <td>@Html.DisplayFor(model => model.OtherNonCurrentLiabilitiues)</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: larger"><b>ԸՆԴԱՄԵՆԸ ՈՉ ԸՆԹԱՑԻԿ ՊԱՐՏԱՎՈՐՈՒԹՅՈՒՆՆԵՐ</b></td>
+
+                            <td style="font-size: larger">
+                                <span class="label label-info label-warning">
+                                    @Html.DisplayFor(model => model.TotalNonCurrentLiabilitiues)
+                                </span>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td style="font-size: larger"><b>ՍԵՓԱԿԱՆ ԿԱՊԻՏԱԼ</b></td>
+
+                            @if (Model.OwnCapitalNum > 0)
+                            {
+                                <td style="font-size: larger">
+                                    <span class="label label-info label-warning">
+                                        @Html.DisplayFor(model => model.OwnCapital)
+                                    </span>
+                                </td>
+                            }
+
+                            else
+                            {
+                                <td style="font-size: xx-large">
+                                    <span class="label label-info label-danger">
+                                        @Html.DisplayFor(model => model.OwnCapital)
+                                    </span>
+                                </td>
+                            }
+
+
+
+
+                        </tr>
+                        <tr>
+                            <td style="font-size: larger"><b>ՊԱՐՏՔ/ԿԱՊԻՏԱԼ</b></td>
+                            @if (Model.LiabilityCapitalNum > 0)
+                            {
+
+                                if (Model.LiabilityCapitalNum > 1)
+                                {
+
+                                    <td style="font-size: xx-large">
+                                        <span class="label label-info label-danger">
+                                            @Html.DisplayFor(model => model.LiabilityCapital)
+                                        </span>
+                                    </td>
+                                }
+                                else if (Model.LiabilityCapitalNum > 0.5)
+                                {
+
+                                    <td style="font-size: xx-large">
+                                        <span class="label label-info label-warning">
+                                            @Html.DisplayFor(model => model.LiabilityCapital)
+                                        </span>
+                                    </td>
+                                }
+                                else if (Model.LiabilityCapitalNum > 0)
+                                {
+
+                                    <td style="font-size: larger">
+                                        <span class="label label-info label-default">
+                                            @Html.DisplayFor(model => model.LiabilityCapital)
+                                        </span>
+                                    </td>
+                                }
+                                else
+                                {
+
+                                    <td style="font-size: xx-large">
+                                        <span class="label label-info label-danger">
+                                            @Html.DisplayFor(model => model.LiabilityCapital)
+                                        </span>
+                                    </td>
+                                }
+
+
+                            }
+
+                            else
+                            {
+
+                                <td style="font-size: xx-large">
+
+
+                                    <span class="label label-info label-danger">
+                                        Կապիտալ չկա
+                                    </span>
+                                </td>
+
+
+                            }
+
+
+
+                        </tr>
+
+                        <tr>
+                            <td style="font-size: larger"><b>ԸՆԹԱՑԻԿ ԻՐԱՑՎԵԼԻՈՒԹՅՈՒՆ</b></td>
+
+                            @if (Model.CurrentExperienceNum > 0 && Model.CurrentExperienceNum > 1)
+                            {
+                                <td style="font-size: larger">
+                                    <span class="label label-info label-default">
+                                        @Html.DisplayFor(model => model.CurrentExperience)
+                                    </span>
+                                </td>
+                            }
+                            else if (Model.CurrentExperienceNum > 0 && Model.CurrentExperienceNum <= 1)
+                            {
+                                <td style="font-size: xx-large">
+                                    <span class="label label-info label-danger">
+                                        @Html.DisplayFor(model => model.CurrentExperience)
+                                    </span>
+                                </td>
+                            }
+
+
+                            else
+                            {
+                                <td style="font-size: larger">
+                                    <span class="label label-info label-default">
+                                        @Html.DisplayFor(model => model.CurrentExperience)
+                                    </span>
+                                </td>
+
+                            }
+
+
+
+                        </tr>
+                        <tr>
+                            <td style="font-size: larger"><b>Նշում 1</b></td>
+
+                            <td style="font-size: larger">
+                                <span class="label label-info label-warning">
+                                    @Html.DisplayFor(model => model.note1)
+                                </span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="font-size: larger"><b>Նշում 2</b></td>
+
+                            <td style="font-size: larger">
+                                <span class="label label-info label-warning">
+                                    @Html.DisplayFor(model => model.note2)
+                                </span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="font-size: larger"><b>Նշում 3</b></td>
+
+                            <td style="font-size: larger">
+                                <span class="label label-info label-warning">
+                                    @Html.DisplayFor(model => model.note3)
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td><b>Վարկային բեռ/ԱՔՌԱ</b></td>
+
+                            @if (Model.CreditLoadAcraNum > 0)
+                            {
+                                <td style="font-size: x-large">
+                                    <span class="label label-info label-danger">
+                                        @Html.DisplayFor(model => model.CreditLoadAcra)
+                                    </span>
+                                </td>
+                            }
+
+
+
+                            else
+                            {
+                                <td>
+                                    <span class="label label-info ">
+                                        @Html.DisplayFor(model => model.CreditLoadAcra)
+                                    </span>
+                                </td>
+                            }
+
+
+
+                        </tr>
+
+                        <tr>
+
+                            <td><b>Ժամկետանց գումար</b></td>
+
+                            @if (Model.OverdueMoneyNum > 0)
+                            {
+
+                                <td style="font-size: x-large">
+                                    <span class="label label-info label-danger">
+                                        @Html.DisplayFor(model => model.OverdueMoney)
+                                    </span>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <span class="label label-info ">
+                                        @Html.DisplayFor(model => model.OverdueMoney)
+                                    </span>
+                                </td>
+                            }
+
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            }
+
+
+            else
+            {
+                <h3> <span class="btn btn-block btn-warning no-btn"> Դեռևս Հաշվեկշռի տվյալ մուտքագրված չէ: </span></h3>
+            }
+
+
+        </div><!-- /content-panel -->
+    </div><!-- /col-md-12 -->
+</div><!-- /row -->

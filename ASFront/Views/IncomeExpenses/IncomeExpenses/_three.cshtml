@@ -1,0 +1,104 @@
+﻿@model ASFront.Models.IncomeExpenses
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.AgroIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.AgroIncome, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+        @Html.ValidationMessageFor(model => model.AgroIncome, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.AgroExpenses, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.AgroExpenses, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+        @Html.ValidationMessageFor(model => model.AgroExpenses, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button type="button" id="CalculateAgro" onclick="CalculateAgroClick()" value="Հաշվարկել" name="CalculateAgro" class="btn btn-success btn-FullWidth">
+            <span>
+
+                Հաշվարկել
+            </span>
+
+
+        </button>
+
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+
+
+
+
+    function CalculateAgroClick() {
+
+        $("#CalculateAgro span").html('<i class="fa fa-refresh fa-spin"></i>&ensp;Հաշվարկվում է ... ');
+
+
+
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                //contentType: false,
+                //processData: false,
+                //type: "POST",
+                //contentType: "application/json; charset=utf-8",
+                //dataType: "html",
+
+                traditional: true,
+                //url: "/acra/ClientsGroup",
+
+                url: "@(Url.RouteUrl("CalculateAgro"))",
+
+                //UpdateTargetId: "UpdateTargetClientsGroup",
+                cache: false,
+                data: {
+                    ApplicationID: @Model.applicationId,
+
+                },
+                success: function (response) {
+
+                    $('#AgroPanel').html('');
+                    $('#AgroPanel').html(response.responseText);
+                   
+
+                },
+                failure: function (response) {
+
+
+                
+                },
+                error: function (response) {
+
+                    $('#AgroPanel').html('');
+
+                    $('#AgroPanel').html(response.responseText);
+
+                    }
+
+            });
+
+
+        };
+
+      
+
+
+
+
+
+</script>

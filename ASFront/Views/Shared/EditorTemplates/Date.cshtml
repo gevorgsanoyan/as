@@ -1,0 +1,43 @@
+﻿@model DateTime?
+@Html.TextBox("", String.Format("{0:d}", Model.HasValue ? Model.Value.ToShortDateString() : string.Empty), new { @class = " datepicker dateControl widthSize" })
+
+<script type="text/javascript">
+    $(function () {
+        $.validator.methods.date = function (value, element) {
+            Globalize.culture("hy-AM");
+            // you can alternatively pass the culture to parseDate instead of
+            // setting the culture above, like so:
+            // parseDate(value, null, "en-AU")
+            return this.optional(element) || Globalize.parseDate(value) !== null;
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+
+
+      $(document).ready(function () {
+          var today = new Date();
+            
+
+          $('.dateControl').closest('div').find('input').kendoDatePicker({
+                   
+            
+              footer: "Այսօր - #=kendo.toString(data, 'd') #",
+              open: function () {
+                  var dateViewCalendar = this.dateView.calendar;
+                  if (dateViewCalendar) {
+                      dateViewCalendar.element.width(300);
+                  }
+              }
+          });
+      });
+</script>

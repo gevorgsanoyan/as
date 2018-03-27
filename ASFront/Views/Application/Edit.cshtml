@@ -1,0 +1,463 @@
+﻿@model ASFront.Models.applications
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/Tabs.js")" type="text/javascript"> </script>
+<link href="@Url.Content("~/Content/Tabs.css")" rel="stylesheet" type="text/css" />
+
+<script>
+    $(document).ready(function () {
+
+
+        $('a').closest('.panel-heading').addClass('active-faq');
+        $('a .panel-title span').html('<i class="glyphicon glyphicon-minus"></i>');
+
+        $('.panel-collapse.collapse').attr("aria-expanded", "true");
+        $('.panel-collapse.collapse').addClass('panel-collapse collapse in');
+
+    });
+
+</script>
+
+<div class="fixedDivAppFin">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 Div-Center">@Html.ActionLink("Հաճախորդի տվյալներ", "Edit", "Clients", new { clientId = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-2 Div-Center">@Html.ActionLink("ԱՔՐԱ Հարցում", "GetACRA", "acra", new { ClientID = @Model.clientId, appId = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-4 Div-Center">@Html.ActionLink("ԱՔՐԱ Պրոֆիլ", "ACRAProfile", "acra", new { ClientID = @Model.clientId, appId = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-2 Div-Center">@Html.ActionLink("Հաճախորդի հայտեր", "Index", "Application", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-2 Div-Center">@Html.ActionLink("Հաշվարկել սքոր", "CalculateScores", "Application", new { ClientID = @Model.clientId, ApplicationID = Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            @*<div class="col-sm-3"   >@Html.ActionLink("Նոր հայտ", "Create", "Application", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+            @*<div class="col-sm-4">@Html.ActionLink("Հաճախորդի աշխատանքային տվյալներ", "ClientWorkEdit", "Clients", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+        </div>
+        <div style="height:10px;"></div>
+        <div class="row">
+
+            @*<div class="col-sm-3">@Html.ActionLink("Հաշվարկել սքորը", "CalculateScores", "ScoringApplicationScores", new { ApplicationID = @Model.applicationId, clientId = Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+
+                <div class="col-sm-2">@Html.ActionLink("Հայտի խմբագրում", "Edit", "Application", new { ID = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+                          <div class="col-sm-4">@Html.ActionLink("Վարկի նպատակի խմբագրում", "", "Items", new { ApplicationID = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+        </div>
+    </div>
+
+    <h2 class="arrangeCenter">
+        <span style="color:darkgray">
+            Հայտի № @Model.applicationId-ի  խմբագրում
+        </span>
+        ( @Model.appDate )
+    </h2>
+    <h2 class="arrangeCenter">
+        @*<a href="@Url.Action("Edit", "Clients", new { clientId = @Model.clientId })">@ViewBag.Client &nbsp;(@ViewBag.socNumb) </a>*@
+        <a href="@Url.Action("Edit", "Clients", new {  clientId = @Model.clientId })" class="btn btn-success btnBig">@ViewBag.Client &nbsp;(@ViewBag.socNumb)        </a>
+
+    </h2>
+    <p>
+        @*<h4 style="text-align:right;">@Html.ActionLink("Հայտի ամփոփ վիճակ", "ApplicationSummary", "Application", new { ApplicationID = @Model.applicationId }, null) </h4>*@
+        <div style="text-align:right; padding-right:10px; margin-right:15px;">@Html.ActionLink("Հայտի ամփոփ վիճակ", "ApplicationSummary", "Application", new { ApplicationID = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-success btnBig", }) </div>
+
+    </p>
+
+</div>
+
+@*@Html.Partial("_ClientInfo")*@
+
+
+<div class="After-fixedDivAppFin-Edit"></div>
+
+
+
+<h2 class="UnderFixedDiv">@Resources.Page.Edit</h2>
+
+@if (ViewBag.maturErr != "")
+{
+    <h3>@ViewBag.maturErr</h3>
+}
+
+
+@using (Html.BeginForm())
+
+{
+
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.appDate)
+    @*@Html.HiddenFor(model => model.clientId)*@
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.applicationId)
+        @Html.HiddenFor(model => model.clientId)
+        @Html.HiddenFor(model => model.productId)
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.appDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.appDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.appDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.clientId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.clientId, (SelectList)ViewBag.cl, "---Ընտրել Հաճախորդ---", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.clientId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.branchId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.branchId, (SelectList)ViewBag.br, "---Ընտրել Մասնաճյուղ---", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.branchId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.appStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.appStatus, (SelectList)ViewBag.st, "---Ընտրել կարգավիճակը---", new { onchange = "this.form.submit();", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.appStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.appuserId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.appuserId, (SelectList)ViewBag.sp, "---Ընտրել Հաստատողին---", new { onchange = "this.form.submit();", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.appuserId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.appDescr, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.appDescr, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.appDescr, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.aprDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.aprDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.aprDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.agrNumb, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.agrNumb, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.agrNumb, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.agrNumbP, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.agrNumbP, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.agrNumbP, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
+                    @*<div class="col-md-6 col-md-offset-3">*@
+
+                    <!-- Tab panes -->
+                    <div class="tab-content faq-cat-content">
+                        <div class="tab-pane active in fade" id="faq-cat-1">
+                            <div class="panel-group" id="accordion-cat-1">
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
+                                            <h4 class="panel-title">
+                                                Հայտ
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.productId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.productId, (SelectList)ViewBag.pr, "---Ընտրել product---", new { @class = "form-control", disabled = "disabled" })
+                                                    @Html.ValidationMessageFor(model => model.productId, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.CreditTerm, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.CreditTerm, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @value = "1" } })
+                                                    @Html.ValidationMessageFor(model => model.CreditTerm, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.note1, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.note1, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.note1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.note2, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.note2, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.note2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            @*<div class="form-group">
+                                                    @Html.LabelFor(model => model.note3, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.note3, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.note3, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.note4, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.note4, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.note4, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.note5, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.note5, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.note5, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>*@
+                                            @if (ViewBag.prGroupName == "Ապառիկ")
+                                            {
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.SellerId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.SellerId, (SelectList)ViewBag.Sellers, "---Ընտրել---", new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.SellerId, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            }
+                                            else
+                                            {
+                                                @Html.HiddenFor(model => model.SellerId)
+                                            }
+
+
+                                            @if (ViewBag.isEdirable > 0)
+                                            {
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value=@Resources.Page.Save name="Save" class="btn btn-default" />
+                                                </div>
+                                            </div>
+                                            }
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-2">
+                                            <h4 class="panel-title">
+                                                Ձեռքբերումներ/Վարկի նպատակ
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+
+                                            @Html.Partial("_Items", (List<ASFront.ModelsView.ItemViewModel>)@ViewBag.Items)
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-8">
+                                            <h4 class="panel-title">
+                                                Հաշվեկշռի Տվյալ
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-8" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+                                        @if (ViewBag.isEdirable > 0)
+                                        {
+                                            <p>
+                                                <div style="text-align:right; padding-right:10px;">@Html.ActionLink("Հաշվեկշռի խմբագրում", "", "Balances", new { ApplicationID = @Model.applicationId, ClientID = Model.clientId, Edit = true }, htmlAttributes: new { @class = "btn btn-success ", }) </div>
+
+                                            </p>
+                                        }
+
+
+                                            @Html.Partial("Summary/_AppSumBalance", (ASFront.ModelsView.BalanceViewModel)@ViewBag.Balance)
+                                            <br />
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-9">
+                                            <h4 class="panel-title">
+                                                ԵԾ-ի տվյալ
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-9" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+                                        @if (ViewBag.isEdirable > 0)
+                                        {
+                                            <p>
+                                                <div style="text-align:right; padding-right:10px;">@Html.ActionLink("ԵԾ-ի խմբագրում", "", "IncomeExpenses", new { ApplicationID = @Model.applicationId, ClientID = Model.clientId, Edit = true }, htmlAttributes: new { @class = "btn btn-success ", }) </div>
+
+                                            </p>
+                                        }
+
+
+                                            @Html.Partial("Summary/_AppSumIncomeExpenses", (ASFront.ModelsView.IncomeExpensesViewModel)@ViewBag.IncomeExpenses)
+                                            <br />
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-10">
+                                            <h4 class="panel-title">
+                                                Ֆայլեր
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-10" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+
+                                            <p>
+                                                <div style="text-align:right; padding-right:10px;">@Html.ActionLink("Կցել ֆայլեր", "DocsUpload", "Upload", new { ApplicationID = @Model.applicationId, ClientID = Model.clientId, Edit = true }, htmlAttributes: new { @class = "btn btn-success ", }) </div>
+
+                                            </p>
+
+
+                                            @Html.Partial("_FileTable", (List<ASFront.Models.DocsApllications>)ViewBag.FileTable)
+
+
+                                            <br />
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+}
+
+@*<div>
+        @Html.ActionLink(Resources.Page.BackToList, "Index")
+    </div>
+
+    <p>
+        @Html.ActionLink("Calculate Scores", "CalculateScores", "ScoringApplicationScores", new { ApplicationID = @Model.applicationId, clientId = Model.clientId }, null)
+    </p>*@
+
+
+@Scripts.Render("~/bundles/jqueryval")

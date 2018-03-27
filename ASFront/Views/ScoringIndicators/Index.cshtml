@@ -1,0 +1,73 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.ModelsView.ScoringIndicatorsView>
+
+@{
+    ViewBag.Title = "Ցուցիչներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ցուցիչներ</h2>
+<p>
+   
+</p>
+
+
+
+<p>
+    @Html.ActionLink("Ստեղծել նոր ցուցիչ", "Create") |
+    @Html.ActionLink("Ստեղծել նոր Ցուցիչների տեսակներ", "Create", "ScoringIndicatorsTypes", null, null) |
+    @Html.ActionLink("Ստեղծել նոր Պրամետրեր", "Create", "ScoringParameters", null, null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().IndicatorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().IndicatorTypeName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.First().IndicatorValue)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.First().FormulaText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().FormulaTextPriorityFixed)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndicatorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndicatorTypeName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IndicatorValue)
+        </td>*@
+        <td>
+            <div style="word-wrap:break-word; width:400px;">@Html.DisplayFor(modelItem => item.FormulaText)</div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormulaTextPriorityFixed)
+        </td>
+       
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Ֆորմուլա", "", "ScoringFormula", new { IndicatorID = item.ID }, null) |
+            @Html.ActionLink("Պարամետրեր", "", "ScoringIndicatorsParameters", new { IndicatorID = item.ID }, null) |
+            @Html.ActionLink("Գնահ. միավորներ", "", "ScoringScores", new { IndicatorID = item.ID }, null)
+            
+        </td>
+    </tr>
+}
+
+</table>
+@Html.Partial("_Paging", Model)
+
+@Html.Partial("_IndicatorMenu")

@@ -1,0 +1,93 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.Models.Suppliers>
+
+@{
+    ViewBag.Title = "Մատակարարներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Մատակարարների ցուցակ</h2>
+
+<p>
+    @Html.ActionLink("Մուտքագրել Մատակարար", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SupplierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SupplierBrand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().regAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().curAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SupplierDirector)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().phoneNumb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().faxNumb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().mobNumb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().hvhh)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierBrand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.regAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.curAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierDirector)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneNumb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.faxNumb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mobNumb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hvhh)
+        </td>
+
+        <td>
+            @Html.ActionLink("Խմբագրել", "Edit", new { id=item.SupplierId }) |
+            @Html.ActionLink("Դիտել", "Details", new { id=item.SupplierId })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+
+
+@Html.Partial("_Paging", Model)

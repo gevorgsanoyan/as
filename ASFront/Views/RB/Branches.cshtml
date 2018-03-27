@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ASFront.Models.Branches>
+
+@{
+    ViewBag.Title = "Branches";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Մասնաճյուղեր</h2>
+
+<section class="col-sm-6">
+    <table class="table-bordered">
+        @Html.ActionLink("Նոր մասնաճյուղ", "CreateBranch")
+    </table>
+</section>
+
+<section class="col-sm-6">
+    <table class="table-bordered">
+        @Html.ActionLink("Տարածաշրջաններ", "Index", "RB")
+    </table>
+</section>
+
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Branch)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Branch)
+        </td>
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id=item.Id }) |
+            @Html.ActionLink(Resources.Page.Details, "Details", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

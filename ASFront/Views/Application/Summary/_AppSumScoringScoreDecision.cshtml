@@ -1,0 +1,44 @@
+﻿@model ASFront.ModelsView.AppSumScoringScoreDecisionViewModel
+@*@{
+    string RowCalss = "OddRow";
+    int RowIndex = 1;
+}*@
+
+
+   <div>
+       @*<h3 class="BoldText">Որոշում</h3>*@
+
+   </div>
+       
+   
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Decision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScoreDate)
+        </th>
+    </tr>
+
+
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.Score)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Decision)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ScoreDate)
+        </td>
+    </tr>
+
+ 
+
+
+
+</table>

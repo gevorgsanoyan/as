@@ -1,0 +1,216 @@
+﻿@model ASFront.Models.applications
+
+@{
+    ViewBag.Title = "Հայտ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_ClientInfo")
+
+
+<h2 class="UnderFixedDiv">@Resources.Page.Create</h2>
+
+@if(ViewBag.maturErr != "")
+{
+    <h3>@ViewBag.maturErr</h3>
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.HiddenFor(model=> model.appDate)
+   
+
+    <div class="form-horizontal">
+        <h4>Հայտ</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+@if (ViewBag.ClintFixed != true)
+{
+        <div class="form-group">
+            @Html.LabelFor(model => model.appDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.appDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clientId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.DropDownListFor(model => model.clientId, (SelectList)ViewBag.cl, "---Ընտրել Հաճախորդ---", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.clientId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+}
+else
+{
+    @Html.HiddenFor(model => model.clientId)
+}
+              @*@if (ViewBag.ClintFixed == true)
+              {
+            <script>
+                $('[name="clientId"]').attr("disabled", true);
+            </script>
+                  }*@
+              
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.branchId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @Html.DropDownListFor(model => model.branchId, (SelectList)ViewBag.br, "---Ընտրել Մասնաճյուղ---", new { onchange = "this.form.submit();", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.branchId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.appStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+             @Html.DropDownListFor(model => model.appStatus, (SelectList)ViewBag.st, "---Ընտրել կարգավիճակը---", new { onchange = "this.form.submit();", @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.appStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.appuserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.DropDownListFor(model => model.appuserId, (SelectList)ViewBag.sp, "---Ընտրել Հաստատողին---", new { onchange = "this.form.submit();", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.appuserId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.appDescr, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appDescr, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.appDescr, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.aprDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.aprDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.aprDate, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.agrNumb, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.agrNumb, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.agrNumb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.agrNumbP, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.agrNumbP, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.agrNumbP, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+        <div class="form-group">
+            @Html.Label("Պրոդուկտի խումբ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("prGroup", (SelectList)ViewBag.prGroup, "---Ընտրել պրոդուկտի խումբը---", new { onchange = "this.form.submit();", @class = "form-control" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.productId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.productId, (SelectList)ViewBag.pr, "---Ընտրել պրոդուկտը---", new {  @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.productId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreditTerm, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreditTerm, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @value = "1" } })
+                @Html.ValidationMessageFor(model => model.CreditTerm, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.note1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.note1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.note1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.note2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.note2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.note2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.note3, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.note3, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.note3, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.note4, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.note4, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.note4, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.note5, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.note5, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.note5, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @if (ViewBag.brpdGroupId == 1)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.SellerId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">                                
+                        @Html.DropDownListFor(model => model.SellerId, (SelectList)ViewBag.Sellers, "---Ընտրել---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SellerId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.SellerId, new { @Value = 6 })
+        }
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+               <input type="submit" value=@Resources.Page.Save   name="Save"  class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(Resources.Page.BackToList, "Index")
+</div>
+
+@Scripts.Render("~/bundles/jqueryval")

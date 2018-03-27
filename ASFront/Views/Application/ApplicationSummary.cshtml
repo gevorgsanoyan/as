@@ -1,0 +1,716 @@
+﻿@model ASFront.ModelsView.ApplicationSummaryViewModel
+@using ASFront.Models
+
+@{
+    ViewBag.Title = "ApplicationSummary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    int Score = 0;
+
+    if (ViewBag.Score != null)
+    {
+        Score = 1;
+    }
+
+}
+<script src="@Url.Content("~/Scripts/Tabs.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/Tabs.css")" rel="stylesheet" type="text/css" />
+@*<link href="@Url.Content("~/Content/TabsPanels.css")" rel="stylesheet" type="text/css" />*@
+
+@*<script>
+        $(document).ready(function () {
+
+
+            $('a').closest('.panel-heading').addClass('active-faq');
+            $('a .panel-title span').html('<i class="glyphicon glyphicon-minus"></i>');
+
+            $('.panel-collapse.collapse').attr("aria-expanded", "true");
+            $('.panel-collapse.collapse').addClass('panel-collapse collapse in');
+
+        });
+
+    </script>*@
+
+
+
+<script>
+    $(document).ready(function () {
+        if (@Score==1) {
+
+            $("#faq-cat-1-heading-5 .panel-heading").addClass("active-faq");
+            $("#faq-cat-1-heading-5 .panel-title span").html('<i class="glyphicon glyphicon-minus"></i>');
+
+            $("#faq-cat-1-sub-5").attr("aria-expanded", "true");
+            $("#faq-cat-1-sub-5").addClass('panel-collapse collapse in');
+
+        }
+
+
+        });
+
+
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+
+</script>
+
+
+
+
+
+<style>
+    .panel-title {
+        font-size: 20px !important;
+    }
+</style>
+
+<div class="fixedDivAppFin">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 ">
+
+                <div class="col-sm-2 Div-Center">
+                    <a href='@Url.Action("Edit", "Clients",  new {  clientId = @Model.clientId })'
+                       data-toggle="popover" data-trigger="hover" data-content="Հաճախորդի տվյալներ">
+                        <img src='@Url.Content("~/img/Hachaxordi_tvyalner.jpg")' class="buttonImage" style="width:60px" />
+                    </a>
+                    @*@Html.ActionLink("Հաճախորդի տվյալներ", "Edit", "Clients", new { clientId = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", })*@ 
+                </div>
+                @if (Model.Application.appStatus == 1)
+                {
+                    <div class="col-sm-2 Div-Center">
+                        <a href='@Url.Action("GetACRA", "acra",new { ClientID = @Model.clientId, appId = @Model.ApplicationID, acraReqType = "2" })'
+                           data-toggle="popover" data-trigger="hover" data-content="ԱՔՐԱ հարցում">
+                            <img src='@Url.Content("~/img/Acra_harcum.jpg")' class="buttonImage" style="width:60px" />
+                        </a>
+                        @*@Html.ActionLink("ԱՔՐԱ Հարցում", "GetACRA", "acra", new { ClientID = @Model.clientId, appId = @Model.ApplicationID, acraReqType = "2" }, htmlAttributes: new { @class = "btn btn-default", })*@ 
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-2 Div-Center">
+                        <a href='@Url.Action("GetACRA", "acra",new { ClientID = @Model.clientId, appId = @Model.ApplicationID, acraReqType = "2" })'
+                           data-toggle="popover" data-trigger="hover" data-content="ԱՔՐԱ հարցում">
+                            <img src='@Url.Content("~/img/Acra_harcum.jpg")' class="buttonImage" style="width:60px" />
+                        </a>
+                        @*@Html.ActionLink("ԱՔՐԱ Հարցում", "GetACRA", "acra", new { ClientID = @Model.clientId, appId = @Model.ApplicationID, acraReqType = "2" }, htmlAttributes: new { @class = "btn btn-default", })*@
+                    </div>
+                }
+                <div class="col-sm-4 Div-Center">
+                    <a href='@Url.Action("ACRAProfile", "acra", new { ClientID = @Model.clientId, appId = @Model.ApplicationID })'
+                       data-toggle="popover" data-trigger="hover" data-content="ԱՔՐԱ Պրոֆիլ">
+                        <img src='@Url.Content("~/img/Acra_profile.jpg")' class="buttonImage" style="width:60px" />
+                    </a>
+                    @*@Html.ActionLink("ԱՔՐԱ Պրոֆիլ", "ACRAProfile", "acra", new { ClientID = @Model.clientId, appId = @Model.ApplicationID }, htmlAttributes: new { @class = "btn btn-default", })*@ 
+                </div>
+                <div class="col-sm-2 Div-Center">
+                    <a href='@Url.Action("", "Application",new {  ClientID = @Model.clientId })'
+                       data-toggle="popover" data-trigger="hover" data-content="Հաճախորդի հայտեր">
+                        <img src='@Url.Content("~/img/Hachaxordi_hayter.jpg")' class="buttonImage" style="width:60px" />
+                    </a>
+                    @*@Html.ActionLink("Հաճախորդի հայտեր", "Index", "Application", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", })*@ 
+                </div>
+                <div class="col-sm-2 Div-Center">
+                    <a href='@Url.Action("CalculateScores", "Application",new {  ClientID = @Model.clientId, ApplicationID = Model.ApplicationID })'
+                       data-toggle="popover" data-trigger="hover" data-content="Հաշվարկել սքոր">
+                        <img src='@Url.Content("~/img/Hashvarkel score.jpg")' class="buttonImage" style="width:60px" />
+                    </a>
+                    @*@Html.ActionLink("Հաշվարկել սքոր", "CalculateScores", "Application", new { ClientID = @Model.clientId, ApplicationID = Model.ApplicationID }, htmlAttributes: new { @class = "btn btn-default", })*@ 
+                </div>
+                @*<div class="col-sm-3"   >@Html.ActionLink("Նոր հայտ", "Create", "Application", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+                @*<div class="col-sm-4">@Html.ActionLink("Հաճախորդի աշխատանքային տվյալներ", "ClientWorkEdit", "Clients", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+            </div>
+        </div>
+        @*<div style="height:10px;"></div>*@
+        @*<div class="row">
+
+            <div class="col-sm-3">@Html.ActionLink("Հաշվարկել սքորը", "CalculateScores", "ScoringApplicationScores", new { ApplicationID = @Model.applicationId, clientId = Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+
+                <div class="col-sm-2">@Html.ActionLink("Հայտի խմբագրում", "Edit", "Application", new { ID = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+                          <div class="col-sm-4">@Html.ActionLink("Վարկի նպատակի խմբագրում", "", "Items", new { ApplicationID = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+        </div>*@
+
+
+        <h3 class="arrangeCenter">
+            <span style="color:darkgray">
+                Հայտի № @Model.AppSumBriefDataViewModel.applicationId-ի ամփոփ վիճակ
+            </span>
+            ( @ViewBag.appDate )
+        </h3>
+        @*<h2 class="arrangeCenter"></h2>*@
+
+        <div class="row">
+            <div class="col-md-12 ButtomSpace VarrangeCenter">
+                <div class="col-sm-6 ">
+                    <h4 class="arrangeCenter " style="height:100%; padding-top:7px;" id="left">
+                        <a href="@Url.Action("Edit", "Clients", new {  clientId = @Model.clientId })" title=@Resources.Page.Edit class="btn btn-success btnBig">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            @ViewBag.Client &nbsp;(@ViewBag.socNumb)
+                        </a>
+                    </h4>
+                </div>
+                <div class="col-sm-6 Div-Center" style="height:100%;">
+                    <h5 class="arrangeCenter " id="right">
+
+                        @if (@Model.AppSumDetailPurposeViewModel.appStatus != null)
+                        {@Html.DisplayNameFor(model => model.AppSumDetailPurposeViewModel.appStatus)
+                        <span class="btn btn-default " style="margin-left:5px;">
+
+                            @Model.AppSumDetailPurposeViewModel.appStatus
+                        </span>
+                    }
+                    </h5>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="After-fixedDivAppFin"></div>
+@*<div style="width:1140px;">
+
+
+
+
+
+
+
+
+
+    </div>*@
+
+<script>
+    $(document).ready(function () {
+        var height = Math.max($("#left").height(), $("#right").height());
+        $("#left").height(height);
+        $("#right").height(height);
+    });
+</script>
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 ">
+            @*<div class="col-md-6 col-md-offset-3">*@
+
+            <!-- Tab panes -->
+            <div class="tab-content faq-cat-content">
+                <div class="tab-pane active in fade" id="faq-cat-1">
+                    <div class="panel-group" id="accordion-cat-1">
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
+                                    <h4 class="panel-title">
+                                        Հայտի Ամփոփ Տվյալ
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-1" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+                                    @Html.Partial("Summary/_AppSumBriefData", @Model.AppSumBriefDataViewModel)
+
+                                    <br />
+
+                                    @Html.Partial("Summary/_AppSumDetailPurpose", @Model.AppSumDetailPurposeViewModel)
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        @*<div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-2">
+                                        <h4 class="panel-title">
+                                            Հայտի Մանրամասն Նպատակ
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-1-sub-2" class="panel-collapse collapse">
+                                    <div class="panel-body">
+
+
+
+                                        @Html.Partial("Summary/_AppSumDetailPurpose", @Model.AppSumDetailPurposeViewModel)
+
+                                        <br />
+
+
+
+                                    </div>
+                                </div>
+                            </div>*@
+
+
+
+
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-3">
+                                    <h4 class="panel-title">
+                                        Հայտի նպատակ
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-3" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+                                    @Html.Partial("Summary/_AppSumProductDescription", @Model.AppSumProductDescriptionViewModel)
+
+                                    <br />
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        @*<div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-4">
+                                        <h4 class="panel-title">
+                                            Սքորինգային Գնահատական
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-1-sub-4" class="panel-collapse collapse">
+                                    <div class="panel-body">
+
+
+                                        @Html.Partial("Summary/_AppSumScoringScore", @Model.AppSumScoringScoreViewModel)
+
+                                        <br />
+
+
+
+                                    </div>
+                                </div>
+                            </div>*@
+
+
+
+
+
+
+
+                        <div class="panel panel-default panel-faq" id="faq-cat-1-heading-5">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-5">
+                                    <h4 class="panel-title">
+                                        Սքորինգի Մանրամասներ
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-5" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+
+                                    @Html.Partial("Summary/_AppSumScoringScore", @Model.AppSumScoringScoreViewModel)
+
+                                    <br />
+
+
+
+                                    @Html.Partial("Summary/_AppSumScoringScoreDecision", @Model.AppSumScoringScoreDecisionViewModel)
+
+                                    <br />
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-6">
+                                    <h4 class="panel-title">
+                                        Հաստատման մարամասներ
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-6" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+
+                                    @Html.Partial("Summary/_AppSumDecisionMaking", @Model.AppSumDecisionMakingViewModel)
+
+                                    <br />
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        @*<div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-7">
+                                    <h4 class="panel-title">
+                                        Պայմանագիր
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-7" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+                                    @Html.Partial("Summary/_AppSumContract", @Model.AppSumContractViewModel)
+                                    <br />
+
+
+
+
+                                </div>
+                            </div>
+                        </div>*@
+
+
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-11">
+                                    <h4 class="panel-title">
+                                        Վարկի Ապահովվածություն
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-11" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+                                    @*<p>
+                        <div style="text-align:right; padding-right:10px;">
+                            @Html.ActionLink("ԵԾ-ի խմբագրում", "", "IncomeExpenses", new { ApplicationID = @Model.ApplicationID, ClientID = Model.clientId }, htmlAttributes: new { @class = "btn btn-success ", })
+                        </div>
+
+                    </p>*@
+
+
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-12 ">
+
+                                                <div class="col-sm-3 Div-Center">@Html.ActionLink("Ոսկի", "", "GoldCollaterals", new { ClientID = @Model.clientId, ApplicationID = @Model.ApplicationID }, htmlAttributes: new { @class = "btn btn-success btn-FullWidth", target = "_blank" }) </div>
+
+                                                <div class="col-sm-3 Div-Center">@Html.ActionLink("Անշարժ գույք", "", "RealtyEstates", new { ClientID = @Model.clientId, ApplicationID = @Model.ApplicationID }, htmlAttributes: new { @class = "btn btn-success btn-FullWidth", target = "_blank" }) </div>
+
+                                                <div class="col-sm-3 Div-Center">@Html.ActionLink("Շարժական գույք", "", "MovableEstates", new { ClientID = @Model.clientId, ApplicationID = @Model.ApplicationID }, htmlAttributes: new { @class = "btn btn-success btn-FullWidth", target = "_blank" }) </div>
+
+                                                <div class="col-sm-3 Div-Center">@Html.ActionLink("Երաշխավոր", "GuarantorsInput", "Guarantors", new { ClientID = @Model.clientId, ApplicationID = Model.ApplicationID }, htmlAttributes: new { @class = "btn btn-success btn-FullWidth", target = "_blank" }) </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br />
+
+                                    @Html.Partial("Summary/_AppLoanInsurance", @Model.LoanInsurance)
+                                    <br />
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-12">
+                                    <h4 class="panel-title">
+                                        Գյուղատնտեսական Ակտիվներ
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-12" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+                                    <p>
+                                        <div style="text-align:right; padding-right:10px;">
+                                            @Html.ActionLink("Գյուղատնտեսական Ակտիվների խմբագրում", "", "AgroAssets", new { ApplicationID = @Model.ApplicationID, ClientID = Model.clientId }, htmlAttributes: new { @class = "btn btn-success ", })
+
+                                        </div>
+
+                                    </p>
+
+
+                                    @Html.Partial("Summary/_AppSumAgroAssets", @Model.AgroAssets)
+                                    <br />
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-13">
+                                    <h4 class="panel-title">
+                                        Ապրանքանյութական Պաշարներ
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-13" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+                                    <p>
+                                        <div style="text-align:right; padding-right:10px;">
+                                            @Html.ActionLink("Ապրանքանյութական Պաշարներների խմբագրում", "", "Turnovers", new { ApplicationID = @Model.ApplicationID, ClientID = Model.clientId }, htmlAttributes: new { @class = "btn btn-success ", target = "_blank" })
+
+                                        </div>
+
+                                    </p>
+
+
+                                    @Html.Partial("Summary/_Turnover", @Model.Turnover)
+                                    <br />
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-14">
+                                    <h4 class="panel-title">
+                                        Փոխկապակցված Անձինք
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-14" class="panel-collapse collapse">
+                                <div class="panel-body" id="ClientsGroupPanel">
+
+
+                                    <p>
+                                        <div style="text-align:right; padding-right:10px;">
+                                            @Html.ActionLink("Ավելացնել փոխկապակցված անձանց", "ClientsGroupMembersInput", "groups", new { clientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-success", target = "_blank" })
+                                        </div>
+
+                                    </p>
+
+                                    @* @Html.Partial("~/Views/clientsGroups/ClientsGroup.cshtml", (List<ASFront.ModelsView.clientsGroupDetView>)@ViewBag.ClientsGroup)*@
+                                    @{Html.RenderPartial("~/Views/clientsGroups/ClientsGroup.cshtml", (List<ASFront.ModelsView.clientsGroupDetView>)@ViewBag.ClientsGroup);}
+
+
+
+
+                                    <br />
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-8">
+                                    <h4 class="panel-title">
+                                        Հաշվեկշռի Տվյալ
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-8" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+                                    <p>
+                                        <div style="text-align:right; padding-right:10px;">
+                                            @Html.ActionLink("Հաշվեկշռի խմբագրում", "", "Balances", new { ApplicationID = @Model.ApplicationID, ClientID = Model.clientId }, htmlAttributes: new { @class = "btn btn-success ", })
+
+                                        </div>
+
+                                    </p>
+
+
+                                    @Html.Partial("Summary/_AppSumBalance", @Model.Balance)
+                                    <br />
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-9">
+                                    <h4 class="panel-title">
+                                        ԵԾ-ի տվյալ
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-9" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+                                    <p>
+                                        <div style="text-align:right; padding-right:10px;">
+                                            @Html.ActionLink("ԵԾ-ի խմբագրում", "", "IncomeExpenses", new { ApplicationID = @Model.ApplicationID, ClientID = Model.clientId }, htmlAttributes: new { @class = "btn btn-success ", })
+                                        </div>
+
+                                    </p>
+
+
+                                    @Html.Partial("Summary/_AppSumIncomeExpenses", @Model.IncomeExpenses)
+                                    <br />
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-10">
+                                    <h4 class="panel-title">
+                                        Ֆայլեր
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-10" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-12 ">
+
+
+
+
+                                                <div class="col-sm-4 Div-Center">@Html.ActionLink("Ստեղծել հանձնման-ընդուման ակտ", "GoldAcceptanceAct", "ToPDF", new { ClientID = @Model.clientId, ApplicationID = @Model.ApplicationID }, htmlAttributes: new { @class = "btn btn-success ", target = "_blank" }) </div>
+
+                                                <div class="col-sm-4 Div-Center">@Html.ActionLink("Ստեղծել վարկային դիմում", "UniversalCreditApplication", "ToPDF", new { ClientID = @Model.clientId, ApplicationID = Model.ApplicationID }, htmlAttributes: new { @class = "btn btn-success ", target = "_blank" }) </div>
+                                                <div class="col-sm-4 Div-Center">
+                                                    @*@Html.ActionLink("Ստեղծել ոսկու գրավով վարկային դիմում", "GoldLoanCreditApplication", "ToPDF", new { ClientID = @Model.clientId, ApplicationID = @Model.ApplicationID }, htmlAttributes: new { @class = "btn btn-success ", target = "_blank" })*@
+                                                    @Html.ActionLink("Կցել ֆայլեր", "DocsUpload", "Upload", new { ApplicationID = @Model.ApplicationID, ClientID = Model.clientId }, htmlAttributes: new { @class = "btn btn-success ", })
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br />
+
+                                    <p>
+                                        @*<div style="text-align:right; padding-right:10px;">@Html.ActionLink("Կցել ֆայլեր", "DocsUpload", "Upload", new { ApplicationID = @Model.ApplicationID, ClientID = Model.clientId }, htmlAttributes: new { @class = "btn btn-success ", }) </div>*@
+
+                                    </p>
+
+
+                                    @Html.Partial("_FileTable", (List<ASFront.Models.DocsApllications>)ViewBag.FileTable)
+                                    <br />
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+

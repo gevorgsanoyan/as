@@ -1,0 +1,195 @@
+﻿@model ASFront.Models.Products
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Page.Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Պրոդուկտ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productGroupId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productGroupId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productShortName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productShortName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.agrType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agrType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.minMaturtity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.minMaturtity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maxMaturity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maxMaturity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.upfronFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.upfronFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mothFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mothFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mothFeeFlat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mothFeeFlat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anualRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anualRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.asNote1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asNote1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.asNote2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asNote2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.asSector)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asSector)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productCurrency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productCurrency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prodStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prodStatus)
+        </dd>
+
+      
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value=@Resources.Page.Delete  class="btn btn-default" /> |
+            @Html.ActionLink(Resources.Page.BackToList, "Index")
+        </div>
+    }
+</div>

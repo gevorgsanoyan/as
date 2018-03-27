@@ -1,0 +1,67 @@
+﻿@model ASFront.Models.group
+
+@{
+    ViewBag.Title = "Խումբ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Դիտել</h2>
+
+<div>
+    <h4>Խումբ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gruopName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gruopName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gruopAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gruopAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gruopFullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gruopFullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note3)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Խմբագրել", "Edit", new { id = Model.groupId }) |
+    @Html.ActionLink("Վերադառնալ", "Index")
+</p>

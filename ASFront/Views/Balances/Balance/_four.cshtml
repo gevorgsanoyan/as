@@ -1,0 +1,27 @@
+﻿@model ASFront.Models.Balance
+
+
+@Html.Partial("Balance/_four_one", Model)
+
+
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.AccountPayable, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.AccountPayable, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+        @Html.ValidationMessageFor(model => model.AccountPayable, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.OtherCurrentLiabilities, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.OtherCurrentLiabilities, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+        @Html.ValidationMessageFor(model => model.OtherCurrentLiabilities, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+
+

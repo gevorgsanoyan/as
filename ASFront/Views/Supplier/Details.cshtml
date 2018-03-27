@@ -1,0 +1,176 @@
+﻿@model ASFront.Models.Suppliers
+
+@{
+    ViewBag.Title = "Մատակարարի տվյալները";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Մատակարարի մասին մանրամասներ</h2>
+
+<div>
+    <h4>Մատակարար</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierBrand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierBrand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.regAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.regAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.curAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.curAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierDirector)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierDirector)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneNumb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneNumb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.faxNumb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.faxNumb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mobNumb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mobNumb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hvhh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hvhh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bankAccnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bankAccnt)
+        </dd>
+
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelegramID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelegramID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note5)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note5)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Խմբագրել", "Edit", new { id = Model.SupplierId }) |
+    @Html.ActionLink("Վերադառնալ ցուցակ", "Index")
+</p>

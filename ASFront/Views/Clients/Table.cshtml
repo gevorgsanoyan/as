@@ -1,0 +1,103 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.Models.clients>
+
+@{
+    ViewBag.Title = "Հաճախորդներ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2 class="arrangeCenter NameTitle">Որոնման Արդյունքները</h2>
+
+<div style="height:75px;">
+
+</div>
+
+
+
+
+<table class="table table-striped table-advance table-hover table-Full">
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.First().clientId)
+        </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.First().clientName)*@
+            Հաճախորդ
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().socNumb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().passpNumb)
+        </th>
+        <th>
+            Գրանցման հասցե
+        </th>
+
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.First().note1)
+        </th>*@
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @*<tr onclick="location.href = '@(Url.Action("Edit",  new { clientId = item.clientId }))'"  style="cursor:pointer" title="Խմբագրել">*@
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.clientId)
+            </td>*@
+            <td>
+
+                @Html.ActionLink("" + @Html.DisplayFor(modelItem => item.clientName)+
+               " " + @Html.DisplayFor(modelItem => item.clientLastName), "Edit", new { clientId = item.clientId }, null)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.socNumb)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.passpNumb)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rRegion),  
+                @Html.DisplayFor(modelItem => item.rCity), 
+                @Html.DisplayFor(modelItem => item.rStreet)
+                @Html.DisplayFor(modelItem => item.rBuilding)  
+                @Html.DisplayFor(modelItem => item.rApartment) 
+            </td>
+            
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.note1)
+                </td>*@
+            @*<td>
+                    @Html.ActionLink("Դիտել/Խմբագրել", "Edit", new { clientId = item.clientId })
+                </td>*@
+        </tr>
+    }
+
+</table>
+<br />
+
+
+@Html.Partial("_Paging", Model)

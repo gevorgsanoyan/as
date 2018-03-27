@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Ավելացնել խմբում";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Տվյալ հաճախորդին ավելացնելիս տեղի է ունեցել հետևյալ խափանումը</h2>
+
+<div>
+    <p>
+        @Html.Label("Սխալի մասին ինֆորմացիա ", new { @class = "control-label" }) - @ViewBag.errMsg
+    </p>
+</div>
+<div>
+    <p>
+        <a href="@Url.Action("Edit", "Clients", new {  clientId = @ViewBag.clientId })" title=@Resources.Page.Edit class="btn btn-success btnBig">
+            <span class="glyphicon glyphicon-pencil"></span>
+            Վերադառնալ հաճախորդի խմբագրման էջ
+        </a>
+    </p>
+</div>

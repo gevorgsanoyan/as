@@ -1,0 +1,177 @@
+﻿@model ASFront.Models.BusinessInfo
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BusinessInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessSector.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessSector.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.clients.clientName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.clients.clientName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.clientSexes.sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.clientSexes.sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameofBanks.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameofBanks.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnershipType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnershipType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.businessDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.businessDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberofMonths)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberofMonths)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BankAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MidName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MidName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DayofBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayofBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SocialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SocialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DirEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note2)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

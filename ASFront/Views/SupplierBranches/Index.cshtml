@@ -1,0 +1,111 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.Models.SupplierBranches>
+
+@{
+    ViewBag.Title = "Մատակարարողի մասնաճյուղեր";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Մատակարարողի մասնաճյուղեր</h2>
+
+<p>
+    @Html.ActionLink(Resources.Page.CreateNew, "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().BrancheName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Suppliers.SupplierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Phone)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Coordinate1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Coordinate2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note5)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrancheName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Suppliers.SupplierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Coordinate1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Coordinate2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note5)
+        </td>*@
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id=item.BrancheId }) @*|*@
+            @*@Html.ActionLink(Resources.Page.Details, "Details", new { id=item.Id }) |
+            @Html.ActionLink(Resources.Page.Delete, "Delete", new { id=item.Id })*@
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+
+
+@Html.Partial("_Paging", Model)

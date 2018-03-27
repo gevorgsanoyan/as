@@ -1,0 +1,241 @@
+﻿@model ASFront.Models.GoldCollaterals
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-inline">
+
+    @*<hr />*@
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.applicationId)
+
+    @Html.Hidden("EditMode", (string)ViewBag.EditMode)
+
+
+
+    <table class="table table-striped table-advance table-hover">
+
+        <thead>
+            <tr>
+
+                <th class="col-md-2">
+                    @Html.LabelFor(model => model.GoldTypeId, htmlAttributes: new { @class = "control-label col-md-12" })
+                </th>
+
+                <th class="col-md-1">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-12" })
+                </th>
+                <th class="col-md-1">
+                    @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-12" })
+                </th>
+
+                <th class="col-md-2">
+                    @Html.LabelFor(model => model.TotalWeightWithJewels, htmlAttributes: new { @class = "control-label col-md-12" })
+
+                </th>
+                <th class="col-md-2">
+
+                    @Html.LabelFor(model => model.NetWeight, htmlAttributes: new { @class = "control-label col-md-12" })
+
+                </th>
+
+                <th class="col-md-2">
+                    @Html.LabelFor(model => model.PresenceOfAssayStamp, htmlAttributes: new { @class = "control-label col-md-12" })
+
+
+
+                </th>
+
+                <th class="col-md-2">
+                    @Html.LabelFor(model => model.GoldAssayId, htmlAttributes: new { @class = "control-label col-md-12" })
+                </th>
+
+
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+
+                <td>
+
+                    <div>
+                        @Html.DropDownList("GoldTypeId", null, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.GoldTypeId, "", new { @class = "text-danger" })
+                    </div>
+
+                </td>
+
+                <td>
+                    <div>
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+
+
+                <td>
+                    <div>
+                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @value = "1" } })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+                
+                <td>
+                    <div>
+                        @Html.EditorFor(model => model.TotalWeightWithJewels, new { htmlAttributes = new { @class = "form-control" } })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.TotalWeightWithJewels, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @Html.EditorFor(model => model.NetWeight, new { htmlAttributes = new { @class = "form-control" } })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.NetWeight, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        @*<div class="checkboxForm"></div>*@
+                        @*@Html.EditorFor(model => model.PresenceOfAssayStamp)*@
+                        @Html.DropDownListFor(model => model.PresenceOfAssayStamp, (SelectList)ViewBag.AssayStamp, new { @class = "form-control" })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.PresenceOfAssayStamp, "", new { @class = "text-danger" })
+
+                    </div>
+                </td>
+
+
+
+                <td>
+                    <div>
+                        @Html.DropDownList("GoldAssayId", null, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.GoldAssayId, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    @*<div class=" row ">
+
+
+        <div class="form-group formMargin col-md-4">
+            @Html.LabelFor(model => model.GoldAssayId, htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                @Html.DropDownList("GoldAssayId", null, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                <br />
+                @Html.ValidationMessageFor(model => model.GoldAssayId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group formMargin col-md-4">
+            @Html.LabelFor(model => model.GoldTypeId, htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                @Html.DropDownList("GoldTypeId", null, "---Ընտրել---", htmlAttributes: new { @class = "form-control" })
+                <br />
+                @Html.ValidationMessageFor(model => model.GoldTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group formMargin col-md-4">
+            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                <br />
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div class=" row ">
+
+
+        <div class="form-group formMargin col-md-4">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                <br />
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group formMargin col-md-4">
+            @Html.LabelFor(model => model.TotalWeightWithJewels, htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.TotalWeightWithJewels, new { htmlAttributes = new { @class = "form-control" } })
+                <br />
+                @Html.ValidationMessageFor(model => model.TotalWeightWithJewels, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group formMargin col-md-4">
+            @Html.LabelFor(model => model.NetWeight, htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.NetWeight, new { htmlAttributes = new { @class = "form-control" } })
+                <br />
+                @Html.ValidationMessageFor(model => model.NetWeight, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class=" row ">
+
+        <div class="form-group formMargin col-md-4">
+            @Html.LabelFor(model => model.PresenceOfAssayStamp, htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                <div class="checkboxForm">
+                    @Html.EditorFor(model => model.PresenceOfAssayStamp)
+                    <br />
+                    @Html.ValidationMessageFor(model => model.PresenceOfAssayStamp, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+       
+
+    </div>*@
+        <div class="form-group formMargin col-md-12" >
+            <div style="text-align:right; padding-right: 0px; margin-right: -15px;">
+                @*<input type="submit" value=@Resources.Page.Save name="Save" class="btn btn-default" />
+                <a href='@Url.Action("Create", new { ApplicationID = ViewBag.ApplicationID})'
+                   data-toggle="popover" data-trigger="hover" data-content=@Resources.Page.Save>
+                    <img src='@Url.Content("~/img/copy.png")' />
+                </a>*@
+              
+                    <button type="submit" style="border: 0; background: transparent" title=@Resources.Page.Save>
+                        <img src='@Url.Content("~/img/Floppy-Small-icon.png")' alt="submit" class="ButtonIconsBig" />
+                    </button>
+             
+                
+            </div>
+        </div>
+       
+    </div>
+    }
+
+
+    @Scripts.Render("~/bundles/jqueryval")

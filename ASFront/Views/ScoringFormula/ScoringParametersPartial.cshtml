@@ -1,0 +1,47 @@
+﻿@using PagedList.Mvc;
+@model IEnumerable<ASFront.ModelsView.ScoringParametersViewModels>
+
+<div>
+    <h4>Պարամետրերի Աղյուսակ</h4>
+  
+  
+
+    <table class="table">
+        <tr>
+           
+          
+            <th>
+                @Html.DisplayNameFor(model => model.First().InputParameterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().InputParameterValue)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.InputParameterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InputParameterValue)
+                </td>
+                
+
+              
+            </tr>
+        }
+
+    </table>
+
+</div>
+<br />
+<hr />
+
+@*
+
+@Html.Partial("_Paging", Model)*@

@@ -1,0 +1,59 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ASFront.Models.Streets>
+
+
+
+@{
+    ViewBag.Title = "Փողոց";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Փողոց</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().reg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().cName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().building)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().apartment)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.reg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.building)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apartment)
+        </td>
+        <td>
+            @Html.ActionLink(Resources.Page.Edit, "Edit", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

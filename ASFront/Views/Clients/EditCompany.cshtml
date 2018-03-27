@@ -1,0 +1,1086 @@
+﻿@model ASFront.Models.clientFullViewModel
+
+@{
+    ViewBag.Title = "Խմբագրել հաճախորդի տվյալները";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/Tabs.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/Tabs.css")" rel="stylesheet" type="text/css" />
+
+
+
+@*<div class="LeftButtons">
+
+        <div>
+            <a href='@Url.Action("Create", "Application",  new { clientId = @Model.c.clientId })'
+               data-toggle="popover" data-trigger="hover" data-content="Նոր Հայտ">
+                <img src='@Url.Content("~/img/newApplication.png")' class="buttonImage" />
+            </a>
+        </div>
+
+        <div>
+            <a href='@Url.Action("", "Application",new { ClientID = @Model.c.clientId, appId = 0 })'
+               data-toggle="popover" data-trigger="hover" data-content="Հաճախորդի հայտեր">
+                <img src='@Url.Content("~/img/allApplication.png")' class="buttonImage" />
+            </a>
+        </div>
+        <div>
+            <a href='@Url.Action("GetACRA", "acra",new { ClientID = @Model.c.clientId, appId = 0 })'
+               data-toggle="popover" data-trigger="hover" data-content="ԱՔՐԱ հարցում">
+                <img src='@Url.Content("~/img/acra.png")' class="buttonImage" />
+            </a>
+        </div>
+        <a href='@Url.Action("ACRAProfile", "acra", new { ClientID = @Model.c.clientId })'
+           data-toggle="popover" data-trigger="hover" data-content="ԱՔՐԱ Պրոֆիլ">
+            <img src='@Url.Content("~/img/credit-scores.png")' class="buttonImage" />
+        </a>
+        <div>
+
+        </div>
+
+
+    </div>*@
+
+
+
+<div class="fixedDivAppFin">
+    <div class="container-fluid">
+        <div class="row">
+
+            <table class="FullWidth">
+                <tr>
+
+                    <td class=" Div-Center">
+                        <a href='@Url.Action("Create", "Application",  new { clientId = @Model.c.clientId })'
+                           data-toggle="popover" data-trigger="hover" data-content="Նոր Հայտ">
+                            <img src='@Url.Content("~/img/newApplication.png")' class="buttonImage" />
+                        </a>
+                    </td>
+                    <td class=" Div-Center">
+                        <a href='@Url.Action("", "Application",new { ClientID = @Model.c.clientId, appId = 0 })'
+                           data-toggle="popover" data-trigger="hover" data-content="Հաճախորդի հայտեր">
+                            <img src='@Url.Content("~/img/allApplication.png")' class="buttonImage" />
+                        </a>
+                    </td>
+                    <td class="Div-Center">
+                        <a href='@Url.Action("GetACRA", "acra",new { ClientID = @Model.c.clientId, appId = 0 })'
+                           data-toggle="popover" data-trigger="hover" data-content="ԱՔՐԱ հարցում">
+                            <img src='@Url.Content("~/img/acra.png")' class="buttonImage" />
+                        </a>
+                    </td>
+                    <td class=" Div-Center">
+                        <a href='@Url.Action("ACRAProfile", "acra", new { ClientID = @Model.c.clientId })'
+                           data-toggle="popover" data-trigger="hover" data-content="ԱՔՐԱ Պրոֆիլ">
+                            <img src='@Url.Content("~/img/credit-scores.png")' class="buttonImage" />
+                        </a>
+                    </td>
+
+
+
+                </tr>
+            </table>
+
+        </div>
+
+        @*<div class="row TopButtons ">*@
+
+        @*<div class="col-sm-3 Div-Center">@Html.ActionLink("Նոր Հայտ", "Create", "Application", new { ClientID = @Model.c.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-3 Div-Center">@Html.ActionLink("ԱՔՐԱ Հարցում", "GetACRA", "acra", new { ClientID = @Model.c.clientId, appId = 0 }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-3 Div-Center">@Html.ActionLink("ԱՔՐԱ Պրոֆիլ", "ACRAProfile", "acra", new { ClientID = @Model.c.clientId, appId = 0 }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+            <div class="col-sm-3 Div-Center">@Html.ActionLink("Հաճախորդի հայտեր", "Index", "Application", new { ClientID = @Model.c.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+
+
+
+        @*<div class="col-sm-3"   >@Html.ActionLink("Նոր հայտ", "Create", "Application", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+        @*<div class="col-sm-4">@Html.ActionLink("Հաճախորդի աշխատանքային տվյալներ", "ClientWorkEdit", "Clients", new { ClientID = @Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+
+        @*</div>*@
+
+
+
+
+        @*<div class="row">
+                <div class="col-sm-6 Div-Center">
+                    @Html.ActionLink("Ավելացնել փոխկապակցված անձանց", "ClientsGroupMembersInput", "groups", new { clientID = @Model.c.clientId }, htmlAttributes: new { @class = "btn btn-default", target = "_blank" })
+                </div>
+                <div class="col-sm-6 Div-Center">
+                                              @if (@ViewBag.IsGroupId ?? false )
+                                              {
+                                                @Html.ActionLink("Դիտել փոխկապակցվածությունները", "Index", "clientsGroups", new { groupId = @ViewBag.GroupId }, htmlAttributes: new { @class = "btn btn-default", target = "_blank" })
+                                              }
+
+                </div>
+
+            </div>*@
+        <div style="height:10px;">
+
+        </div>
+        <div class="row">
+
+            @*<div class="col-sm-3">@Html.ActionLink("Հաշվարկել սքորը", "CalculateScores", "ScoringApplicationScores", new { ApplicationID = @Model.applicationId, clientId = Model.clientId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+
+                <div class="col-sm-2">@Html.ActionLink("Հայտի խմբագրում", "Edit", "Application", new { ID = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>
+                          <div class="col-sm-4">@Html.ActionLink("Վարկի նպատակի խմբագրում", "", "Items", new { ApplicationID = @Model.applicationId }, htmlAttributes: new { @class = "btn btn-default", }) </div>*@
+        </div>
+
+
+
+
+        <div class="row">
+
+            <h2 class="arrangeCenter NameTitle">
+
+                @Model.c.clientName @Model.c.clientLastName @Model.c.clientMidName
+
+
+            </h2>
+        </div>
+
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+<div class="After-fixedDivAppFin-Client"></div>
+
+<h4>Խմբագրել հաճախորդի տվյալները</h4>
+
+@*<div class="fixedDiv"  >
+        <h4 style="text-align:right;">@Html.ActionLink("ԱՔՐԱ Հարցում", "GetACRA", "acra", new { clientId = @Model.clientId, appId = 0 }, null) </h4>
+        <h4 style="text-align:right;">@Html.ActionLink("Նոր հայտ", "Create", "Application", new { ClientID = @Model.clientId }, null) </h4>
+        <h4 style="text-align:right;">@Html.ActionLink("Հաճախորդի հայտեր", "Index", "Application", new { ClientID = @Model.clientId }, null) </h4>
+        <h4 style="text-align:right;">@Html.ActionLink("Հաճախորդի աշխատանքային տվյալներ", "ClientWorkEdit", "Clients", new { clientId = @Model.clientId }, null) </h4>
+        <h4 style="text-align:right;">@Html.ActionLink("ԱՔՐԱ պրոֆիլ", "ACRAProfile", "acra", new { clientId = @Model.clientId, appId = 0 }, null) </h4>
+    </div>*@
+
+
+
+
+
+<div class="form-horizontal">
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        @*<h2 class="NameTitle">@Model.c.clientName @Model.c.clientLastName @Model.c.clientMidName</h2>*@
+        <hr />
+        <p style="color:limegreen;">
+            @ViewBag.cSaved
+        </p>
+
+        <p style="color:red;">
+            @ViewBag.ErrorText
+        </p>
+        <br />
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.c.clientId)
+
+
+
+
+
+
+
+
+        @*<div style="height:100px;"></div>*@
+
+
+
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
+                    @*<div class="col-md-6 col-md-offset-3">*@
+
+
+
+
+
+
+
+                    <!-- Tab panes -->
+                    <div class="tab-content faq-cat-content">
+                        <div class="tab-pane active in fade" id="faq-cat-1">
+                            <div class="panel-group" id="accordion-cat-1">
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
+                                            <h4 class="panel-title">
+                                                Անձնական տվյալներ
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.clientName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.clientName, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.clientName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.clientLastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.clientLastName, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.clientLastName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.clientMidName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.clientMidName, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.clientMidName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.dob, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.dob, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                    @Html.ValidationMessageFor(model => model.c.dob, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.sex_clientSexId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @*@Html.DropDownListFor(model => model.c.sex_clientSexId, (SelectList)ViewBag.sx, "---Ընտրել սեռը---", htmlAttributes: new { @class = "form-control" })*@
+                                                    @Html.EditorFor(model => model.c.sex_clientSexId, new { htmlAttributes = new { @class = "form-control " } })
+
+                                                    @Html.ValidationMessageFor(model => model.c.sex_clientSexId, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.edu_educationId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.c.edu_educationId, (SelectList)ViewBag.ed, "---Ընտրել կրթությունը---", htmlAttributes: new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.c.edu_educationId, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-2">
+                                            <h4 class="panel-title">
+                                                Անձնագրային տվյալներ
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+                                            <div id="results"></div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.passpNumb, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.passpNumb, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.passpNumb, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.passpDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.passpDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                    @Html.ValidationMessageFor(model => model.c.passpDate, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.passpAuth, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.passpAuth, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.passpAuth, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.socNumb, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.socNumb, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.socNumb, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-3">
+                                            <h4 class="panel-title">
+                                                Գրանցման Հասցե
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-3" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+
+
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.rRegion, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.c.rRegion, (SelectList)ViewBag.rg, "---Ընտրել ռեգիոնը---", new { onchange = "this.form.submit();", @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.c.rRegion, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.rCity, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.c.rCity, (SelectList)ViewBag.ct, "---Ընտրել համայնքը---", htmlAttributes: new { onchange = "this.form.submit();", @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.c.rCity, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.rStreet, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.c.rStreet, (SelectList)ViewBag.Streets, "---Ընտրել Փողոց---", htmlAttributes: new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.c.rStreet, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.rBuilding, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.rBuilding, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.rBuilding, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.rApartment, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.rApartment, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.rApartment, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.isSameAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    <div class="checkboxForm">
+                                                        @Html.EditorFor(model => model.c.isSameAddress)
+                                                        @Html.ValidationMessageFor(model => model.c.isSameAddress, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-4">
+                                            <h4 class="panel-title">
+                                                Բնակության Հասցե
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-4" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+
+
+
+                                            <div id="ActuallyAddress" style=" @(Model?.c?.isSameAddress== true ?  "display: none;" :  "" )">
+
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.c.cRegion, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.DropDownListFor(model => model.c.cRegion, (SelectList)ViewBag.rg, "---Ընտրել ռեգիոնը---", new { onchange = "this.form.submit();", @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.c.cRegion, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.c.cCity, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.DropDownListFor(model => model.c.cCity, (SelectList)ViewBag.cct, "---Ընտրել համայնքը---", htmlAttributes: new { onchange = "this.form.submit();", @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.c.cCity, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.c.cStreet, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.DropDownListFor(model => model.c.cStreet, (SelectList)ViewBag.cStreets, "---Ընտրել Փողոց---", htmlAttributes: new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.c.cStreet, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.c.cBuilding, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.c.cBuilding, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.c.cBuilding, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.c.cApartment, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.c.cApartment, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.c.cApartment, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.isRented, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    <div class="checkboxForm">
+                                                        @Html.EditorFor(model => model.c.isRented)
+                                                        @Html.ValidationMessageFor(model => model.c.isRented, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-5">
+                                            <h4 class="panel-title">
+                                                Ընտանեկան կարգավիճակ
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-5" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+
+
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.fMemb, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.fMemb, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                                                    @Html.ValidationMessageFor(model => model.c.fMemb, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.fEmpMemb, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.fEmpMemb, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                                                    @Html.ValidationMessageFor(model => model.c.fEmpMemb, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.fTenMemb, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.fTenMemb, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                                                    @Html.ValidationMessageFor(model => model.c.fTenMemb, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.note1, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.note1, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.note1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.note2, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.note2, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.note2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.note3, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.note3, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.c.note3, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-6">
+                                            <h4 class="panel-title">
+                                                Աշխատանքային/Ֆինանսական  տվյալներ
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-6" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+
+                                            <section>
+                                                <h4>Բիզնեսի տեղեկություններ</h4>
+                                                <hr />
+
+                                                @Html.HiddenFor(model => model.cw.Id)
+                                                @Html.HiddenFor(model => model.cw.clientId)
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cw.companyName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.cw.companyName, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.cw.companyName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cw.taxNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.cw.taxNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.cw.taxNumber, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cw.CompanyTel, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.cw.CompanyTel, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.cw.CompanyTel, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cw.companyAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.cw.companyAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.cw.companyAddress, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+
+                                                @*<div class="form-group">
+                                                        @Html.LabelFor(model => model.cw.employmentTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-10">
+                                                            @Html.DropDownListFor(model => model.cw.employmentTypeId, (SelectList)ViewBag.em, "---Ընտրել ոլորտը---", new {  @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.cw.employmentTypeId, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.cw.companyTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-10">
+                                                            @Html.DropDownListFor(model => model.cw.companyTypeId, (SelectList)ViewBag.ctyp, "---Ընտրել կազմ. տեսակը---", htmlAttributes: new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.cw.companyTypeId, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.cw.empRegDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-10">
+                                                            @Html.EditorFor(model => model.cw.empRegDate, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.cw.empRegDate, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>*@
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cw.jobTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.cw.jobTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.cw.jobTitle, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cw.salary, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.cw.salary, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                                        @*@Html.ValidationMessageFor(model => model.cw.salary, "", new { @class = "text-danger" })*@
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cw.otherIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.cw.otherIncome, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                                        @*@Html.ValidationMessageFor(model => model.cw.otherIncome, "", new { @class = "text-danger" })*@
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cw.otherIncomeDescr, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.cw.otherIncomeDescr, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @*@Html.ValidationMessageFor(model => model.cw.otherIncomeDescr, "", new { @class = "text-danger" })*@
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cw.note1, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.cw.note1, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.cw.note1, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.cw.note2, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.cw.note2, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.cw.note2, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                            </section>
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-7">
+                                            <h4 class="panel-title">
+                                                Բջջային հեռախոս/Էլ. փոստ
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-7" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.tel, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.tel, new { htmlAttributes = new { @class = "form-control inputphone" } })
+                                                    @Html.ValidationMessageFor(model => model.c.tel, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.mob1, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.mob1, new { htmlAttributes = new { @class = "form-control inputphone" } })
+                                                    @Html.ValidationMessageFor(model => model.c.mob1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.mob2, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.mob2, new { htmlAttributes = new { @class = "form-control inputphone" } })
+                                                    @Html.ValidationMessageFor(model => model.c.mob2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.mob3, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.mob3, new { htmlAttributes = new { @class = "form-control inputphone" } })
+                                                    @Html.ValidationMessageFor(model => model.c.mob3, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.mob4, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.mob4, new { htmlAttributes = new { @class = "form-control inputphone" } })
+                                                    @Html.ValidationMessageFor(model => model.c.mob4, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.c.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.c.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = Resources.Placeholder.Email } })
+                                                    @Html.ValidationMessageFor(model => model.c.Email, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-11">
+                                            <h4 class="panel-title">
+                                                Փոխկապակցված Անձինք
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-11" class="panel-collapse collapse">
+                                        <div class="panel-body" id="ClientsGroupPanel">
+
+
+                                            <p>
+                                                <div style="text-align:right; padding-right:10px;">
+                                                    @Html.ActionLink("Ավելացնել փոխկապակցված անձանց", "ClientsGroupMembersInput", "groups", new { clientID = @Model.c.clientId }, htmlAttributes: new { @class = "btn btn-success", target = "_blank" })
+                                                </div>
+
+                                            </p>
+
+                                            @* @Html.Partial("~/Views/clientsGroups/ClientsGroup.cshtml", (List<ASFront.ModelsView.clientsGroupDetView>)@ViewBag.ClientsGroup)*@
+                                            @{Html.RenderPartial("~/Views/clientsGroups/ClientsGroup.cshtml", (List<ASFront.ModelsView.clientsGroupDetView>)@ViewBag.ClientsGroup);}
+
+
+
+
+                                            <br />
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                @*<div class="panel panel-default panel-faq">
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-8">
+                                                <h4 class="panel-title">
+                                                    Հաշվեկշռի Տվյալ
+                                                    <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                                </h4>
+                                            </a>
+                                        </div>
+                                        <div id="faq-cat-1-sub-8" class="panel-collapse collapse">
+                                            <div class="panel-body">
+
+
+                                                <p>
+                                                    <div style="text-align:right; padding-right:10px;">@Html.ActionLink("Հաշվեկշռի խմբագրում", "", "Balances", new { ApplicationID = 0, ClientID = Model.c.clientId }, htmlAttributes: new { @class = "btn btn-success ", }) </div>
+
+                                                </p>
+
+
+                                               @Html.Partial("~/Views/Application/Summary/_AppSumBalance.cshtml", (ASFront.ModelsView.BalanceViewModel)@ViewBag.Balance)
+
+
+                                                <br />
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+
+                                @*<div class="panel panel-default panel-faq">
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-9">
+                                                <h4 class="panel-title">
+                                                    ԵԾ-ի տվյալ
+                                                    <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                                </h4>
+                                            </a>
+                                        </div>
+                                        <div id="faq-cat-1-sub-9" class="panel-collapse collapse">
+                                            <div class="panel-body">
+
+
+                                                <p>
+                                                    <div style="text-align:right; padding-right:10px;">@Html.ActionLink("ԵԾ-ի խմբագրում", "", "IncomeExpenses", new { ApplicationID = 0, ClientID = Model.c.clientId }, htmlAttributes: new { @class = "btn btn-success ", }) </div>
+
+                                                </p>
+
+
+                                                @Html.Partial("~/Views/Application/Summary/_AppSumIncomeExpenses.cshtml", (ASFront.ModelsView.IncomeExpensesViewModel)@ViewBag.IncomeExpenses)
+                                                <br />
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+
+
+
+
+                                @*<div class="panel panel-default panel-faq">
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-10">
+                                                <h4 class="panel-title">
+                                                    Ֆայլեր
+                                                    <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                                </h4>
+                                            </a>
+                                        </div>
+                                        <div id="faq-cat-1-sub-10" class="panel-collapse collapse">
+                                            <div class="panel-body">
+
+
+
+
+
+
+                                                    @Html.Partial("_FileTable", (List<ASFront.Models.DocsApllications>)ViewBag.FileTable)
+
+
+                                                <br />
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @*end tab*@
+
+
+                    <div class="form-group">
+                        <div class=" col-md-10 SaveButtonClient" style="padding-left:15px;">
+                            <input type="submit" value=@Resources.Page.Save name="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        @*<div class="container">
+                <div class="row">
+                    <div class="col-md-12 ">
+
+
+                    </div>
+                </div>
+            </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+</div>
+
+<div style="padding-left:15px;">
+    @Html.ActionLink(Resources.Page.BackToList, "Index")
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+        $(document).ready(function () {
+            $("#c_sex_clientSexId").kendoDropDownList({
+               placeholder: "@Resources.Page.Select",
+                //filter: "contains",
+                dataTextField: "Name",
+                dataValueField: "Id",
+                dataSource: {
+                    //type: "json",
+                    serverFiltering: false,
+                    transport: {
+                        read: {
+                            url: "@(Url.RouteUrl("ListGender"))",
+                            dataType: "json"
+                        },
+                        dataType: "json"
+                    },
+
+
+
+
+
+
+
+                }
+
+            });
+        });
+
+
+
+
+
+
+
+    </script>
+
+
+    <script type="text/javascript" src="~/Scripts/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript">
+        //$(function HideActuallyAddress() {
+        //    $('#ActuallyAddress').toggle(2000);
+        //});
+
+        $('#isSameAddress').change(function () {
+            $('#ActuallyAddress').toggle(2000);
+        });
+
+
+
+        $(function () {
+            $('.inputphone').mask("(099) 99-99-99");
+        });
+
+
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+
+
+    </script>
+}
+
+
+
+
+
+
+@*@section Scripts{
+
+        <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.maskedinput.min.js"></script>
+
+        <script type="text/javascript">
+            $(function () { // will trigger when the document is ready
+                $('#dob').datetimepicker(); //Initialise any date pickers
+            });
+
+            $(function () {
+                $('.inputphone').mask("(099) 99-99-99");
+            });
+        </script>
+    }*@

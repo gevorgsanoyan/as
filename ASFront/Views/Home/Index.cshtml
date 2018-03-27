@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>"ՍԵՖ Ինտերնեյշնլ" ՈՒՎԿ</h1>
+   <p class="lead">Ինտրանետ համակարգն ընդգրում է կազմակերպության տարբեր ոլորտների ավտոմատացված և ներկայումս գործող ենթահամակարգերը:</p>
+    @*<p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+</div>
+
+<div class="row">
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="col-md-4">
+            <h2>Համակարգային օգտատերերի կարգաբերումներ</h2>
+            <p>
+                Օգտատերերի կարգաբերումների համար:
+            </p>
+            <p><a class="btn btn-default" href="~/Account/ShowAllUsers">Սկսել &raquo;</a></p>
+        </div> 
+        <div class="col-md-4">
+            <h2>Մասնաճյուղերի</h2>
+            <p>
+                Մասնաճյուղերի և տարածաշրջանների կարգաբերումների համար:
+            </p>
+            <p><a class="btn btn-default" href="~/RB/Branches">Սկսել &raquo;</a></p>
+        </div> 
+        <div class="col-md-4">
+            <h2>Սքորինգային կարգաբերումների համար:</h2>
+            <p>
+                Սքորինգիային ինդիկատորների և կարգաբերումների ստեղծման և խմբագրման համար:
+            </p>
+            <p><a class="btn btn-default" href="~/ScoringIndicators/Index">Սկսել &raquo;</a></p>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-4">
+            <h2>Ապառիկ վարկավորման համակարգ</h2>
+            <p>
+                Ապառիկ վարկավորման գործընթացն իրականացնելու համար օգտվեք ներքոհիշյալ հղումից:
+            </p>
+            <p><a class="btn btn-default" href="~/Clients/Index">Սկսել &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Գյուղատնտեսական վարկավորում</h2>
+            <p>
+                Գյուղատնտեսական վարկավորման գործընթացն իրականացնելու համար օգտվեք ներքոհիշյալ հղումից:
+            </p>
+            <p><a class="btn btn-default" href="~/Home/Index">Սկսել &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Ոսկու գրավով վարկավորում</h2>
+            <p>
+                Ոսկու գրավով վարկավորման գործընթացն իրականացնելու համար օգտվեք ներքոհիշյալ հղումից:
+            </p>
+            <p><a class="btn btn-default" href="~/Home/Index">Սկսել &raquo;</a></p>
+        </div>
+    }
+
+</div>

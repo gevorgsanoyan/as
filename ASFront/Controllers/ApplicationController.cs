@@ -53,7 +53,6 @@ namespace ASFront.Controllers
 
 
 
-            //ApplicationFinViewModel item = new ApplicationFinViewModel();
 
             long ApplicationID = 0;
             string ApplicationIDStr = Request.QueryString["ApplicationID"];
@@ -164,7 +163,7 @@ namespace ASFront.Controllers
                     }
                     catch
                     {
-                        lnCltrl = 0;// (double)app.creditSumAMD;
+                        lnCltrl = 0;
                     }
                 }
                 LoanInsurance.loanCollateral = lnCltrl.ToString("N0");
@@ -192,7 +191,7 @@ namespace ASFront.Controllers
                 var Currency = db.CurrencyTypes.Where(p => p.currencyTypesId == product.productCurrency).FirstOrDefault();
                 string CurrencyText = " " + Currency.currencyArm;
                 string CurrencySign = "";
-                //Currency.Sign;
+
 
                 var SellerName = db.Sellers.Where(p => p.Id == app.SellerId).Select(p => p.FirstName + " " + p.LastName + " " + p.Patronymic).FirstOrDefault();
 
@@ -215,7 +214,6 @@ namespace ASFront.Controllers
                     applicationId = app.applicationId,
                     appStatus = app.appStatus,
                     appuserId = appuserFullName,
-                    //app.appuserId,
                     aprDate = app.aprDate,
                     branchId = app.branchId,
                     clientId = app.clientId,
@@ -292,7 +290,6 @@ namespace ASFront.Controllers
                 double credTotSum = 0;
                 double clInvest = 0;
                 double MonthlyPaymentSize = 0;
-                //double CorectionIndex = 1.03;
                 try
                 {
                     credTotSum = app.creditSum.Value;
@@ -330,22 +327,11 @@ namespace ASFront.Controllers
 
 
 
-
-
                 MonthlyPaymentSize = CommonFunction.PMTCalc(app.applicationId, credTotSum);
-
-
-                //Convert.ToInt32((credTotSum - clInvest) / app.CreditTerm * CorectionIndex);
-
 
 
 
                 sum.AppSumBriefDataViewModel.MonthlyPaymentSize = CurrencySign + MonthlyPaymentSize.ToString("N0") + CurrencyText;
-
-
-
-
-
 
 
                 List<AppSumProductDescriptionViewModel> AppSumProductDescriptionViewModel = (
@@ -419,15 +405,6 @@ namespace ASFront.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
                 List<AppSumScoringScoreViewModel> AppSumScoringScoreViewModelList = new List<ModelsView.AppSumScoringScoreViewModel>();
 
                 AppSumScoringScoreViewModelList = (
@@ -450,8 +427,6 @@ namespace ASFront.Controllers
               ).Distinct().ToList();
 
                 sum.AppSumScoringScoreViewModel = AppSumScoringScoreViewModelList;
-
-
 
 
                 List<AppSumScoringScoreDecisionViewModel> AppSumScoringScoreDecisionViewModel = new List<AppSumScoringScoreDecisionViewModel>();
@@ -515,12 +490,8 @@ namespace ASFront.Controllers
                 }
 
 
-
-                //List< ApplicationAppruves> ApplicationAppruvesList = db.ApplicationAppruves.Where(p => p.appId == app.applicationId).ToList();
+               
                 var ApplicationAppruvesLast = db.ApplicationAppruves.Where(p => p.ApplicationAppruvesId == (db.ApplicationAppruves.Where(m => m.appId == app.applicationId).Max(m => m.ApplicationAppruvesId))).FirstOrDefault();
-
-
-
 
 
                 ApplicationAppruves ApplicationAppruvesR1 = new ApplicationAppruves();
@@ -537,16 +508,7 @@ namespace ASFront.Controllers
                 }
 
 
-                //Ճշտել սա
-                //int appstatusID = CommonFunction.GetAppStatus(ScoringDecisionID, pl, ApplicationAppruvesR1, ApplicationAppruvesR2);
-
-                //if (app.appStatus != appstatusID && app.appStatus == 1)
-                //{
-                //    app.appStatus = appstatusID;
-                //    db.SaveChanges();
-                //}
-
-
+                
 
                 appDes.RowName = "Գնահատական";
 
@@ -568,29 +530,12 @@ namespace ASFront.Controllers
                 {
                     appDes.CurrentState = appStatusName;
                 }
-                //if (pl.Scoring ?? false)
-                //appDes.Verifying = "Վարկային մասնագետ";
+                
                 appDes.Verifying = "";
                 appDes.Notification = "";
 
 
-                // if (pl!=null && pl.Scoring.HasValue && pl.Scoring.Value && !(pl.App1 ?? false) && !(pl.App2 ?? false))
-                //{
-                //    if (appsum != null)
-                //    {
-                //        appDes.FinalDecision = Dis.Decision;
-
-
-                //        if (appsum.ScoreDecisionID > 0 && CommonFields.ButtonClassesList.Count - 1 >= appsum.ScoreDecisionID)
-                //        {
-                //            appDes.btnClass = CommonFields.ButtonClassesList[appsum.ScoreDecisionID];
-                //        }
-                //        else
-                //        {
-                //            appDes.btnClass = CommonFields.ButtonClassesList[0];
-                //        }
-                //    }
-                //}
+                
 
                 AppSumDecisionMakingViewModelList.Add(appDes);
                 appDes = new AppSumDecisionMakingViewModel();
@@ -618,26 +563,7 @@ namespace ASFront.Controllers
 
                 }
 
-
-                //if (pl != null && pl.App1.HasValue && pl.App1.Value && !(pl.App2 ?? false))
-                //{
-                //    if (appsum != null)
-                //    {
-                //        appDes.FinalDecision = Dis.Decision;
-
-
-                //        if (appsum.ScoreDecisionID > 0 && CommonFields.ButtonClassesList.Count - 1 >= appsum.ScoreDecisionID)
-                //        {
-                //            appDes.btnClass = CommonFields.ButtonClassesList[appsum.ScoreDecisionID];
-                //        }
-                //        else
-                //        {
-                //            appDes.btnClass = CommonFields.ButtonClassesList[0];
-                //        }
-                //    }
-                //}
-
-
+                
                 AppSumDecisionMakingViewModelList.Add(appDes);
                 appDes = new AppSumDecisionMakingViewModel();
 
@@ -718,16 +644,7 @@ namespace ASFront.Controllers
                 appDes.Notification = "";
                 ViewBag.isShowApproveButton = isShowApproveButton;
                 appsum = new Models.ApplicationSummary();
-                //appDes.FinalDecision = "";
-
-                //if (appsum.ScoreDecisionID > 0 && CommonFields.ButtonClassesList.Count - 1 >= appsum.ScoreDecisionID)
-                //{
-                //    appDes.btnClass = CommonFields.ButtonClassesList[appsum.ScoreDecisionID];
-                //}
-                //else
-                //{
-                //    appDes.btnClass = CommonFields.ButtonClassesList[0];
-                //}
+                
                 if (app.appStatus == 4)
                     AppSumDecisionMakingViewModelList.Add(appDes);
                 appDes = new AppSumDecisionMakingViewModel();
@@ -743,7 +660,6 @@ namespace ASFront.Controllers
                     {
                         ApplicationAppruvesLast.appUserId = appsum.Appfinal;
 
-                        //db.SaveChanges();
                     }
 
 
@@ -751,11 +667,6 @@ namespace ASFront.Controllers
                 }
 
                 sum.AppSumDecisionMakingViewModel = AppSumDecisionMakingViewModelList;
-
-
-
-
-
 
 
             }
@@ -831,8 +742,7 @@ namespace ASFront.Controllers
             {
 
 
-                //if (!db.ScoringApplicationScores.Any(p => p.ApplicationID == ApplicationID))
-                //{
+                
                 var prID = db.applications.Where(p => p.applicationId == ApplicationID).Select(p => p.productId).SingleOrDefault();
 
 
@@ -909,7 +819,6 @@ namespace ASFront.Controllers
                 db.ApplicationSummary.Add(totscore);
 
                 var app = db.applications.Find(ApplicationID);
-                //app.appStatus = 1;
 
                 ApplicationSummary appSummry = new Models.ApplicationSummary();
 
@@ -929,9 +838,9 @@ namespace ASFront.Controllers
                             appSum += (apps.Sum - apps.ClientInvest);
                         }
 
-                        int credDur = app.CreditTerm; // db.applications.Select(d => d.CreditTerm).SingleOrDefault();
-                        int branchId = app.branchId; //db.applications.Select(b => b.branchId).SingleOrDefault();
-                        int productId = app.productId; //db.applications.Select(pr => pr.productId).SingleOrDefault();
+                        int credDur = app.CreditTerm; 
+                        int branchId = app.branchId; 
+                        int productId = app.productId; 
 
                         var prlimits = db.ProductLimits.Where(pl => pl.ProductID == prID).ToList();
                         foreach (var prl in prlimits)
@@ -970,8 +879,7 @@ namespace ASFront.Controllers
                 }//if (scorDes == 5)
 
 
-                //int scoreDesId = db.ScoringDecisions.Where(d=>d.id)
-
+              
                 appSummry.HaytID = app.applicationId;
                 appSummry.ScoreDate = DateTime.Now;
                 appSummry.ScoreDecisionID = scorDes;
@@ -1002,134 +910,7 @@ namespace ASFront.Controllers
             return RedirectToAction("ApplicationSummary", new { ApplicationID = ApplicationID });
         }
 
-
-        //public ActionResult ApplicationFin()
-        //{
-        //    ApplicationFinViewModel item = new ApplicationFinViewModel();
-
-        //    long ApplicationID = 0;
-        //    string ApplicationIDStr = Request.QueryString["ApplicationID"];
-
-
-        //    if (!string.IsNullOrWhiteSpace(ApplicationIDStr))
-        //        Int64.TryParse(ApplicationIDStr, out ApplicationID);
-
-
-
-
-
-
-        //    var items = new List<ItemViewModel>();
-
-        //    if (ApplicationID > 0)
-        //    {
-        //        var app = db.applications.Find(ApplicationID);
-
-        //        var clientName = db.clients.Distinct().Where(p => p.clientId == app.clientId).Select(p => new { clientId = p.clientId, clientName = (p.clientName + " " + p.clientLastName + " " + p.clientMidName ?? "") }).ToList().Select(p => p.clientName).FirstOrDefault();
-
-        //        var branchName = db.SupplierBranches.Where(p => p.BrancheId == app.branchId).Select(p => p.BrancheName).FirstOrDefault();
-
-        //        var productName = db.Products.Where(p => p.productId == app.productId).Select(p => p.productName).FirstOrDefault();
-
-        //        var SellerName = db.Sellers.Where(p => p.Id == app.SellerId).Select(p => p.FirstName + " " + p.LastName + " " + p.Patronymic).FirstOrDefault();
-        //        var userName = db.Users.Where(p => p.Id == app.userId).Select(p => p.UserName).FirstOrDefault();
-        //        var SupplierID = db.SupplierBranches.Where(p => p.BrancheId == app.branchId).Select(p => p.SupplierId).FirstOrDefault();
-        //        var SupplierName = db.Suppliers.Where(p => p.SupplierId == SupplierID).Select(p => p.SupplierName).FirstOrDefault();
-        //        var appStatusName = db.appStatus.Where(p => p.appStatusId == app.appStatus).Select(p => p.appStatusArm).FirstOrDefault();
-
-
-        //        item.Application = new ApplicationViewModel
-        //        {
-        //            agrNumb = app.agrNumb,
-        //            agrNumbP = app.agrNumbP,
-        //            appDate = app.appDate,
-        //            appDescr = app.appDescr,
-        //            applicationId = app.applicationId,
-        //            appStatus = app.appStatus,
-        //            appuserId = "",
-        //            aprDate = app.aprDate,
-        //            branchId = app.branchId,
-        //            clientId = app.clientId,
-
-
-        //            branchName = branchName,
-        //            clientName = clientName,
-        //            productName = productName,
-        //            SellerName = SellerName,
-        //            userName = userName,
-        //            SupplierName = SupplierName,
-        //            appStatusName = appStatusName,
-
-
-        //            CreditTerm = app.CreditTerm,
-        //            note1 = app.note1,
-        //            note2 = app.agrNumb,
-        //            note3 = app.agrNumb,
-        //            note4 = app.agrNumb,
-        //            note5 = app.agrNumb,
-        //            productId = app.productId,
-
-        //            SellerId = app.SellerId,
-
-        //            userId = app.agrNumb
-
-
-
-
-
-
-
-        //        };
-
-        //        item.Items = (
-        //               from i in db.Items
-        //               join a in db.applications on i.applicationId equals a.applicationId
-        //               join c in db.clients on i.clientId equals c.clientId
-        //               join s in db.Suppliers on i.SupplierId equals s.SupplierId
-        //               join pp in db.ProductPurposes on i.FKProductPurposeId equals pp.Id
-        //               join pr in db.Products on pp.ProductId equals pr.productId
-        //               join pur in db.Purposes on pp.PurposeId equals pur.Id
-
-        //               where i.applicationId == ApplicationID
-
-        //               select new ItemViewModel()
-        //               {
-        //                   Id = i.Id,
-
-        //                   ItemName = i.ItemName,
-        //                   ItemDescr = i.ItemDescr,
-        //                   ClientInvest = i.ClientInvest,
-        //                   Count = i.Count,
-        //                   Price = i.Price,
-        //                   Sum = i.Sum,
-
-        //                   applicationName = a.agrNumb,
-        //                   ProductPurposeName = pr.productName + " - " + pur.PurposeName,
-        //                   clientName = c.clientName + " " + c.clientLastName + " " + c.clientMidName ?? "",
-        //                   SupplierName = s.SupplierName
-        //               }
-
-
-        //            ).Distinct().ToList();
-
-        //        ViewBag.ApplicationID = ApplicationID;
-        //        ViewBag.ClientID = item.Application.clientId;
-
-        //        item.applicationId = ApplicationID;
-        //        item.clientId = item.Application.clientId;
-        //    }
-
-
-        //    ViewBag.Client = db.clients.Distinct().Where(p => p.clientId == item.Application.clientId).Select(p => new { clientId = p.clientId, clientName = (p.clientName + " " + p.clientLastName + " " + p.clientMidName ?? "") }).ToList().Select(p => p.clientName).FirstOrDefault();
-
-        //    ViewBag.socNumb = db.clients.Distinct().Where(p => p.clientId == item.Application.clientId).Select(p => p.socNumb).FirstOrDefault();
-
-
-        //    ViewBag.AppInfo = item.Application.appDate.ToString();
-        //    ViewBag.AppNumber = item.applicationId;
-
-        //    return View(item);
-        //}
+        
         // GET: Application
         public ActionResult Index(int page = 1)
         {
@@ -1185,7 +966,7 @@ namespace ASFront.Controllers
                 else if (StatusID > 0)
                 {
                     SQLStat += " AND appStatus = " + StatusID.ToString();
-                    app = db.applications.SqlQuery(SQLStat).ToList(); //Where(p => p.appStatus == StatusID).ToList();
+                    app = db.applications.SqlQuery(SQLStat).ToList(); 
                 }
                 else
                     app = db.applications.SqlQuery(SQLStat).ToList();
@@ -1198,10 +979,6 @@ namespace ASFront.Controllers
 
             foreach (var appCl in app)
             {
-
-
-
-
 
 
                 var clientName = db.clients.Distinct().Where(p => p.clientId == appCl.clientId).Select(p => new { clientId = p.clientId, clientName = (p.clientName + " " + p.clientLastName + " " + p.clientMidName ?? "") }).ToList().Select(p => p.clientName).FirstOrDefault();
@@ -1239,7 +1016,6 @@ namespace ASFront.Controllers
                     applicationId = appCl.applicationId,
                     appStatus = appCl.appStatus,
                     appuserId = appuserFullName,
-                    //appCl.appuserId,
                     aprDate = appCl.aprDate,
                     branchId = appCl.branchId,
                     clientId = appCl.clientId,
@@ -1266,11 +1042,6 @@ namespace ASFront.Controllers
                     SellerId = appCl.SellerId,
 
                     userId = appCl.agrNumb
-
-
-
-
-
 
 
                 };
@@ -1586,9 +1357,7 @@ namespace ASFront.Controllers
                         ViewBag.maturErr = "Նշված ժամկետը չի համապատասխանում տվյալ պրոդուկտի մաքսիմալ տևողությանը:";
                 }
                 else
-                    ViewBag.maturErr = "Նշված ժամկետը չի համապատասխանում տվյալ պրոդուկտի մինիմալ տևողությանը:";
-                
-                //return RedirectToAction($"Edit/{app.applicationId}", "Application");
+                    ViewBag.maturErr = "Նշված ժամկետը չի համապատասխանում տվյալ պրոդուկտի մինիմալ տևողությանը:";                
 
 
             }
@@ -1740,7 +1509,7 @@ namespace ASFront.Controllers
                 txtMsg = "Հարգելի " + userFullName + ", " + suserFullName + " աշխատակցի կողմից, ձեր հաստատմանն է ուղարկվել թիվ#" + appId.ToString() + " հայտը: ";
 
 
-                var Bot = new Telegram.Bot.TelegramBotClient("377314360:AAElJx_X1hNrSlIufiYtFG2ky-u8lQeUSiw");
+                var Bot = new Telegram.Bot.TelegramBotClient("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
                 await Bot.SetWebhookAsync();
 
@@ -1823,7 +1592,6 @@ namespace ASFront.Controllers
                     applicationId = appCl.applicationId,
                     appStatus = appCl.appStatus,
                     appuserId = appuserFullName,
-                    //appCl.appuserId,
                     aprDate = appCl.aprDate,
                     branchId = appCl.branchId,
                     clientId = appCl.clientId,
@@ -1850,10 +1618,6 @@ namespace ASFront.Controllers
                     SellerId = appCl.SellerId,
 
                     userId = appCl.agrNumb
-
-
-
-
 
 
 

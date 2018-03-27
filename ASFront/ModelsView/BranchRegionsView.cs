@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-//using System.Data.Entity.Infrastructure.Annotations;
-//using System.Data.Entity.ModelConfiguration.Configuration;
+
 
 namespace ASFront.Models
 {
@@ -30,14 +29,6 @@ namespace ASFront.Models
 
     }
 
-    //public class ASFrontDbContext:DbContext
-    //{
-    //    public ASFrontDbContext()
-    //        :base("DefaultConnection")
-    //    {
-
-    //    }        
-
-    //}
+    
 
 }

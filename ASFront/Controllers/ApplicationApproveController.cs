@@ -70,7 +70,7 @@ namespace ASFront.Controllers
             int credDur = app.Select(d => d.CreditTerm).SingleOrDefault();
             int branchId = app.Select(b => b.branchId).SingleOrDefault();
             int productId = app.Select(pr => pr.productId).SingleOrDefault();
-            int prodLimitId = 0; //db.ProductLimits.Where(pl => pl.ProductID == productId && pl.AmountLimit >= uapp.creditSum).Select(ps => ps.Id).Take(1).SingleOrDefault();
+            int prodLimitId = 0; 
 
             int currId = db.Products.Where(p => p.productId == productId).Select(c => c.productCurrency).SingleOrDefault();
             string appCurr = db.CurrencyTypes.Where(c => c.currencyTypesId == currId).Select(c => c.currencyArm).SingleOrDefault();
@@ -267,7 +267,7 @@ namespace ASFront.Controllers
                     userFullName = "Հարգելի " + rusr.FirstName + " " + rusr.LastName;
                 }
 
-                var Bot = new Telegram.Bot.TelegramBotClient("377314360:AAElJx_X1hNrSlIufiYtFG2ky-u8lQeUSiw");
+                var Bot = new Telegram.Bot.TelegramBotClient("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
                 await Bot.SetWebhookAsync();
 

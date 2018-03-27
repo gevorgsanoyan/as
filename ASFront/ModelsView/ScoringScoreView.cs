@@ -36,27 +36,6 @@ namespace ASFront.ModelsView
         public double Coefficient { get; set; }
 
 
-        //[Display(Name = "Նշում 1")]
-        //public string note1 { get; set; }
-
-
-        //[Display(Name = "Նշում 2")]
-        //public string note2 { get; set; }
-
-
-        //[Display(Name = "Նշում 3")]
-        //public string note3 { get; set; }
-
-
-
-
-
-        //[Display(Name = "Մուտքագրող օգտատեր")]
-        //public string userId { get; set; }
-
-        //public DateTime CreatedDate { get; set; } = DateTime.Now;
-
-        //public DateTime LastModifDate { get; set; } = DateTime.Now;
-
+        
     }
 }
